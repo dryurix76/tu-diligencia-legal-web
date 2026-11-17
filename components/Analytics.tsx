@@ -61,7 +61,7 @@ export default function Analytics() {
       )}
       {ready && choice === null && (TAG || PIXEL) && (
         <div role="dialog" aria-label="Preferencias de cookies" style={{ position: 'fixed', left: 16, bottom: 16, zIndex: 70, maxWidth: 440, background: '#fff', color: '#0B1F33', borderRadius: 14, boxShadow: '0 20px 60px rgba(7,20,35,0.3)', padding: 20, fontSize: 14.5 }}>
-          <p style={{ margin: '0 0 14px' }}>Usamos cookies propias y de terceros para medir visitas y mejorar nuestros anuncios. Puedes aceptarlas o usar solo las necesarias. <Link href="/legal/privacidad">Más información</Link>.</p>
+          <p style={{ margin: '0 0 14px' }}>Usamos cookies propias y de terceros para medir visitas y mejorar nuestros anuncios. Puedes aceptarlas o usar solo las necesarias. <Link href="/legal/cookies">Política de cookies</Link>.</p>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             <button type="button" className="btn btn-ink" onClick={() => decide('all')}>Aceptar todas</button>
             <button type="button" className="btn btn-ghost" onClick={() => decide('necessary')}>Solo necesarias</button>

@@ -113,3 +113,8 @@ table.prices td { border-top: 1px solid rgba(11, 31, 51, 0.15); }
   .row-country .country-name { font-size: 38px; }
 }
 @media (max-width: 560px) { .g-4, .g-5 { grid-template-columns: minmax(0, 1fr); } }
+.nav-links { gap: 16px; }
+.nav-links a { font-size: 14.5px; }
+.nav-links .nav-x { display: none; } /* Blog y Caribe: en el pie y en las páginas */
+@media (max-width: 1280px) { .hdr-certia { display: none !important; } }
+@media (max-width: 1120px) { .nav-links .nav-y { display: none; } }

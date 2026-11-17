@@ -10,7 +10,7 @@ export const SITE = {
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || '',
   // Public profiles that confirm the entity (Google Business Profile, LinkedIn, Instagram…). Comma-separated.
   sameAs: (process.env.NEXT_PUBLIC_SAME_AS || '').split(',').map((s) => s.trim()).filter(Boolean),
-  parent: { name: 'Certia Group', url: process.env.NEXT_PUBLIC_CERTIA_URL || '' },
+  parent: { name: 'Certia Group', url: process.env.NEXT_PUBLIC_CERTIA_URL || 'https://certia.group' },
 };
 
 export const abs = (path = '/') => `${SITE.url}${path.startsWith('/') ? path : '/' + path}`;
@@ -27,6 +27,7 @@ export const PAGE_SEO: Record<string, { title: string; description: string }> = 
   '/visados': { title: 'Visados para venezolanos: nómada digital, no lucrativa, D7', description: 'Visados y residencias en España, Portugal e Italia para venezolanos: nómada digital, no lucrativa, D7, estudios y arraigo. Elige el correcto.' },
   '/negocios': { title: 'Visa de emprendedor e inversor en Europa para venezolanos', description: 'Alternativas a la golden visa: visa de emprendedor, inversión en empresas, D2 de Portugal y traslado intraempresa, con apoyo societario de Certia.' },
   '/caribe': { title: 'Visas al Caribe para venezolanos: Dominicana, Panamá, Aruba', description: 'Visados de turismo, negocios y residencia en el Caribe para venezolanos. Verificamos requisitos vigentes antes de cada solicitud. Desde USD 250.' },
+  '/becas': { title: 'Becas 2026 para estudiar en España, Portugal e Italia', description: 'Fundación Carolina, MAECI, Invest Your Talent, DSU, FCT y Erasmus Mundus: plazos, importes y costes reales. Te buscamos tu beca desde USD 290.' },
   '/tarifas': { title: 'Tarifas de abogados de extranjería: precios cerrados', description: 'Todas nuestras tarifas a la vista: consultas desde USD 35, nacionalidades, visados y servicios. Calculadora de presupuesto con cuotas.' },
   '/agendar': { title: 'Agendar consulta con abogado de extranjería', description: 'Elige consulta por escrito o videollamada, día y hora, y paga en línea con tarjeta, Zelle o Binance. Se descuenta si contratas el servicio.' },
   '/ayuda': { title: 'Preguntas sobre nacionalidad española, visados y pagos', description: 'Respuestas revisadas por abogados: requisitos, documentos, apostillas, plazos, precios y pagos desde Venezuela. Busca tu pregunta.' },

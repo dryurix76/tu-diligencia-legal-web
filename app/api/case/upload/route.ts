@@ -4,6 +4,7 @@ import { env } from '@/lib/env';
 import { currentEmail } from '@/lib/session';
 import { findContactByEmail, setContactProps, addNote } from '@/lib/hubspot';
 import { parseDocs } from '@/lib/portal';
+import { notifyTeam, sendEmail, richEmail } from '@/lib/email';
 
 const MAX = 15 * 1024 * 1024;
 const TYPES = ['application/pdf', 'image/jpeg', 'image/png', 'image/heic', 'image/webp'];
@@ -29,5 +30,14 @@ export async function POST(req: Request) {
   if (docs[index]) docs[index].status = 'recibido';
   await setContactProps(contact.id, { tdl_docs_json: JSON.stringify(docs) });
   await addNote(contact.id, `Documento subido por el cliente: <b>${docs[index]?.name || safe}</b><br><a href="${blob.url}">${safe}</a>`);
+  const caseId = contact.properties.tdl_case_id || contact.id;
+  const docName = docs[index]?.name || safe;
+  await notifyTeam(`Documento recibido · ${caseId} · ${docName}`, { Caso: caseId, Cliente: email, Documento: docName, Archivo: blob.url }, email);
+  await sendEmail(email, `Recibimos tu documento · ${caseId}`, richEmail({
+    title: 'Documento recibido', caseId,
+    intro: `<p>Hemos recibido <strong>${docName.replace(/</g, '&lt;')}</strong> en tu expediente. Tu abogado lo revisará y, si hace falta corregir algo, te avisaremos por correo y WhatsApp.</p>`,
+    steps: ['Puedes seguir subiendo documentos desde Mi caso.', 'Revisa que los documentos venezolanos estén apostillados y legibles.'],
+    cta: { label: 'Ir a Mi caso', href: `${(process.env.NEXT_PUBLIC_SITE_URL || '').replace(/\/$/, '')}/mi-caso` },
+  }));
   return NextResponse.json({ ok: true });
 }

@@ -9,7 +9,7 @@ import { track, getAttribution } from '@/lib/track';
 const TIM: [string, string][] = [['now', 'Ahora mismo'], ['3m', 'En 3 meses'], ['6m', 'En 6 meses o más'], ['info', 'Solo me informo']];
 const PRE: [string, string][] = [['verde', 'Sí, salió verde'], ['ambar', 'Sí, salió ámbar'], ['no', 'No la hice']];
 const TZS: [string, string][] = [['America/Caracas', 'Caracas (UTC−4)'], ['Europe/Madrid', 'Madrid'], ['America/Bogota', 'Bogotá y Panamá (UTC−5)'], ['America/New_York', 'Miami / Nueva York'], ['America/Santiago', 'Santiago'], ['America/Lima', 'Lima']];
-const PAY: [string, string, string][] = [['card', 'Tarjeta', 'Visa, Mastercard, Amex · confirmación inmediata'], ['zelle', 'Zelle', 'Confirmamos en 1 hora hábil'], ['binance', 'Binance Pay', 'USDT · confirmamos en 1 hora hábil']];
+const PAY: [string, string, string][] = [['card', 'Tarjeta', 'Visa, Mastercard, Amex · confirmación inmediata'], ['zelle', 'Zelle', 'Confirmamos en 1 hora hábil'], ['binance', 'Binance Pay', 'USDT · pago desde tu app de Binance']];
 
 export default function Booking({ initialType = 'inicial', cancelled = false }: { initialType?: string; cancelled?: boolean }) {
   const [step, setStep] = useState(1);
@@ -57,7 +57,7 @@ export default function Booking({ initialType = 'inicial', cancelled = false }: 
     track('begin_checkout', { value: c.usd, currency: 'USD', items: [{ item_id: c.id, item_name: c.name, price: c.usd }], payment_type: pay }, { email: v.email, phone: v.phone });
     const { ok, data } = await postJSON<any>('/api/checkout', {
       consult: c.id, area: AREAS[area].id, start: isCall ? slot : '', tz, name: v.name, email: v.email, phone: v.phone, country: v.country,
-      notes, timing: tim, pre: pre === 'no' ? 'no' : pre, pay, terms: v.terms === 'on', attribution: getAttribution(),
+      notes, timing: tim, pre: pre === 'no' ? 'no' : pre, pay, terms: v.terms === 'on', early: v.early === 'on', attribution: getAttribution(),
     });
     setBusy(false);
     if (!ok) { setError(data.error || 'No pudimos procesar el pago.'); return; }
@@ -132,7 +132,7 @@ export default function Booking({ initialType = 'inicial', cancelled = false }: 
                         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>{days[day]?.slots.map((s) => <button key={s} type="button" className="chip" aria-pressed={slot === s} onClick={() => setSlot(s)}>{fmtTime(s)}</button>)}</div>
                       </>
                     )}
-                    <p style={{ margin: 0, fontSize: 14, color: '#5E584E' }}>Te asignamos el abogado especialista en {AREAS[area].label.toLowerCase()}. Recibirás el enlace de la videollamada al confirmar el pago.</p>
+                    <p style={{ margin: 0, fontSize: 14, color: '#5E584E' }}>{c.id === 'urgente' ? 'Consulta urgente: horarios desde 2 horas a partir de ahora, hoy o mañana. ' : ''}Te asignamos el abogado especialista en {AREAS[area].label.toLowerCase()}. Recibirás el enlace de la videollamada al confirmar el pago.</p>
                   </>
                 )}
               </div>
@@ -152,8 +152,9 @@ export default function Booking({ initialType = 'inicial', cancelled = false }: 
                     {PAY.map(([k, l, s]) => <button key={k} type="button" aria-pressed={pay === k} onClick={() => setPay(k)} style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 2, padding: 16, borderRadius: 12, cursor: 'pointer', font: 'inherit', color: '#0B1F33', background: '#fff', border: pay === k ? '2px solid #0B7A59' : '1.5px solid rgba(11,31,51,0.15)', textAlign: 'left' }}><span style={{ fontWeight: 600 }}>{l}</span><span style={{ fontSize: 12.5, color: '#5E584E' }}>{s}</span></button>)}
                   </div>
                 </fieldset>
-                <p style={{ margin: 0, fontSize: 14, color: '#5E584E' }}>{pay === 'card' ? 'Pagas en la página segura de Stripe. No guardamos los datos de tu tarjeta.' : 'Reservamos tu horario y te enviamos los datos de pago con tu referencia. Si no recibimos el pago en 1 hora hábil, la reserva se libera.'}</p>
-                <label className="check"><input type="checkbox" name="terms" required />Acepto los <Link href="/legal/terminos">términos y la política de reprogramación</Link> (gratis hasta 24 h antes) y la <Link href="/legal/privacidad">privacidad</Link>.</label>
+                <p style={{ margin: 0, fontSize: 14, color: '#5E584E' }}>{pay === 'card' ? 'Pagas en la página segura de Stripe. No guardamos los datos de tu tarjeta.' : pay === 'binance' ? 'Te llevamos a Binance Pay para pagar en USDT. Si el pago automático no está disponible, te damos el ID de Binance y tu referencia.' : 'Reservamos tu horario y te enviamos los datos de Zelle con tu referencia. Si no recibimos el pago en 24 horas (o antes de la cita, si es urgente), la reserva puede liberarse.'}</p>
+                <label className="check"><input type="checkbox" name="terms" required />Acepto las <Link href="/legal/terminos" target="_blank">condiciones de contratación</Link>, la <Link href="/legal/reembolsos" target="_blank">política de reembolsos</Link> (reprogramación gratis hasta 24 h antes) y la <Link href="/legal/privacidad" target="_blank">privacidad</Link>.</label>
+                <label className="check"><input type="checkbox" name="early" required />Pido que la consulta se preste antes de que terminen los 14 días de desistimiento y reconozco que, una vez prestada por completo, perderé ese derecho (art. 103.a TRLGDCU). Si cancelo antes, se aplica la política de reembolsos.</label>
                 {error && <p className="err" role="alert">{error}</p>}
                 <div style={{ display: 'flex', gap: 10 }}>
                   <button type="button" className="btn btn-ghost" onClick={() => setStep(3)}>Atrás</button>
@@ -169,7 +170,7 @@ export default function Booking({ initialType = 'inicial', cancelled = false }: 
                   <p className="mono accent" style={{ margin: '0 0 8px', fontSize: 12, letterSpacing: '0.12em' }}>REFERENCIA {manual.caseId}</p>
                   <p style={{ margin: 0 }}>{manual.instructions}</p>
                 </div>
-                <p style={{ margin: '20px 0 0', color: '#4E4A43' }}>Te enviamos estas instrucciones por correo y WhatsApp. Al confirmar el pago recibirás la confirmación de la cita.</p>
+                <p style={{ margin: '20px 0 0', color: '#4E4A43' }}>Te enviamos estas instrucciones por correo y WhatsApp, y nuestro equipo ya tiene tu solicitud. Responde al correo con el comprobante de pago: al confirmarlo recibirás la confirmación de la cita.</p>
               </div>
             )}
 

@@ -28,12 +28,14 @@ export function Lockup({ dark = true, size = 46, fs = 25 }: { dark?: boolean; si
   );
 }
 
+export const CERTIA_URL = process.env.NEXT_PUBLIC_CERTIA_URL || 'https://certia.group';
+
 export function Certia({ dark = true, h = 18 }: { dark?: boolean; h?: number }) {
   return (
-    <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+    <a href={CERTIA_URL} target="_blank" rel="noopener" aria-label="Certia Group (abre en una pestaña nueva)" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
       <span className="mono" style={{ fontSize: 10.5, letterSpacing: '0.14em', color: dark ? '#A9B2BE' : '#5E584E' }}>PARTE DE</span>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={dark ? CERTIA_DARK : CERTIA_LIGHT} alt="Certia Group" style={{ height: h, width: 'auto', display: 'block' }} />
-    </span>
+    </a>
   );
 }

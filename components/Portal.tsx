@@ -11,6 +11,7 @@ interface CaseData {
   bookings?: { title: string; start: string; meetingUrl?: string; uid: string }[];
   notes?: { date: string; body: string }[];
   payments?: { name: string; date: string; usd: number; status: string }[];
+  requests?: { date: string; kind: string; status: string; service: string; amount: number | null; ref: string }[];
 }
 
 const badge = (s: string): React.CSSProperties => ({ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.08em', padding: '5px 9px', borderRadius: 4, ...(s === 'recibido' || s === 'pagado' ? { background: '#E3F5EE', color: '#0B7A59' } : s === 'gestion' ? { background: '#EAF0F7', color: '#1F3B6B' } : { background: '#FFF1DC', color: '#8A5A00' }) });
@@ -31,12 +32,13 @@ export default function Portal({ linkError = false }: { linkError?: boolean }) {
   if (!data.auth) return (
     <section style={{ padding: '120px 0' }}><div className="wrap" style={{ maxWidth: 560 }}>
       <h1 className="h2" style={{ marginBottom: 12 }}>Mi <em>caso</em></h1>
-      {sent ? <p className="fade" style={{ fontSize: 18 }}>Si tu correo está registrado como cliente, te llegará un enlace de acceso en unos minutos. Caduca en 20 minutos.</p> : (
-        <form onSubmit={async (e) => { e.preventDefault(); const email = new FormData(e.currentTarget).get('email'); const { ok, data: d } = await postJSON<any>('/api/auth/request', { email }); if (ok) setSent(true); else setError(d.error || 'Revisa tu correo.'); }} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <p style={{ margin: '0 0 16px', color: '#5E584E' }}>Entra con tu correo. Te enviamos un enlace de acceso, sin contraseñas.</p>
+      {sent ? <div className="fade" style={{ fontSize: 18 }}><p>Revisa tu correo (y la carpeta de spam o promociones).</p><p>Si ya eres cliente, te llegó un <strong>enlace para entrar</strong>. Si es tu primera vez, te llegó un <strong>enlace para crear tu acceso</strong>.</p></div> : (
+        <form onSubmit={async (e) => { e.preventDefault(); const fd = new FormData(e.currentTarget); const { ok, data: d } = await postJSON<any>('/api/auth/request', { email: fd.get('email'), name: fd.get('name') || undefined }); if (ok) setSent(true); else setError(d.error || 'Revisa tu correo.'); }} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <p style={{ margin: '0 0 16px', color: '#5E584E' }}>Entra o regístrate con tu correo: te enviamos un enlace, sin contraseñas.</p>
           <label className="lbl">Correo electrónico<input className="field" name="email" type="email" required autoComplete="email" /></label>
+          <label className="lbl">Nombre (solo si es tu primera vez)<input className="field" name="name" autoComplete="name" /></label>
           {error && <p className="err" role="alert">{error}</p>}
-          <button type="submit" className="btn btn-ink" style={{ minHeight: 56 }}>Recibir enlace de acceso</button>
+          <button type="submit" className="btn btn-ink" style={{ minHeight: 56 }}>Recibir enlace</button>
         </form>
       )}
       <p style={{ margin: '24px 0 0', fontSize: 14, color: '#5E584E' }}>¿Aún no eres cliente? <Link href="/agendar">Agenda tu consulta</Link> o haz la <Link href="/nacionalidad-espanola#evaluador">pre-evaluación gratuita</Link>.</p>
@@ -72,6 +74,24 @@ export default function Portal({ linkError = false }: { linkError?: boolean }) {
           <button type="button" className="btn btn-ghost" onClick={async () => { await fetch('/api/auth/logout', { method: 'POST' }); setData({ auth: false }); }}>Cerrar sesión</button>
         </div>
 
+        {!data.deal && (
+          <div style={{ background: '#0B1F33', color: '#F4EFE6', borderRadius: 10, padding: 28, marginBottom: 24 }}>
+            <p className="serif" style={{ margin: '0 0 8px', fontSize: 26 }}>Aún no tienes un expediente abierto.</p>
+            <p style={{ margin: '0 0 18px', color: '#C9CFD6' }}>Tu acceso está creado. El expediente se abre cuando agendas tu consulta y aparecerá aquí con su estado.</p>
+            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}><Link className="btn btn-mint" href="/nacionalidad-espanola#evaluador">Hacer la pre-evaluación</Link><Link className="btn btn-ghost-dark" href="/agendar">Agendar consulta</Link></div>
+          </div>
+        )}
+        {(data.requests || []).length > 0 && (
+          <div className="card" style={{ padding: 24, marginBottom: 24 }}>
+            <p className="mono" style={{ margin: '0 0 12px', fontSize: 11.5, letterSpacing: '0.14em', color: '#5E584E' }}>TUS SOLICITUDES</p>
+            {data.requests!.map((r) => (
+              <div key={r.date + r.ref} style={{ display: 'flex', justifyContent: 'space-between', gap: 12, padding: '10px 0', borderBottom: '1px solid rgba(11,31,51,0.08)', flexWrap: 'wrap', fontSize: 15 }}>
+                <span>{new Date(r.date).toLocaleDateString('es-VE')} · {r.kind === 'consulta' ? 'Consulta' : r.kind === 'evaluador' ? 'Pre-evaluación' : r.kind === 'guia' ? 'Guía descargada' : r.kind === 'beca' ? 'Búsqueda de becas' : 'Mensaje'} · {r.service}</span>
+                <span style={badge(r.status === 'pagado' ? 'pagado' : r.status === 'pendiente_pago' ? 'pendiente' : 'gestion')}>{r.status === 'pendiente_pago' ? 'PAGO PENDIENTE' : r.status.toUpperCase()}{r.amount ? ` · USD ${r.amount}` : ''}</span>
+              </div>
+            ))}
+          </div>
+        )}
         <div className="card" style={{ padding: 32, marginBottom: 24 }}>
           <p className="mono" style={{ margin: '0 0 24px', fontSize: 11.5, letterSpacing: '0.14em', color: '#5E584E' }}>ESTADO DEL EXPEDIENTE</p>
           <ol style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: 12, listStyle: 'none', padding: 0, margin: 0 }}>

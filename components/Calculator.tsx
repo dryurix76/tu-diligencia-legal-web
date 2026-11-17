@@ -4,14 +4,14 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { SERVICE_PRICES } from '@/lib/catalog';
 
-const fmt = (v: number) => Math.round(v).toLocaleString('es-ES');
+const fmt = (v: number) => String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
-export default function Calculator() {
+export default function Calculator({ items = SERVICE_PRICES, title }: { items?: [string, number][]; title?: string }) {
   const [svc, setSvc] = useState(0);
   const [n, setN] = useState(1);
   const [cuotas, setCuotas] = useState(3);
   const [paid, setPaid] = useState(false);
-  const base = SERVICE_PRICES[svc][1];
+  const base = (items[svc] || items[0])[1];
   const extra = Math.round(base * 0.85 * (n - 1));
   const disc = paid ? 60 : 0;
   const total = base + extra - disc;
@@ -19,9 +19,10 @@ export default function Calculator() {
 
   return (
     <div className="panel" style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      {title && <p className="mono accent" style={{ margin: 0, fontSize: 12, letterSpacing: '0.12em' }}>{title}</p>}
       <label className="lbl">Servicio
         <select className="field" value={svc} onChange={(e) => setSvc(Number(e.target.value))}>
-          {SERVICE_PRICES.map(([l, p], i) => <option key={l} value={i}>{l} · desde USD {fmt(p)}</option>)}
+          {items.map(([l, p], i) => <option key={l} value={i}>{l} · desde USD {fmt(p)}</option>)}
         </select>
       </label>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 20 }}>

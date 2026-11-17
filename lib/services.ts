@@ -4,7 +4,7 @@ import type { EvalQuestion, EvalResult } from '@/components/Evaluator';
 export interface ServicePageData {
   slug: string; title: string; topic: string; nat?: boolean; bg: string; crumb: string;
   h1a: string; h1b: string; lede: string; from: string; motif: string; service_name: string;
-  vias_title: string; vias_lede: string; vias: { title: string; text: string; tag: string }[];
+  vias_title: string; vias_lede: string; vias: { title: string; text: string; tag: string; href?: string }[];
   eval_title: string; questions: EvalQuestion[]; results: EvalResult[];
   steps_lede: string; steps: { title: string; text: string; who: 'n' | 't' }[];
   docs: { head: string; items: string[] }[]; prices: { name: string; includes: string; price: string }[];

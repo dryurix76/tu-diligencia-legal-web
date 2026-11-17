@@ -1385,8 +1385,9 @@
    },
    {
     "title": "Estudios",
-    "text": "Grado, máster o cursos, con posibilidad de trabajar a tiempo parcial.",
-    "tag": ""
+    "text": "Grado, máster o cursos, con posibilidad de trabajar a tiempo parcial. Y te buscamos tu beca en España, Portugal o Italia.",
+    "tag": "TE BUSCAMOS TU BECA",
+    "href": "/becas"
    },
    {
     "title": "Arraigo y reagrupación",
@@ -1562,6 +1563,11 @@
     "name": "Visa de estudios",
     "includes": "Expediente y cita",
     "price": "USD 600"
+   },
+   {
+    "name": "Te buscamos tu beca",
+    "includes": "Informe con las becas que encajan contigo en 7 días",
+    "price": "USD 290"
    },
    {
     "name": "Arraigo o reagrupación",

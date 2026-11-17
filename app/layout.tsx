@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { JsonLd } from '@/components/Seo';
+import ScrollTop from '@/components/ScrollTop';
 import Analytics from '@/components/Analytics';
 import { organizationLd, websiteLd } from '@/lib/seo';
 import '@fontsource-variable/fraunces/opsz.css';
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <JsonLd data={[organizationLd(), websiteLd()]} />
         {children}
+        <ScrollTop />
         <Analytics />
       </body>
     </html>

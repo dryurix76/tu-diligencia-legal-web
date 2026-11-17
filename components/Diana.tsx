@@ -72,7 +72,7 @@ export default function Diana({ topic = 'general' }: { topic?: string }) {
         <div role="dialog" aria-label="Chat con Diana" style={{ position: 'fixed', right: 24, bottom: 108, width: 'min(390px, calc(100vw - 32px))', height: 'min(600px, calc(100vh - 140px))', background: '#F4EFE6', borderRadius: 18, boxShadow: '0 30px 80px rgba(7,20,35,0.38)', overflow: 'hidden', zIndex: 60, border: '1px solid rgba(11,31,51,0.1)', display: 'flex', flexDirection: 'column' }}>
           <div style={{ background: '#0B1F33', color: '#F4EFE6', padding: '16px 18px', display: 'flex', alignItems: 'center', gap: 12 }}>
             <Avatar />
-            <div style={{ flex: 1 }}><p style={{ margin: 0, fontWeight: 600 }}>Diana</p><p style={{ margin: 0, fontSize: 12.5, color: '#A9B2BE' }}>Asistente de Tu Diligencia Legal · responde al instante</p></div>
+            <div style={{ flex: 1 }}><p style={{ margin: 0, fontWeight: 600 }}>Diana</p><p style={{ margin: 0, fontSize: 12.5, color: '#A9B2BE' }}>Asistente virtual con IA · responde al instante</p></div>
             <button type="button" onClick={() => setOpen(false)} aria-label="Cerrar chat" style={{ background: 'none', border: 0, color: '#F4EFE6', cursor: 'pointer', width: 44, height: 44, fontSize: 24 }}>×</button>
           </div>
           <div style={{ flex: 1, overflowY: 'auto', padding: 16, display: 'flex', flexDirection: 'column', gap: 10 }} aria-live="polite">

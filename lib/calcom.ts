@@ -9,14 +9,15 @@ export interface Slot { start: string }
 
 export async function getSlots(eventTypeId: number, startISO: string, endISO: string, timeZone: string): Promise<Record<string, Slot[]>> {
   if (!env.calApiKey) {
-    // Development fallback: plausible weekday slots so the booking UI can be tested.
+    // Development fallback: hourly slots 8:00–19:00 Caracas time (12:00–23:00 UTC), Monday to Saturday.
     const out: Record<string, Slot[]> = {};
-    const d = new Date(startISO);
-    for (let i = 0; i < 10 && Object.keys(out).length < 5; i++) {
-      const day = new Date(d.getTime() + i * 864e5);
-      if (day.getUTCDay() === 0 || day.getUTCDay() === 6) continue;
-      const key = day.toISOString().slice(0, 10);
-      out[key] = [13, 14.5, 16, 19, 20.5, 22].map((h) => ({ start: `${key}T${String(Math.floor(h)).padStart(2, '0')}:${h % 1 ? '30' : '00'}:00.000Z` }));
+    const from = new Date(startISO).getTime(), to = new Date(endISO).getTime();
+    for (let t = Math.floor(from / 3600e3) * 3600e3; t <= to; t += 1800e3) {
+      const d = new Date(t);
+      const h = d.getUTCHours() + d.getUTCMinutes() / 60;
+      if (t < from || d.getUTCDay() === 0 || h < 12 || h > 23) continue;
+      const key = d.toISOString().slice(0, 10);
+      (out[key] = out[key] || []).push({ start: d.toISOString() });
     }
     return out;
   }

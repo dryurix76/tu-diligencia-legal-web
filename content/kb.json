@@ -55,14 +55,19 @@
    "id": "reembolso",
    "cat": "Precios y pagos",
    "q": "¿Puedo cancelar o reprogramar mi consulta?",
-   "a": "Puedes reprogramar gratis hasta 24 horas antes. Si no te conectas a la cita sin avisar, la consulta se da por realizada.",
+   "a": "Puedes reprogramar gratis una vez hasta 24 horas antes. Si cancelas con más de 24 horas, te devolvemos el 100 %; con menos de 24 horas, reprogramas sin coste o recuperas el 50 %. Si fallamos nosotros, devolución íntegra. Los reembolsos se hacen en 14 días como máximo por el mismo medio de pago. Detalle completo en /legal/reembolsos.",
    "kw": [
-    "cancel",
+    "devolucion",
     "reprogram",
-    "reembols",
+    "reprogramar",
     "devol",
-    "cambiar la cita",
-    "mover la cita"
+    "reembolso",
+    "mover la cita",
+    "cancelar",
+    "reembols",
+    "cancel",
+    "desistimiento",
+    "cambiar la cita"
    ]
   },
   {

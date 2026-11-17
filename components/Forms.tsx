@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { postJSON, formValues } from '@/lib/client';
 import { TIMING, SERVICE_OPTIONS, COUNTRIES } from '@/lib/catalog';
 import { track, getAttribution } from '@/lib/track';
+import { GUIDES } from '@/lib/guides';
 
 export function TimingChips({ value, onChange, legend = '¿Cuándo quieres empezar?' }: { value: string; onChange: (v: string) => void; legend?: string }) {
   return (
@@ -81,23 +82,31 @@ export function ContactForm({ service = 'Aún no lo sé', withReason = false, pa
   );
 }
 
-export function GuideForm({ service = 'Aún no lo sé', dark = true, cta = 'Recibir la guía' }: { service?: string; dark?: boolean; cta?: string }) {
+export function GuideForm({ service = 'Aún no lo sé', dark = true, cta = 'Recibir la guía', guide = '', choose = false }: { service?: string; dark?: boolean; cta?: string; guide?: string; choose?: boolean }) {
   const [state, setState] = useState<'idle' | 'busy' | 'done' | 'error'>('idle');
-  if (state === 'done') return <p className="serif fade" style={{ margin: 0, fontSize: 22 }}>Listo. Revisa tu correo: la guía va en camino.</p>;
+  const [email, setEmail] = useState('');
+  if (state === 'done') return (
+    <div className="fade" role="status">
+      <p className="serif" style={{ margin: '0 0 6px', fontSize: 24 }}>Listo. Te enviamos el enlace de descarga.</p>
+      <p style={{ margin: 0, fontSize: 14.5, color: dark ? '#C9CFD6' : '#5E584E' }}>Revisa {email || 'tu correo'} (y la carpeta de spam o promociones). El enlace es personal y funciona 30 días.</p>
+    </div>
+  );
   return (
     <form onSubmit={async (e) => {
       e.preventDefault();
       const v = formValues(e.currentTarget);
       setState('busy');
-      const { ok } = await postJSON('/api/lead', { name: v.name, email: v.email, source: 'guia', service, consent: true, timing: 'info', attribution: getAttribution() });
-      if (ok) track('sign_up', { method: 'guia', service });
+      const g = v.guide || guide;
+      const { ok } = await postJSON('/api/lead', { name: v.name, email: v.email, source: 'guia', guide: g, service: g && GUIDES[g] ? GUIDES[g].service : service, consent: true, timing: 'info', page: typeof window !== 'undefined' ? window.location.pathname : '', attribution: getAttribution() });
+      if (ok) { track('sign_up', { method: 'guia', service, guide: g }); setEmail(v.email); }
       setState(ok ? 'done' : 'error');
     }} style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+      {choose && <label style={{ flex: '1 1 100%' }}><span className="sr-only">Guía</span><select className="field" name="guide" defaultValue={guide || 'nacionalidad-espanola'} style={{ background: '#F4EFE6' }}>{Object.entries(GUIDES).map(([k, g]) => <option key={k} value={k}>{g.title}</option>)}</select></label>}
       <label style={{ flex: '1 1 160px' }}><span className="sr-only">Nombre</span><input className="field" name="name" required minLength={2} placeholder="Tu nombre" style={{ background: '#F4EFE6' }} /></label>
       <label style={{ flex: '1 1 200px' }}><span className="sr-only">Correo electrónico</span><input className="field" name="email" type="email" required placeholder="tu@correo.com" style={{ background: '#F4EFE6' }} /></label>
-      <button type="submit" className={`btn ${dark ? 'btn-mint' : 'btn-ink'}`} disabled={state === 'busy'} style={{ minHeight: 54 }}>{cta}</button>
+      <button type="submit" className={`btn ${dark ? 'btn-mint' : 'btn-ink'}`} disabled={state === 'busy'} style={{ minHeight: 54 }}>{state === 'busy' ? 'Enviando…' : cta}</button>
       {state === 'error' && <p className="err" style={{ width: '100%' }}>No pudimos enviarla. Intenta de nuevo.</p>}
-      <p style={{ width: '100%', margin: 0, fontSize: 12.5, color: dark ? '#A9B2BE' : '#5E584E' }}>Al enviarlo aceptas recibir la guía y comunicaciones de Tu Diligencia Legal. Puedes darte de baja cuando quieras.</p>
+      <p style={{ width: '100%', margin: 0, fontSize: 12.5, color: dark ? '#A9B2BE' : '#5E584E' }}>Te enviamos un enlace de descarga por correo. Al pedirla aceptas la <a href="/legal/privacidad" style={{ color: 'inherit' }}>política de privacidad</a> y recibir comunicaciones de Tu Diligencia Legal; puedes darte de baja cuando quieras.</p>
     </form>
   );
 }

@@ -5,7 +5,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Diana from '@/components/Diana';
 import Evaluator from '@/components/Evaluator';
+import { TREES } from '@/lib/evaluators';
 import Faq from '@/components/Faq';
+import Calculator from '@/components/Calculator';
 import { GuideForm, ContactSection } from '@/components/Forms';
 import { SERVICES, getService, NATS } from '@/lib/services';
 import { pageMeta, serviceLd, faqLd, PAGE_SEO, abs } from '@/lib/seo';
@@ -29,6 +31,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   if (!p) notFound();
   const n = p.vias.length;
   const subs = LANDINGS.filter((l) => l.parent === p.slug);
+  const calcItems: [string, number][] = p.prices.map((r) => [r.name, Number(r.price.replace(/[^0-9]/g, '')) || 0] as [string, number]).filter(([, v]) => v > 0);
 
   return (
     <>
@@ -51,7 +54,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             <p style={{ margin: '36px 0 0', maxWidth: 580, fontSize: 19, color: '#EFE6DE' }}>{p.lede}</p>
             <div style={{ display: 'flex', gap: 16, marginTop: 40, flexWrap: 'wrap', alignItems: 'center' }}>
               <a className="btn btn-lg" href="#evaluador" style={{ background: '#F4EFE6', color: p.bg }}>¿Calificas? Descúbrelo en 2 minutos</a>
-              <a href="#precios" style={{ color: '#F4EFE6', fontWeight: 500, textUnderlineOffset: 6 }}>Ver precios</a>
+              <a href="#precios" style={{ color: '#F4EFE6', fontWeight: 500, textUnderlineOffset: 6 }}>Ver tarifas y calcular</a>
             </div>
           </div>
           <div aria-hidden="true" style={{ position: 'relative', height: 460, minWidth: 0 }}>
@@ -77,6 +80,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 <span className="mono" style={{ fontSize: 13, color: i === 0 ? '#E8D3AE' : '#0B7A59' }}>0{i + 1}</span>
                 <h3 className="serif" style={{ margin: 0, fontSize: 30, lineHeight: 1.05, fontWeight: 400 }}>{v.title}</h3>
                 <p style={{ margin: 0, color: i === 0 ? '#C9CFD6' : '#5E584E', fontSize: 15 }}>{v.text}</p>
+                {v.href && <Link href={v.href} style={{ fontSize: 15, fontWeight: 600, color: i === 0 ? '#3DD1A0' : '#0B7A59' }}>Te buscamos tu beca →</Link>}
                 {v.tag && <span className="mono" style={i === 0 ? { marginTop: 'auto', fontSize: 11.5, letterSpacing: '0.1em', color: '#0B1F33', background: '#E8D3AE', alignSelf: 'flex-start', padding: '5px 9px', borderRadius: 2 } : { marginTop: 'auto', fontSize: 11.5, letterSpacing: '0.1em', color: '#0B7A59' }}>{v.tag}</span>}
               </article>
             ))}
@@ -95,14 +99,14 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           <div>
             <p className="kicker">Pre-evaluación gratuita · 2 minutos</p>
             <Html as="h2" className="h2" html={p.eval_title} />
-            <p className="lede">Responde {p.questions.length} preguntas. Te mostramos un semáforo de viabilidad y el siguiente paso con su precio. Sin compromiso.</p>
+            <p className="lede">{TREES[p.slug] ? 'Entre 2 y 5 preguntas que se adaptan a tu historia. Te mostramos el semáforo, la vía probable, su base legal y lo que un abogado debe confirmar.' : `Responde ${p.questions.length} preguntas. Te mostramos un semáforo de viabilidad y el siguiente paso con su precio.`} Sin compromiso.</p>
             <div style={{ marginTop: 36, display: 'flex', flexDirection: 'column', gap: 14, fontSize: 15, color: '#4E4A43' }}>
               {[['#12A37A', 'Verde: tu perfil parece viable'], ['#C98A12', 'Ámbar: viable, con puntos a revisar'], ['#A3312A', 'Rojo: esta vía no, pero te proponemos otra']].map(([c, t]) => (
                 <div key={c} style={{ display: 'flex', gap: 14, alignItems: 'center' }}><span style={{ width: 14, height: 14, borderRadius: '50%', background: c, flex: 'none' }} />{t}</div>
               ))}
             </div>
           </div>
-          <Evaluator questions={p.questions} results={p.results} service={p.service_name} />
+          <Evaluator questions={p.questions} results={p.results} service={p.service_name} tree={TREES[p.slug]} />
         </div>
       </section>
 
@@ -157,7 +161,15 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
       <section id="precios" className="section">
         <div className="wrap">
-          <h2 className="h2" style={{ marginBottom: 48 }}>Precio cerrado. <em>Por escrito.</em></h2>
+          <div className="g-eval" style={{ marginBottom: 64 }}>
+            <div>
+              <p className="kicker">Calculadora · {p.service_name}</p>
+              <h2 className="h2">Precio cerrado. <em>Por escrito.</em></h2>
+              <p className="lede">Elige el trámite, cuántos familiares y en cuántas cuotas. Solo ves los precios de {p.service_name.toLowerCase()}; el presupuesto final va por escrito tras la consulta.</p>
+              <p style={{ margin: '20px 0 0', fontSize: 15 }}><Link href="/tarifas">Ver todas las tarifas →</Link></p>
+            </div>
+            <Calculator items={calcItems} title={p.service_name.toUpperCase()} />
+          </div>
           <div style={{ overflowX: 'auto', borderTop: '2px solid #0B1F33' }}>
             <table className="prices">
               <thead><tr className="mono" style={{ fontSize: 12, letterSpacing: '0.12em', color: '#5E584E', textAlign: 'left' }}><th style={{ padding: '18px 0', fontWeight: 500 }}>SERVICIO</th><th style={{ padding: '18px 0', fontWeight: 500 }}>INCLUYE</th><th style={{ padding: '18px 0', fontWeight: 500, textAlign: 'right' }}>DESDE</th></tr></thead>
@@ -174,7 +186,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 20, flexWrap: 'wrap', marginTop: 24 }}>
             <p style={{ margin: 0, fontSize: 14, color: '#5E584E' }}>Tasas oficiales, traducciones y apostillas aparte. 15% de descuento desde el segundo familiar. La consulta se descuenta si contratas en 30 días.</p>
-            <Link href="/tarifas" style={{ fontWeight: 600 }}>Calcular mi presupuesto →</Link>
+            <Link href="/tarifas" style={{ fontWeight: 600 }}>Todas las tarifas →</Link>
           </div>
         </div>
       </section>

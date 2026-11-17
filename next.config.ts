@@ -11,6 +11,8 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   trailingSlash: false,
+  // PDF guides are read from disk by the signed download route.
+  outputFileTracingIncludes: { '/descargas/[slug]': ['./content/guides/**'] },
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }];
   },
@@ -22,6 +24,11 @@ const nextConfig: NextConfig = {
       { source: '/italia', destination: '/nacionalidad-italiana', permanent: true },
       { source: '/portugal', destination: '/nacionalidad-portuguesa', permanent: true },
       { source: '/precios', destination: '/tarifas', permanent: true },
+      { source: '/terminos', destination: '/legal/terminos', permanent: true },
+      { source: '/privacidad', destination: '/legal/privacidad', permanent: true },
+      { source: '/aviso-legal', destination: '/legal/aviso-legal', permanent: true },
+      { source: '/cookies', destination: '/legal/cookies', permanent: true },
+      { source: '/reembolsos', destination: '/legal/reembolsos', permanent: true },
       { source: '/faq', destination: '/ayuda', permanent: true },
       { source: '/preguntas-frecuentes', destination: '/ayuda', permanent: true },
     ];

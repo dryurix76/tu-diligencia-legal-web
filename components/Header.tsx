@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Lockup, Certia } from './Brand';
 
 const NAV = [
-  ['/nacionalidad-espanola', 'Nacionalidades'], ['/visados', 'Visados'], ['/negocios', 'Negocios'], ['/caribe', 'Caribe'],
+  ['/nacionalidad-espanola', 'Nacionalidades'], ['/visados', 'Visados'], ['/becas', 'Becas'], ['/negocios', 'Negocios'], ['/caribe', 'Caribe'],
   ['/tarifas', 'Tarifas'], ['/blog', 'Blog'], ['/ayuda', 'Ayuda'],
 ];
 
@@ -12,10 +12,10 @@ export default function Header({ dark = true, ctaHref = '/agendar', ctaBg = '#3D
     <header className="wrap" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between', minHeight: 92, gap: 24, flexWrap: 'wrap', color }}>
       <span style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
         <Lockup dark={dark} />
-        <span className="hide-m" style={{ paddingLeft: 20, borderLeft: `1px solid ${dark ? 'rgba(244,239,230,0.25)' : 'rgba(11,31,51,0.2)'}` }}><Certia dark={dark} /></span>
+        <span className="hide-m hdr-certia" style={{ paddingLeft: 20, borderLeft: `1px solid ${dark ? 'rgba(244,239,230,0.25)' : 'rgba(11,31,51,0.2)'}` }}><Certia dark={dark} /></span>
       </span>
       <nav className="nav-links hide-m" aria-label="Principal">
-        {NAV.map(([h, t]) => <Link key={h} href={h}>{t}</Link>)}
+        {NAV.map(([h, t]) => <Link key={h} href={h} className={h === '/caribe' || h === '/blog' ? 'nav-x' : h === '/negocios' || h === '/ayuda' ? 'nav-y' : undefined}>{t}</Link>)}
       </nav>
       <span style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
         <Link className={`btn hide-m ${dark ? 'btn-ghost-dark' : 'btn-ghost'}`} href="/mi-caso">Mi caso</Link>

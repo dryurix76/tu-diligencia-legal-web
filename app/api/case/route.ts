@@ -4,12 +4,19 @@ import { findContactByEmail, latestDealForContact, clientNotes } from '@/lib/hub
 import { upcomingBookings } from '@/lib/calcom';
 import { stripe } from '@/lib/stripe';
 import { STAGE_LABELS, parseDocs } from '@/lib/portal';
+import { byEmail } from '@/lib/db';
 
 export async function GET() {
   const email = await currentEmail();
   if (!email) return NextResponse.json({ auth: false }, { status: 401 });
-  const contact = await findContactByEmail(email);
-  if (!contact) return NextResponse.json({ auth: true, empty: true, email });
+  const contact = await findContactByEmail(email).catch(() => null);
+  const rows = await byEmail(email).catch(() => []);
+  const requests = rows.filter((r) => r.kind !== 'registro').map((r) => ({ date: r.created_at, kind: r.kind, status: r.status, service: r.service || '', amount: r.amount_usd ? Number(r.amount_usd) : null, ref: r.ref || r.case_id || '' }));
+  if (!contact) {
+    if (!rows.length) return NextResponse.json({ auth: true, empty: true, email });
+    const last = rows[0];
+    return NextResponse.json({ auth: true, name: (last.name || '').split(' ')[0], caseId: rows.find((r) => r.case_id)?.case_id || '', service: last.service || '', deal: null, stages: STAGE_LABELS, docs: parseDocs(), bookings: [], notes: [], payments: [], requests });
+  }
 
   const deal = await latestDealForContact(contact.id);
   // HUBSPOT_STAGE_ORDER: comma-separated deal stage IDs mapped, in order, to STAGE_LABELS.
@@ -37,6 +44,6 @@ export async function GET() {
     service: contact.properties.tdl_service || '',
     deal: deal ? { name: deal.properties.dealname, stageIndex } : null,
     stages: STAGE_LABELS,
-    docs, bookings, notes, payments,
+    docs, bookings, notes, payments, requests,
   });
 }

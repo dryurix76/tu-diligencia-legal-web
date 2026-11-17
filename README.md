@@ -77,9 +77,39 @@ npm run dev                  # http://localhost:3000
 
 `ANTHROPIC_API_KEY` en console.anthropic.com. El modelo por defecto es `claude-haiku-5-5` (rápido y económico). Diana solo responde con `content/kb.json`: para enseñarle algo nuevo, añade una entrada ahí (y aparecerá también en el Centro de respuestas).
 
-## 8. Correo (Resend)
+## 8. Correo (obligatorio: sin esto no llega ningún correo)
 
-Verifica el dominio en resend.com (registros DNS), crea la API key y define `EMAIL_FROM`. `TEAM_NOTIFICATION_EMAIL` recibe los leads A y los pagos manuales.
+Todos los formularios envían **una respuesta automática al cliente** y **una copia completa a `TEAM_NOTIFICATION_EMAIL`** (por defecto `info@tudiligencialegal.com`). Elige una de dos opciones:
+
+- **SMTP (lo más simple):** usa el buzón `info@` de tu hosting. Define `SMTP_HOST`, `SMTP_PORT` (465), `SMTP_SECURE=true`, `SMTP_USER` y `SMTP_PASS`, y `EMAIL_FROM=Tu Diligencia Legal <info@tudiligencialegal.com>`.
+- **Resend:** verifica el dominio en resend.com (registros DNS), crea la API key (`RESEND_API_KEY`) y define `EMAIL_FROM`.
+
+En ambos casos añade en el DNS los registros SPF, DKIM y DMARC que te indique el proveedor para no caer en spam. Las redes sociales (`NEXT_PUBLIC_SOCIAL_*`) y el WhatsApp (`NEXT_PUBLIC_WHATSAPP_NUMBER`) aparecen en todos los correos.
+
+## 8b. Base de datos y panel /admin
+
+1. En Vercel: *Storage → Create → Neon (Postgres)* y conéctala al proyecto. Se crea `DATABASE_URL` (o `POSTGRES_URL`). La tabla `submissions` se crea sola.
+2. Define `ADMIN_PASSWORD` y entra en `https://TU-DOMINIO/admin`. Ahí ves todas las solicitudes (evaluador, contacto, guías, becas, registros, consultas), confirmas pagos de Zelle o Binance manual, cambias estados y exportas CSV. El panel muestra qué integraciones están activas.
+
+## 8c. Binance Pay
+
+- **Automático:** con una cuenta Binance Pay Merchant, crea la API key y define `BINANCE_PAY_API_KEY` y `BINANCE_PAY_SECRET`. En el panel de Binance configura el webhook `https://TU-DOMINIO/api/binance/webhook`. Al pagar, la cita se confirma sola y llegan correo y WhatsApp.
+- **Manual:** sin API, el cliente ve tu `BINANCE_PAY_ID` y su referencia; la reserva queda *pendiente de pago* y la confirmas desde `/admin`, lo que dispara correo y WhatsApp de confirmación.
+
+## 8d. Guías en PDF y becas
+
+Las guías se descargan solo con un enlace firmado que se envía por correo (30 días). Se generan desde el contenido del sitio:
+
+```bash
+npx tsx scripts/export-content.ts /tmp/content.json
+python3 scripts/build_guides.py /tmp/content.json   # requiere: pip install reportlab
+```
+
+Los datos de becas están en `lib/becas.ts` y los árboles del evaluador en `lib/evaluators.ts`. Revísalos cada 6 meses.
+
+## 8e. Textos legales
+
+`lib/legal.ts` contiene aviso legal, privacidad, cookies, condiciones de contratación y reembolsos. Los datos de la empresa se completan con `NEXT_PUBLIC_LEGAL_*` en Vercel. **Deben validarlos los abogados de la firma antes de publicar.**
 
 ---
 
@@ -103,7 +133,9 @@ Ya implementado: títulos y descripciones por página (`lib/seo.ts`), canonical 
 | Base de conocimiento de Diana y Centro de respuestas | `content/kb.json` |
 | Reglas de puntuación de leads | `lib/leadScore.ts` |
 | Artículos del blog | `lib/posts.ts` (índice) + `content/blog/<slug>.md` |
-| Textos legales | `app/legal/[doc]/page.tsx` |
+| Textos legales | `lib/legal.ts` |
+| Árboles del evaluador (vías y base legal) | `lib/evaluators.ts` |
+| Becas | `lib/becas.ts` |
 | Títulos y descripciones SEO | `lib/seo.ts` (`PAGE_SEO`) |
 | Landings de cola larga (nietos, residencia, opción, recurso) | `lib/landings.ts` |
 | Equipo | `app/nosotros/page.tsx` |
@@ -112,5 +144,5 @@ Ya implementado: títulos y descripciones por página (`lib/seo.ts`), canonical 
 
 - Validación legal de todos los textos de requisitos (reforma italiana de 2025, Ley de Memoria Democrática, ley portuguesa, golden visa, etc.).
 - Precios definitivos, cifras reales, equipo, casos de éxito, WhatsApp y correo.
-- Textos completos de privacidad y términos.
+- Validación legal de `lib/legal.ts` y datos de la empresa (`NEXT_PUBLIC_LEGAL_*`).
 - Los documentos del portal se guardan en Vercel Blob con URL no adivinable. Si preferís almacenamiento privado (S3/R2 con URLs firmadas), cambiad `app/api/case/upload/route.ts`.

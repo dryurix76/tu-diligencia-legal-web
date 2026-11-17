@@ -3,7 +3,7 @@ import { Lockup, Certia } from './Brand';
 
 const COLS: [string, [string, string][]][] = [
   ['NACIONALIDADES', [['/nacionalidad-espanola', 'Española'], ['/nacionalidad-italiana', 'Italiana'], ['/nacionalidad-portuguesa', 'Portuguesa'], ['/nacionalidad-alemana', 'Alemana'], ['/nacionalidad-croata', 'Croata'], ['/nacionalidad-britanica', 'Británica']]],
-  ['SERVICIOS', [['/visados', 'Visados y residencias'], ['/negocios', 'Visas de negocios'], ['/caribe', 'Caribe'], ['/tarifas', 'Tarifas'], ['/agendar', 'Agendar consulta']]],
+  ['SERVICIOS', [['/visados', 'Visados y residencias'], ['/becas', 'Becas 2026'], ['/negocios', 'Visas de negocios'], ['/caribe', 'Caribe'], ['/tarifas', 'Tarifas'], ['/agendar', 'Agendar consulta']]],
   ['AYUDA', [['/ayuda', 'Centro de respuestas'], ['/blog', 'Blog El Archivo'], ['/mi-caso', 'Mi caso'], ['/contacto', 'Contacto'], ['/nosotros', 'Nosotros']]],
 ];
 
@@ -27,8 +27,8 @@ export default function Footer() {
           ))}
         </div>
         <div style={{ marginTop: 56, paddingTop: 24, borderTop: '1px solid rgba(244,239,230,0.12)', display: 'flex', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap', fontSize: 13 }}>
-          <span>© {new Date().getFullYear()} Tu Diligencia Legal · Certia Group · WhatsApp {process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY || '+58 [NÚMERO]'}</span>
-          <span><Link href="/legal/privacidad" style={{ color: '#A9B2BE' }}>Privacidad</Link> · <Link href="/legal/terminos" style={{ color: '#A9B2BE' }}>Términos y reembolsos</Link> · Información orientativa, no constituye asesoría jurídica.</span>
+          <span>© {new Date().getFullYear()} Tu Diligencia Legal · <a href={process.env.NEXT_PUBLIC_CERTIA_URL || 'https://certia.group'} target="_blank" rel="noopener" style={{ color: 'inherit' }}>Certia Group</a> · WhatsApp {process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY || '+58 [NÚMERO]'}</span>
+          <span>{[['aviso-legal', 'Aviso legal'], ['privacidad', 'Privacidad'], ['cookies', 'Cookies'], ['terminos', 'Condiciones'], ['reembolsos', 'Reembolsos']].map(([k, l]) => <span key={k}><Link href={`/legal/${k}`} style={{ color: '#A9B2BE' }}>{l}</Link> · </span>)} Información orientativa, no constituye asesoría jurídica.</span>
         </div>
       </div>
     </footer>

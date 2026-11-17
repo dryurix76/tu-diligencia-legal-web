@@ -6,11 +6,13 @@ import Footer from '@/components/Footer';
 import { stripe } from '@/lib/stripe';
 import { CONSULTS } from '@/lib/catalog';
 import PurchaseTracker from '@/components/PurchaseTracker';
+import { getByRef } from '@/lib/db';
 
 export const metadata: Metadata = pageMeta('/agendar/confirmado', { title: 'Pago confirmado', description: 'Confirmación', noindex: true });
 
-export default async function Confirmado({ searchParams }: { searchParams: Promise<{ session_id?: string }> }) {
-  const id = (await searchParams).session_id || '';
+export default async function Confirmado({ searchParams }: { searchParams: Promise<{ session_id?: string; ref?: string }> }) {
+  const sp = await searchParams;
+  const id = sp.session_id || sp.ref || '';
   const st = stripe();
   let paid = false, name = '', consult = '', when = '', caseId = '', value = 0, item = '';
   if (st && id.startsWith('cs_')) {
@@ -25,6 +27,18 @@ export default async function Confirmado({ searchParams }: { searchParams: Promi
       consult = c?.name || 'Consulta';
       if (s.metadata?.start) when = new Date(s.metadata.start).toLocaleString('es-VE', { timeZone: s.metadata.tz || 'America/Caracas', weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' });
     } catch { /* invalid session */ }
+  } else if (sp.ref) {
+    const row = await getByRef(sp.ref).catch(() => null);
+    if (row) {
+      const p = row.payload;
+      paid = row.status === 'pagado';
+      name = String(p.name || '').split(' ')[0];
+      caseId = row.case_id || '';
+      value = Number(row.amount_usd) || 0;
+      item = p.consult || '';
+      consult = CONSULTS.find((x) => x.id === p.consult)?.name || 'Consulta';
+      if (p.start) when = new Date(p.start).toLocaleString('es-VE', { timeZone: p.tz || 'America/Caracas', weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' });
+    }
   }
   return (
     <>
