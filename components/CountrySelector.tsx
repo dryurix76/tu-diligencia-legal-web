@@ -33,14 +33,14 @@ export default function CountrySelector() {
       <div className="fade" key={sel.id} style={{ background: '#0B1F33', color: '#F4EFE6', borderRadius: 4, padding: 44, position: 'relative', overflow: 'hidden' }}>
         <div aria-hidden="true" className="serif" style={{ position: 'absolute', right: -10, top: -40, fontSize: 220, fontStyle: 'italic', color: 'rgba(232,211,174,0.07)', lineHeight: 1 }}>{sel.n}</div>
         <p className="mono" style={{ margin: 0, fontSize: 12, letterSpacing: '0.16em', color: '#C9B48C' }}>NACIONALIDAD</p>
-        <p className="serif" style={{ margin: '8px 0 28px', fontSize: 52, fontWeight: 340, lineHeight: 1 }}>{sel.name}</p>
+        <p className="serif" style={{ margin: '8px 0 28px', fontSize: 'clamp(38px, 10vw, 52px)', fontWeight: 340, lineHeight: 1 }}>{sel.name}</p>
         <p className="mono" style={{ margin: '0 0 6px', fontSize: 11.5, letterSpacing: '0.12em', color: '#A9B2BE' }}>QUIÉN PUEDE CALIFICAR</p>
         <p style={{ margin: '0 0 24px', color: '#E1E4E8' }}>{sel.who}</p>
         <p className="mono" style={{ margin: '0 0 6px', fontSize: 11.5, letterSpacing: '0.12em', color: '#A9B2BE' }}>VÍAS QUE GESTIONAMOS</p>
         <p style={{ margin: '0 0 32px', color: '#E1E4E8' }}>{sel.vias}</p>
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, borderTop: '1px solid rgba(244,239,230,0.16)', paddingTop: 24 }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, flexWrap: 'wrap', borderTop: '1px solid rgba(244,239,230,0.16)', paddingTop: 24 }}>
           <span style={{ fontSize: 14, color: '#A9B2BE' }}>Servicio completo desde</span>
-          <span className="serif" style={{ fontSize: 40, color: '#E8D3AE' }}>USD {sel.price}</span>
+          <span className="serif" style={{ fontSize: 'clamp(32px, 8vw, 40px)', color: '#E8D3AE', whiteSpace: 'nowrap' }}>USD {sel.price}</span>
         </div>
         <Link className="btn btn-mint" href={sel.href} style={{ marginTop: 28, width: '100%' }}>Evaluar mi caso de {sel.name}</Link>
         <p style={{ margin: '16px 0 0', fontSize: 13, color: '#A9B2BE' }}>Orientación general. Un abogado confirma cada caso en la consulta.</p>

@@ -75,7 +75,7 @@ export function ContactForm({ service = 'Aún no lo sé', withReason = false, pa
       <TimingChips value={timing} onChange={setTiming} />
       <label className="lbl">Cuéntanos tu caso en pocas líneas<textarea className="field" name="message" maxLength={3000} placeholder="Quién de tu familia era europeo, dónde vives hoy y qué te gustaría lograr." /></label>
       <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: -9999 }} />
-      <label className="check"><input type="checkbox" name="consent" required />Acepto la política de privacidad y que me contacten por correo y WhatsApp.</label>
+      <label className="check"><input type="checkbox" name="consent" required /><span>Acepto la política de privacidad y que me contacten por correo y WhatsApp.</span></label>
       {error && <p className="err" role="alert">{error}</p>}
       <button type="submit" className="btn btn-ink" disabled={busy} style={{ minHeight: 56 }}>{busy ? 'Enviando…' : 'Enviar mi caso'}</button>
     </form>

@@ -13,6 +13,10 @@ import { SERVICES, getService, NATS } from '@/lib/services';
 import { pageMeta, serviceLd, faqLd, PAGE_SEO, abs } from '@/lib/seo';
 import { JsonLd, Breadcrumbs } from '@/components/Seo';
 import { LANDINGS } from '@/lib/landings';
+import Image from 'next/image';
+import fs from 'node:fs';
+import path from 'node:path';
+import { POSTS } from '@/lib/posts';
 
 export function generateStaticParams() {
   return SERVICES.map((s) => ({ slug: s.slug }));
@@ -31,6 +35,10 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   if (!p) notFound();
   const n = p.vias.length;
   const subs = LANDINGS.filter((l) => l.parent === p.slug);
+  // Optional hero photo: drop public/heroes/<slug>.webp (or .jpg/.png) and it replaces the line drawing.
+  const heroImg = ['webp', 'jpg', 'png'].map((e) => `/heroes/${p.slug}.${e}`).find((f) => fs.existsSync(path.join(process.cwd(), 'public', f)));
+  const postCat = p.slug === 'nacionalidad-espanola' ? 'es' : p.slug === 'nacionalidad-italiana' ? 'it' : ['visados', 'negocios', 'caribe'].includes(p.slug) ? 'visas' : 'otras';
+  const guides = POSTS.filter((x) => x.cat === postCat || (postCat !== 'es' && x.slug === 'espana-o-italia')).slice(0, 4);
   const calcItems: [string, number][] = p.prices.map((r) => [r.name, Number(r.price.replace(/[^0-9]/g, '')) || 0] as [string, number]).filter(([, v]) => v > 0);
 
   return (
@@ -57,8 +65,15 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               <a href="#precios" style={{ color: '#F4EFE6', fontWeight: 500, textUnderlineOffset: 6 }}>Ver tarifas y calcular</a>
             </div>
           </div>
-          <div aria-hidden="true" style={{ position: 'relative', height: 460, minWidth: 0 }}>
-            <svg viewBox="0 0 420 460" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} dangerouslySetInnerHTML={{ __html: p.motif }} />
+          <div className="hero-art" aria-hidden={heroImg ? undefined : true} style={{ position: 'relative', height: 460, minWidth: 0 }}>
+            {heroImg ? (
+              <div style={{ position: 'absolute', inset: 0, borderRadius: 4, overflow: 'hidden', boxShadow: '0 30px 70px rgba(0,0,0,0.35)' }}>
+                <Image src={heroImg} alt={`${p.h1a} ${p.h1b}: imagen ilustrativa`} fill priority sizes="(max-width: 980px) 100vw, 40vw" style={{ objectFit: 'cover' }} />
+                <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: `linear-gradient(180deg, transparent 45%, ${p.bg}cc 100%)` }} />
+              </div>
+            ) : (
+              <svg viewBox="0 0 420 460" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} dangerouslySetInnerHTML={{ __html: p.motif }} />
+            )}
             <div style={{ position: 'absolute', right: 0, bottom: 24, background: '#F4EFE6', color: '#0B1F33', padding: '22px 26px', borderRadius: 4, transform: 'rotate(3deg)', boxShadow: '0 24px 50px rgba(0,0,0,0.35)' }}>
               <p className="mono" style={{ margin: 0, fontSize: 11, letterSpacing: '0.14em', color: '#5E584E' }}>SERVICIO COMPLETO</p>
               <p className="serif" style={{ margin: '4px 0 0', fontSize: 40, lineHeight: 1 }}>desde <em>{p.from}</em></p>
@@ -200,6 +215,24 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           <Faq items={p.faqs} />
         </div>
       </section>
+
+      {guides.length > 0 && (
+        <section className="section" style={{ paddingTop: 0 }} aria-label="Guías relacionadas">
+          <div className="wrap">
+            <p className="kicker">Guías del Archivo</p>
+            <h2 className="h2" style={{ marginBottom: 32 }}>Lee antes de <em>decidir</em>.</h2>
+            <div className="g-2" style={{ gap: 16 }}>
+              {guides.map((g) => (
+                <Link key={g.slug} href={`/blog/${g.slug}`} className="card" style={{ padding: '22px 24px', textDecoration: 'none', color: '#0B1F33', background: '#fff' }}>
+                  <span className="mono accent" style={{ fontSize: 11, letterSpacing: '0.12em' }}>{g.catLabel} · {g.mins} MIN</span>
+                  <span className="serif" style={{ display: 'block', fontSize: 23, margin: '6px 0 6px', lineHeight: 1.15 }}>{g.title}</span>
+                  <span style={{ fontSize: 15, color: '#5E584E' }}>{g.excerpt}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <ContactSection kicker="¿PREFIERES QUE TE ESCRIBAMOS?" title={<>Cuéntanos tu caso. <em>Te respondemos en minutos.</em></>} lede="Diana te escribe por WhatsApp al instante con tu número de caso. Si tu consulta necesita un abogado, te enviamos el enlace para agendar la consulta adecuada, con su precio." service={p.service_name} page={`/${p.slug}`} />
 

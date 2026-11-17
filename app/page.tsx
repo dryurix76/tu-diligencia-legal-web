@@ -106,11 +106,11 @@ export default function Home() {
             <p style={{ margin: 0, maxWidth: 380, color: '#4E4A43' }}>Cuatro líneas de trabajo. Una sola metodología: diagnóstico pagado, precio cerrado y expediente impecable.</p>
           </div>
           <div className="g-svc">
-            <Link href="/nacionalidad-espanola" className="card-lift" style={{ gridRow: 'span 2', background: '#0B1F33', color: '#F4EFE6', borderRadius: 4, padding: 40, textDecoration: 'none', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 560, position: 'relative', overflow: 'hidden' }}>
+            <Link href="/nacionalidad-espanola" className="card-lift" style={{ gridRow: 'span 2', background: '#0B1F33', color: '#F4EFE6', borderRadius: 4, padding: 'clamp(24px, 6vw, 40px)', textDecoration: 'none', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 'clamp(440px, 100vw, 560px)', position: 'relative', overflow: 'hidden' }}>
               <svg aria-hidden="true" viewBox="0 0 400 260" style={{ position: 'absolute', right: -20, bottom: 120, width: 440, opacity: 0.9 }}><g fill="none" stroke="#B8955A" strokeWidth="1.2"><path d="M20 260 V120 A50 50 0 0 1 120 120 V260" /><path d="M140 260 V120 A50 50 0 0 1 240 120 V260" /><path d="M260 260 V120 A50 50 0 0 1 360 120 V260" /><path d="M0 100 H400" /></g></svg>
               <div style={{ position: 'relative' }}>
                 <span className="mono" style={{ fontSize: 11.5, letterSpacing: '0.16em', color: '#0B1F33', background: '#E8D3AE', padding: '6px 10px', borderRadius: 2 }}>SERVICIO PRINCIPAL</span>
-                <p className="serif" style={{ margin: '28px 0 14px', fontSize: 52, lineHeight: 1, fontWeight: 340 }}>Nacionalidad <em>española</em></p>
+                <p className="serif" style={{ margin: '28px 0 14px', fontSize: 'clamp(36px, 9.5vw, 52px)', lineHeight: 1, fontWeight: 340 }}>Nacionalidad <em>española</em></p>
                 <p style={{ margin: 0, maxWidth: 360, color: '#C9CFD6' }}>Para hijos y nietos de españoles, y para venezolanos que ya residen legalmente en España.</p>
               </div>
               <div style={{ position: 'relative' }}><span style={{ fontSize: 14, color: '#A9B2BE' }}>desde</span><br /><span className="serif" style={{ fontSize: 44, color: '#E8D3AE' }}>USD 900</span></div>

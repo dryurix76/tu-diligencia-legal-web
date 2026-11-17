@@ -51,7 +51,7 @@ export default function BecaForm({ plan = '' }: { plan?: string }) {
       </div>
       <label className="lbl">Cuéntanos tu objetivo (opcional)<textarea className="field" name="message" rows={3} maxLength={1500} /></label>
       <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: -9999 }} />
-      <label className="check"><input type="checkbox" name="consent" required />Acepto la <a href="/legal/privacidad" target="_blank">política de privacidad</a> y recibir la guía y comunicaciones sobre becas por correo y WhatsApp.</label>
+      <label className="check"><input type="checkbox" name="consent" required /><span>Acepto la <a href="/legal/privacidad" target="_blank">política de privacidad</a> y recibir la guía y comunicaciones sobre becas por correo y WhatsApp.</span></label>
       {error && <p className="err" role="alert">{error}</p>}
       <button type="submit" className="btn btn-ink" disabled={busy} style={{ minHeight: 56 }}>{busy ? 'Enviando…' : 'Recibir la guía de becas 2026'}</button>
     </form>

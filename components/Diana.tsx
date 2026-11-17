@@ -19,6 +19,8 @@ export default function Diana({ topic = 'general' }: { topic?: string }) {
   const T = TOPICS[topic] || TOPICS.general;
   const [open, setOpen] = useState(false);
   const [msgs, setMsgs] = useState<Msg[]>([{ from: 'bot', text: T.hi }]);
+  const [peek, setPeek] = useState(true);
+  useEffect(() => { const t = setTimeout(() => setPeek(false), 9000); return () => clearTimeout(t); }, []);
   const [draft, setDraft] = useState('');
   const [flow, setFlow] = useState<Flow>('');
   const [timing, setTiming] = useState('');
@@ -69,7 +71,7 @@ export default function Diana({ topic = 'general' }: { topic?: string }) {
   return (
     <div style={{ fontFamily: 'var(--sans)', fontSize: 15, lineHeight: 1.45 }}>
       {open && (
-        <div role="dialog" aria-label="Chat con Diana" style={{ position: 'fixed', right: 24, bottom: 108, width: 'min(390px, calc(100vw - 32px))', height: 'min(600px, calc(100vh - 140px))', background: '#F4EFE6', borderRadius: 18, boxShadow: '0 30px 80px rgba(7,20,35,0.38)', overflow: 'hidden', zIndex: 60, border: '1px solid rgba(11,31,51,0.1)', display: 'flex', flexDirection: 'column' }}>
+        <div role="dialog" aria-label="Chat con Diana" className="diana-chat" style={{ position: 'fixed', right: 24, bottom: 108, width: 'min(390px, calc(100vw - 32px))', height: 'min(600px, calc(100vh - 140px))', background: '#F4EFE6', borderRadius: 18, boxShadow: '0 30px 80px rgba(7,20,35,0.38)', overflow: 'hidden', zIndex: 60, border: '1px solid rgba(11,31,51,0.1)', display: 'flex', flexDirection: 'column' }}>
           <div style={{ background: '#0B1F33', color: '#F4EFE6', padding: '16px 18px', display: 'flex', alignItems: 'center', gap: 12 }}>
             <Avatar />
             <div style={{ flex: 1 }}><p style={{ margin: 0, fontWeight: 600 }}>Diana</p><p style={{ margin: 0, fontSize: 12.5, color: '#A9B2BE' }}>Asistente virtual con IA · responde al instante</p></div>
@@ -99,9 +101,9 @@ export default function Diana({ topic = 'general' }: { topic?: string }) {
           <p style={{ margin: 0, padding: '8px 16px 10px', fontSize: 11.5, color: '#5E584E', background: '#fff' }}>Orientación general, no constituye asesoría jurídica.</p>
         </div>
       )}
-      {!open && <div style={{ position: 'fixed', right: 24, bottom: 102, zIndex: 59, background: '#fff', padding: '12px 16px', borderRadius: '14px 14px 4px 14px', boxShadow: '0 14px 40px rgba(7,20,35,0.2)', fontSize: 14, maxWidth: 260 }}>{T.hi.replace('Hola, soy Diana. ', '')}</div>}
-      <button type="button" onClick={() => { if (!open) track('chat_open', { topic }); setOpen(!open); }} aria-label={open ? 'Cerrar chat' : 'Abrir chat con Diana'} style={{ position: 'fixed', right: 24, bottom: 24, zIndex: 61, height: 64, padding: '0 22px 0 10px', borderRadius: 999, border: 0, background: '#0B1F33', color: '#F4EFE6', display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer', font: 'inherit', fontWeight: 600, boxShadow: '0 14px 40px rgba(7,20,35,0.35)' }}>
-        <Avatar size={44} /><span>{open ? 'Cerrar' : 'Pregúntale a Diana'}</span>
+      {!open && peek && <div className="diana-peek" role="button" tabIndex={0} onClick={() => setPeek(false)} onKeyDown={(e) => { if (e.key === 'Escape' || e.key === 'Enter') setPeek(false); }} style={{ cursor: 'pointer', position: 'fixed', right: 24, bottom: 102, zIndex: 59, background: '#fff', padding: '12px 16px', borderRadius: '14px 14px 4px 14px', boxShadow: '0 14px 40px rgba(7,20,35,0.2)', fontSize: 14, maxWidth: 260 }}>{T.hi.replace('Hola, soy Diana. ', '')}</div>}
+      <button type="button" onClick={() => { if (!open) track('chat_open', { topic }); setOpen(!open); }} aria-label={open ? 'Cerrar chat' : 'Abrir chat con Diana'} className="diana-btn" style={{ position: 'fixed', right: 24, bottom: 24, zIndex: 61, height: 64, padding: '0 22px 0 10px', borderRadius: 999, border: 0, background: '#0B1F33', color: '#F4EFE6', display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer', font: 'inherit', fontWeight: 600, boxShadow: '0 14px 40px rgba(7,20,35,0.35)' }}>
+        <Avatar size={44} /><span className="diana-label">{open ? 'Cerrar' : 'Pregúntale a Diana'}</span>
       </button>
     </div>
   );

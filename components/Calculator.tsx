@@ -46,7 +46,7 @@ export default function Calculator({ items = SERVICE_PRICES, title }: { items?: 
         ))}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', paddingTop: 16, borderTop: '1px solid rgba(244,239,230,0.15)', gap: 16, flexWrap: 'wrap' }}>
           <span className="serif" style={{ fontSize: 22 }}>Total estimado</span>
-          <span className="serif" style={{ fontSize: 52, color: '#3DD1A0', lineHeight: 1 }} aria-live="polite">USD {fmt(total)}</span>
+          <span className="serif" style={{ fontSize: 'clamp(38px, 10vw, 52px)', color: '#3DD1A0', lineHeight: 1, whiteSpace: 'nowrap' }} aria-live="polite">USD {fmt(total)}</span>
         </div>
         <p style={{ margin: '8px 0 0', textAlign: 'right', fontSize: 14, color: '#C9CFD6' }}>{cuotas === 1 ? 'Un solo pago' : `${cuotas} cuotas de USD ${fmt(total / cuotas)}`} · tasas oficiales aparte</p>
       </div>

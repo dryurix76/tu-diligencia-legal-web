@@ -90,7 +90,7 @@ function LegacyEvaluator({ questions, results, service }: { questions: EvalQuest
           </div>
           <TimingChips value={timing} onChange={setTiming} />
           <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: -9999 }} />
-          <label className="check"><input type="checkbox" name="consent" required />Acepto la política de privacidad y recibir mi resultado por correo y WhatsApp.</label>
+          <label className="check"><input type="checkbox" name="consent" required /><span>Acepto la política de privacidad y recibir mi resultado por correo y WhatsApp.</span></label>
           {error && <p className="err" role="alert">{error}</p>}
           <button type="submit" className="btn btn-ink" disabled={busy} style={{ minHeight: 56 }}>{busy ? 'Guardando…' : 'Ver mi resultado'}</button>
         </form>
@@ -202,7 +202,7 @@ function TreeEvaluator({ tree, service }: { tree: Tree; service: string }) {
           </div>
           <TimingChips value={timing} onChange={setTiming} />
           <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: -9999 }} />
-          <label className="check"><input type="checkbox" name="consent" required />Acepto la <a href="/legal/privacidad" target="_blank">política de privacidad</a> y recibir mi resultado por correo y WhatsApp.</label>
+          <label className="check"><input type="checkbox" name="consent" required /><span>Acepto la <a href="/legal/privacidad" target="_blank">política de privacidad</a> y recibir mi resultado por correo y WhatsApp.</span></label>
           {error && <p className="err" role="alert">{error}</p>}
           <button type="submit" className="btn btn-ink" disabled={busy} style={{ minHeight: 56 }}>{busy ? 'Guardando…' : 'Ver mi resultado'}</button>
         </form>

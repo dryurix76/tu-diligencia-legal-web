@@ -15,6 +15,7 @@ export default function ScrollTop() {
     <button
       type="button"
       aria-label="Volver arriba"
+      className="scroll-top"
       onClick={() => window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })}
       style={{
         position: 'fixed', left: 24, bottom: 24, zIndex: 55, width: 52, height: 52, borderRadius: '50%', border: '1.5px solid rgba(244,239,230,0.35)',
