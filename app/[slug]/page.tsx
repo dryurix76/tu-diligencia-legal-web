@@ -80,7 +80,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 <span className="mono" style={{ fontSize: 13, color: i === 0 ? '#E8D3AE' : '#0B7A59' }}>0{i + 1}</span>
                 <h3 className="serif" style={{ margin: 0, fontSize: 30, lineHeight: 1.05, fontWeight: 400 }}>{v.title}</h3>
                 <p style={{ margin: 0, color: i === 0 ? '#C9CFD6' : '#5E584E', fontSize: 15 }}>{v.text}</p>
-                {v.href && <Link href={v.href} style={{ fontSize: 15, fontWeight: 600, color: i === 0 ? '#3DD1A0' : '#0B7A59' }}>Te buscamos tu beca →</Link>}
+                {v.href && <Link href={v.href} style={{ fontSize: 15, fontWeight: 600, color: i === 0 ? '#3DD1A0' : '#0B7A59' }}>{v.href === '/becas' ? 'Te buscamos tu beca →' : 'Ver situación actual →'}</Link>}
                 {v.tag && <span className="mono" style={i === 0 ? { marginTop: 'auto', fontSize: 11.5, letterSpacing: '0.1em', color: '#0B1F33', background: '#E8D3AE', alignSelf: 'flex-start', padding: '5px 9px', borderRadius: 2 } : { marginTop: 'auto', fontSize: 11.5, letterSpacing: '0.1em', color: '#0B7A59' }}>{v.tag}</span>}
               </article>
             ))}

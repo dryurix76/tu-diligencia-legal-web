@@ -37,7 +37,7 @@ export const SERVICE_PRICES: [string, number][] = [
   ['Nacionalidad española por ascendencia u opción', 1200], ['Nacionalidad española por residencia', 900], ['Nacionalidad italiana · vía consular', 1800],
   ['Nacionalidad italiana · vía judicial', 4500], ['Nacionalidad portuguesa', 1500], ['Nacionalidad alemana', 2200], ['Nacionalidad croata', 1800],
   ['Nacionalidad británica', 1600], ['Visa nómada digital (ES/PT)', 1100], ['Residencia no lucrativa o D7', 1000], ['Visa de estudios', 600], ['Te buscamos tu beca', 290], ['Beca: acompañamiento de solicitud', 490], ['Pack beca + admisión', 890],
-  ['Arraigo o reagrupación familiar', 800], ['Visa de emprendedor o inversor', 2500], ['Visado Caribe', 250],
+  ['Arraigo o reagrupación familiar', 800], ['Visa de emprendedor o inversor', 2500], ['Visado Caribe', 250], ['Diagnóstico Estados Unidos', 60], ['ESTA con pasaporte europeo', 49], ['Visa EE. UU. con otro pasaporte', 190],
 ];
 
 export const TIMING = [
@@ -46,7 +46,7 @@ export const TIMING = [
 
 export const SERVICE_OPTIONS = [
   'Nacionalidad española', 'Nacionalidad italiana', 'Nacionalidad portuguesa', 'Nacionalidad alemana', 'Nacionalidad croata',
-  'Nacionalidad británica', 'Visados y residencias', 'Becas y estudios', 'Visas de negocios', 'Visados Caribe', 'Aún no lo sé',
+  'Nacionalidad británica', 'Visados y residencias', 'Visa americana', 'Becas y estudios', 'Visas de negocios', 'Visados Caribe', 'Aún no lo sé',
 ];
 
 export const COUNTRIES = ['Venezuela', 'España', 'Colombia', 'Panamá', 'Estados Unidos', 'Chile', 'Perú', 'Otro'];

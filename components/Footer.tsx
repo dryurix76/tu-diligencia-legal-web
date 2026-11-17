@@ -3,7 +3,7 @@ import { Lockup, Certia } from './Brand';
 
 const COLS: [string, [string, string][]][] = [
   ['NACIONALIDADES', [['/nacionalidad-espanola', 'Española'], ['/nacionalidad-italiana', 'Italiana'], ['/nacionalidad-portuguesa', 'Portuguesa'], ['/nacionalidad-alemana', 'Alemana'], ['/nacionalidad-croata', 'Croata'], ['/nacionalidad-britanica', 'Británica']]],
-  ['SERVICIOS', [['/visados', 'Visados y residencias'], ['/becas', 'Becas 2026'], ['/negocios', 'Visas de negocios'], ['/caribe', 'Caribe'], ['/tarifas', 'Tarifas'], ['/agendar', 'Agendar consulta']]],
+  ['SERVICIOS', [['/visados', 'Visados y residencias'], ['/becas', 'Becas 2026'], ['/visa-americana', 'Visa americana'], ['/negocios', 'Visas de negocios'], ['/caribe', 'Caribe'], ['/tarifas', 'Tarifas'], ['/agendar', 'Agendar consulta']]],
   ['AYUDA', [['/ayuda', 'Centro de respuestas'], ['/blog', 'Blog El Archivo'], ['/mi-caso', 'Mi caso'], ['/contacto', 'Contacto'], ['/nosotros', 'Nosotros']]],
 ];
 

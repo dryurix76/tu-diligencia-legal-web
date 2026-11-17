@@ -158,10 +158,10 @@ def main(path):
     ], 'venezolanos con raíces o vida en España', skip=('estrategia',))
 
     nat('italia-2025', 'nacionalidad-italiana', 'nacionalidad-italiana', [
-        'La Ley 74/2025, en vigor desde el 24 de mayo de 2025, cambió las reglas: quien nació fuera de Italia y tiene otra nacionalidad ya no es italiano automáticamente, salvo excepciones. La principal es tener un padre, madre, abuelo o abuela nacido en Italia.',
+        'La Ley 74/2025, en vigor desde el 24 de mayo de 2025, cambió las reglas: quien nació fuera de Italia y tiene otra nacionalidad ya no es italiano automáticamente, salvo excepciones. La principal es tener un padre, madre, abuelo o abuela que tenga, o tuviera al morir, solo la ciudadanía italiana; otra es que el padre o la madre ciudadano viviera dos años seguidos en Italia antes del nacimiento. La Corte Constitucional avaló la reforma en la sentencia 63/2026.',
         'Los trámites iniciados hasta el 27 de marzo de 2025 a las 23:59 (hora de Roma), con cita comunicada, solicitud o demanda, siguen las reglas anteriores. Además, la naturalización de descendientes de italianos por nacimiento baja a 2 años de residencia en Italia, y quien nació en Italia puede readquirir la ciudadanía hasta el 31 de diciembre de 2027.',
     ], [
-        'Iniciar por un bisabuelo sin revisar si hay un ascendiente más cercano nacido en Italia.',
+        'Dar por hecho que un abuelo nacido en Italia basta: la excepción exige que el padre, madre, abuelo o abuela tenga o tuviera solo la ciudadanía italiana.',
         'No obtener la constancia de no naturalización (o su fecha) del emigrante.',
         'Presentar actas venezolanas con nombres italianos mal transcritos sin rectificar.',
         'Ignorar la línea materna anterior a 1948, que solo prospera por vía judicial.',

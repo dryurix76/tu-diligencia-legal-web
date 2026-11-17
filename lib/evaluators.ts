@@ -96,6 +96,11 @@ const ES: Tree = {
 };
 
 // ---------------------------------------------------------------- ITALIA
+// Law 74/2025, art. 3-bis L. 91/1992 (coordinated text): exceptions are
+// a)/a-bis)/b) proceedings started by 27/03/2025 23:59 Rome; c) a parent or
+// grandparent holds, or held at death, EXCLUSIVELY Italian citizenship;
+// d) a citizen parent lived 2 continuous years in Italy after acquiring
+// citizenship and before the child's birth. Upheld by Corte Cost. 63/2026.
 const IT: Tree = {
   start: 'q1',
   nodes: Object.fromEntries([
@@ -104,36 +109,37 @@ const IT: Tree = {
       { label: 'No', next: 'q2' },
       { label: 'No lo sé', next: 'q2' },
     ], 'Los trámites iniciados hasta las 23:59 (hora de Roma) del 27/03/2025 siguen las reglas anteriores.'),
-    n('q2', '¿Quién de tu familia nació en Italia?', [
-      { label: 'Mi padre o mi madre', next: 'q3' },
-      { label: 'Mi abuelo o mi abuela', next: 'q3' },
-      { label: 'Mi bisabuelo o un antepasado anterior', next: 'q_bis' },
-      { label: 'Nadie / no lo sé', result: 'nadie' },
+    n('q2', '¿Alguno de tus padres o abuelos tiene, o tenía al morir, SOLO la ciudadanía italiana (nunca se naturalizó venezolano ni tuvo otra)?', [
+      { label: 'Sí', next: 'q4' },
+      { label: 'No: todos tienen o tenían también otra nacionalidad', next: 'q3' },
+      { label: 'No lo sé', result: 'ok_check' },
+      { label: 'No tengo padres ni abuelos italianos (es un bisabuelo o anterior)', next: 'q_bis' },
+    ], 'Es la excepción principal de la reforma: un ascendiente de primer o segundo grado con ciudadanía exclusivamente italiana.'),
+    n('q3', '¿Tu padre o madre italiano vivió al menos 2 años seguidos en Italia después de ser ciudadano y antes de que tú nacieras?', [
+      { label: 'Sí', result: 'ok_d' },
+      { label: 'No', next: 'q_bis' },
+      { label: 'No lo sé', next: 'q_bis' },
     ]),
-    n('q3', '¿Esa persona se naturalizó venezolana (u otra) antes de que naciera su hijo/a de tu línea?', [
-      { label: 'No', next: 'q4' },
-      { label: 'Sí', result: 'rota' },
-      { label: 'No lo sé', next: 'q4' },
-    ], 'Antes de 1992, adquirir otra nacionalidad voluntariamente hacía perder la italiana.'),
     n('q4', '¿La línea pasa por una mujer que tuvo a su hijo/a antes del 1 de enero de 1948?', [
       { label: 'No', result: 'ok' },
       { label: 'Sí', result: 'judicial' },
       { label: 'No lo sé', result: 'ok_check' },
     ]),
-    n('q_bis', '¿Tu padre, madre, abuelo o abuela fue reconocido como ciudadano italiano por nacimiento (aunque naciera fuera de Italia)?', [
+    n('q_bis', '¿Tu padre, madre, abuelo o abuela fue ciudadano italiano por nacimiento?', [
       { label: 'Sí', result: 'natur2' },
-      { label: 'No / no lo sé', result: 'bis' },
+      { label: 'No, el italiano es un bisabuelo o anterior', result: 'bis' },
+      { label: 'No tengo ningún antepasado italiano identificado', result: 'nadie' },
     ]),
   ].map((x) => [x.id, x])),
   results: {
-    pre2025: { light: 'verde', title: 'Tu trámite sigue las reglas anteriores a la reforma.', route: 'Reconocimiento iure sanguinis con normativa previa', confidence: 'Alta', body: 'La Ley 74/2025 salva a quienes ya tenían cita comunicada, solicitud presentada o demanda judicial a 27 de marzo de 2025. Seguimos tu expediente con las reglas anteriores.', basis: 'Ley 91/1992, art. 3-bis, introducido por la Ley 74/2025 (en vigor desde el 24/05/2025).', pending: ['Prueba de la fecha de solicitud, cita o demanda.'], consult: 'revision', source: ['Cámara de Diputados de Italia', 'https://temi.camera.it/leg19/temi/d-l-36-2025-disposizioni-urgenti-in-materia-di-cittadinanza.html'] },
-    ok: { light: 'verde', title: 'Tu línea encaja con la excepción de la nueva ley.', route: 'Reconocimiento con ascendiente de 1.º o 2.º grado nacido en Italia', confidence: 'Media', body: 'Desde 2025, quien nació fuera y tiene otra nacionalidad solo es italiano automáticamente si cumple una excepción, como tener un padre, madre, abuelo o abuela nacido en Italia. Tu caso parece encajar.', basis: 'Ley 91/1992, art. 3-bis (Ley 74/2025).', pending: ['Acta de nacimiento italiana del ascendiente.', 'Constancia de no naturalización (o su fecha) de cada generación.', 'Criterio vigente del consulado competente.'], consult: 'inicial', source: ['Cámara de Diputados de Italia', 'https://temi.camera.it/leg19/temi/d-l-36-2025-disposizioni-urgenti-in-materia-di-cittadinanza.html'] },
-    ok_check: { light: 'ambar', title: 'Probablemente viable, pero falta revisar la línea materna.', route: 'Vía consular o judicial según la línea', confidence: 'Media', body: 'Tienes un ascendiente cercano nacido en Italia. Si la línea pasa por una mujer con hijos antes de 1948, la vía suele ser judicial.', basis: 'Ley 91/1992, art. 3-bis; jurisprudencia sobre transmisión por vía materna anterior a 1948.', pending: ['Fechas de nacimiento de cada generación.'], consult: 'estrategia' },
-    judicial: { light: 'ambar', title: 'Tu caso apunta a la vía judicial.', route: 'Demanda ante tribunal italiano (línea materna anterior a 1948)', confidence: 'Media', body: 'Los consulados no reconocen la transmisión por madre de hijos nacidos antes de 1948; los tribunales italianos sí lo han hecho. Además, tu caso debe encajar en las excepciones de la Ley 74/2025.', basis: 'Constitución italiana arts. 3 y 29; Corte de Casación (2009); Ley 91/1992, art. 3-bis.', pending: ['Viabilidad tras la reforma de 2025.', 'Coste y plazos del tribunal competente.'], consult: 'estrategia' },
-    rota: { light: 'rojo', title: 'La línea parece interrumpida.', route: 'Revisión de alternativas', confidence: 'Media', body: 'Si tu antepasado se naturalizó antes de que naciera su hijo/a, la ciudadanía no se transmitió. Si el propio emigrante vive y nació en Italia, podría readquirirla hasta el 31/12/2027, lo que abriría vías a sus descendientes.', basis: 'Ley 555/1912 (pérdida por naturalización); Ley 74/2025, art. 1-ter (readquisición hasta 31/12/2027).', pending: ['Fecha exacta de naturalización.', 'Si el emigrante vive.'], consult: 'expres', alt: ['Ver otras nacionalidades', '/#paises'] },
-    natur2: { light: 'ambar', title: 'Tienes una vía, pero viviendo en Italia.', route: 'Naturalización con 2 años de residencia legal en Italia', confidence: 'Media', body: 'Desde la reforma, el extranjero cuyo padre, madre, abuelo o abuela sea o haya sido ciudadano italiano por nacimiento puede pedir la ciudadanía con 2 años de residencia legal en Italia (antes eran 3).', basis: 'Ley 91/1992, art. 9.1.a, modificado por la Ley 74/2025 (art. 1-bis).', pending: ['Prueba de la ciudadanía por nacimiento del ascendiente.', 'Visado para residir en Italia.'], consult: 'estrategia', alt: ['Ver visados', '/visados'] },
-    bis: { light: 'rojo', title: 'Por bisabuelo, la vía automática se cerró en 2025.', route: 'Alternativas: otra nacionalidad o visado', confidence: 'Media', body: 'Con la Ley 74/2025, los descendientes nacidos fuera con otra nacionalidad ya no son italianos automáticamente si el antepasado nacido en Italia es un bisabuelo o anterior, salvo trámites iniciados antes del 27/03/2025.', basis: 'Ley 91/1992, art. 3-bis (Ley 74/2025).', pending: ['Revisar si otra rama familiar da derecho a España o Portugal.'], consult: 'expres', alt: ['Ver otras nacionalidades', '/#paises'] },
-    nadie: { light: 'rojo', title: 'Sin un ascendiente italiano identificado, no hay vía.', route: 'Revisión de otras vías', confidence: 'Alta', body: 'Si no identificas a un familiar nacido en Italia, no podemos plantear la ciudadanía italiana. Revisemos otras nacionalidades o visados.', basis: 'Ley 91/1992.', pending: [], consult: 'expres', alt: ['Ver otras nacionalidades', '/#paises'] },
+    pre2025: { light: 'verde', title: 'Tu trámite sigue las reglas anteriores a la reforma.', route: 'Reconocimiento iure sanguinis con normativa previa', confidence: 'Alta', body: 'La Ley 74/2025 salva a quienes ya tenían cita comunicada, solicitud presentada o demanda judicial a las 23:59 (hora de Roma) del 27 de marzo de 2025. Seguimos tu expediente con las reglas anteriores.', basis: 'Ley 91/1992, art. 3-bis, letras a), a-bis) y b), introducido por la Ley 74/2025 (en vigor desde el 24/05/2025).', pending: ['Prueba de la fecha de solicitud, cita o demanda.'], consult: 'revision', source: ['Normattiva: texto coordinado del D.L. 36/2025', 'https://www.normattiva.it/eli/id/2025/05/23/25A03081/CONSOLIDATED/20260617'] },
+    ok: { light: 'verde', title: 'Tu línea encaja con la excepción principal de la reforma.', route: 'Reconocimiento con padre, madre, abuelo o abuela exclusivamente italiano', confidence: 'Media', body: 'Desde 2025, quien nació fuera y tiene otra ciudadanía solo es italiano si cumple una excepción. La más importante: que un padre, madre, abuelo o abuela tenga, o tuviera al morir, solo la ciudadanía italiana. Tu caso parece encajar.', basis: 'Ley 91/1992, art. 3-bis, letra c) (Ley 74/2025); avalada por la Corte Costituzionale, sentencia 63/2026.', pending: ['Constancia de no naturalización del ascendiente (que nunca adquirió otra ciudadanía).', 'Actas italianas y venezolanas de toda la línea.', 'Criterio vigente del consulado competente.'], consult: 'inicial', source: ['Normattiva: texto coordinado del D.L. 36/2025', 'https://www.normattiva.it/eli/id/2025/05/23/25A03081/CONSOLIDATED/20260617'] },
+    ok_d: { light: 'verde', title: 'Encajas en la excepción de residencia de tu padre o madre.', route: 'Reconocimiento por residencia del progenitor en Italia antes de tu nacimiento', confidence: 'Media', body: 'Otra excepción de la reforma: que tu padre o madre, ya ciudadano italiano, viviera al menos dos años seguidos en Italia antes de tu nacimiento. Hay que probar esa residencia con documentos italianos.', basis: 'Ley 91/1992, art. 3-bis, letra d) (Ley 74/2025).', pending: ['Certificado histórico de residencia (AIRE/anagrafe) del progenitor.', 'Fecha en que tu progenitor adquirió la ciudadanía.'], consult: 'inicial' },
+    ok_check: { light: 'ambar', title: 'Puede haber vía: falta comprobar la nacionalidad de tus ascendientes.', route: 'Verificación de la excepción del art. 3-bis', confidence: 'Baja', body: 'La clave es saber si tu padre, madre, abuelo o abuela italiano se naturalizó venezolano (o tuvo otra ciudadanía). Si alguno conservó solo la italiana, hay vía; si la línea pasa por una mujer con hijos antes de 1948, suele ser judicial.', basis: 'Ley 91/1992, art. 3-bis (Ley 74/2025).', pending: ['Constancia de no naturalización o fecha de naturalización (Gaceta Oficial).', 'Fechas de nacimiento de cada generación.'], consult: 'estrategia' },
+    judicial: { light: 'ambar', title: 'Tu caso apunta a la vía judicial.', route: 'Demanda ante tribunal italiano (línea materna anterior a 1948)', confidence: 'Media', body: 'Los consulados no reconocen la transmisión por madre de hijos nacidos antes de 1948; los tribunales italianos sí lo han hecho. Además, tu caso debe encajar en las excepciones de la Ley 74/2025, que la Corte Constitucional avaló en 2026.', basis: 'Constitución italiana arts. 3 y 29; Corte de Casación (2009); Ley 91/1992, art. 3-bis; Corte Costituzionale, sentencia 63/2026.', pending: ['Viabilidad tras la reforma de 2025 y la sentencia 63/2026.', 'Contribución de 600 € por demandante y plazos del tribunal.'], consult: 'estrategia' },
+    natur2: { light: 'ambar', title: 'Tienes una vía, pero viviendo en Italia.', route: 'Naturalización con 2 años de residencia legal en Italia', confidence: 'Media', body: 'Si tus ascendientes también tenían otra ciudadanía, la vía automática no aplica. Pero desde la reforma, el extranjero cuyo padre, madre, abuelo o abuela sea o haya sido ciudadano italiano por nacimiento puede pedir la ciudadanía con 2 años de residencia legal en Italia (antes eran 3).', basis: 'Ley 91/1992, art. 4 y art. 9.1.a, modificados por la Ley 74/2025.', pending: ['Prueba de la ciudadanía por nacimiento del ascendiente.', 'Visado o permiso para residir en Italia.'], consult: 'estrategia', alt: ['Ver visados', '/visados'] },
+    bis: { light: 'rojo', title: 'Por bisabuelo, la vía automática se cerró en 2025.', route: 'Alternativas: otra nacionalidad o visado', confidence: 'Media', body: 'Con la Ley 74/2025, los descendientes nacidos fuera con otra ciudadanía ya no son italianos automáticamente si no tienen un padre, madre, abuelo o abuela exclusivamente italiano, salvo trámites iniciados antes del 27/03/2025. La Corte Constitucional avaló la reforma (sentencia 63/2026) y en julio de 2026 consultó al Tribunal de Justicia de la UE (ordenanza 147/2026).', basis: 'Ley 91/1992, art. 3-bis (Ley 74/2025); Corte Costituzionale, sentencia 63/2026 y ordenanza 147/2026.', pending: ['Revisar si otra rama familiar da derecho a España o Portugal.'], consult: 'expres', alt: ['Ver otras nacionalidades', '/#paises'] },
+    nadie: { light: 'rojo', title: 'Sin un ascendiente italiano identificado, no hay vía.', route: 'Revisión de otras vías', confidence: 'Alta', body: 'Si no identificas a un antepasado italiano, no podemos plantear la ciudadanía italiana. Revisemos otras nacionalidades o visados.', basis: 'Ley 91/1992.', pending: [], consult: 'expres', alt: ['Ver otras nacionalidades', '/#paises'] },
   },
 };
 
@@ -325,7 +331,48 @@ const CARIBE: Tree = {
   },
 };
 
+
+// ---------------------------------------------------------------- EE. UU.
+const US: Tree = {
+  start: 'q1',
+  nodes: Object.fromEntries([
+    n('q1', '¿Tienes, además de la venezolana, otra nacionalidad con pasaporte vigente?', [
+      { label: 'Sí, de un país europeo (España, Italia, Portugal, Alemania, Croacia, Reino Unido…)', next: 'q_eu' },
+      { label: 'Sí, de otro país (Colombia, Panamá, Perú, etc.)', result: 'dual_visa' },
+      { label: 'No, solo venezolana', next: 'q_visa' },
+      { label: 'Estoy tramitando una nacionalidad europea', result: 'tramite_eu' },
+    ], 'Desde el 1 de enero de 2026 la restricción de EE. UU. se aplica por nacionalidad, no por país de residencia.'),
+    n('q_eu', '¿Para qué quieres ir a Estados Unidos?', [
+      { label: 'Turismo, visitar familia o reuniones (hasta 90 días)', result: 'esta' },
+      { label: 'Invertir y dirigir un negocio propio', result: 'e2' },
+      { label: 'Trabajar o estudiar', result: 'work_dual' },
+    ]),
+    n('q_visa', '¿Tienes una visa americana vigente emitida antes de las restricciones?', [
+      { label: 'Sí, vigente', result: 'vigente' },
+      { label: 'No, o está vencida', next: 'q_purpose' },
+    ]),
+    n('q_purpose', '¿Cuál es tu objetivo principal?', [
+      { label: 'Turismo, compras o visitar familia', result: 'b2_blocked' },
+      { label: 'Estudiar', result: 'f1_blocked' },
+      { label: 'Trabajar con una oferta de empresa americana o por habilidades extraordinarias', result: 'work' },
+      { label: 'Reunirme con familia ciudadana o residente', result: 'family' },
+    ]),
+  ].map((x) => [x.id, x])),
+  results: {
+    esta: { light: 'verde', title: 'Con tu pasaporte europeo no necesitas visa: necesitas ESTA.', route: 'Programa de Exención de Visa (ESTA)', confidence: 'Alta', body: 'Los dobles nacionales que viajan con un pasaporte de un país no restringido quedan fuera de la Proclamación 10998. España, Italia, Portugal, Alemania, Croacia y el Reino Unido están en el Programa de Exención de Visa: se pide un ESTA en línea (40 USD aprox.) para estancias de hasta 90 días.', basis: 'Proclamación presidencial 10998 (excepción para dobles nacionales); Programa de Exención de Visa (8 U.S.C. 1187).', pending: ['Que no hayas viajado a países que excluyen del ESTA (por ejemplo, Cuba desde 2021).', 'Que tu pasaporte europeo sea electrónico y esté vigente.'], consult: 'expres', source: ['travel.state.gov', 'https://travel.state.gov/content/travel/en/News/visas-news/suspension-of-visa-issuance-to-foreign-nationals-to-protect-the-security-of-the-united-states.html'] },
+    e2: { light: 'verde', title: 'Tu pasaporte europeo abre la visa de inversionista E-2.', route: 'Visa E-2 (inversionista por tratado)', confidence: 'Media', body: 'Venezuela no tiene tratado E-2 con EE. UU., pero España, Italia, Alemania, Croacia, el Reino Unido y Portugal (desde 2024) sí. Con ese pasaporte puedes solicitar la E-2 para dirigir una inversión sustancial en un negocio en EE. UU. Lo tramitamos con un abogado de inmigración colegiado en EE. UU.', basis: 'INA § 101(a)(15)(E)(ii); lista de países con tratado del Departamento de Estado.', pending: ['Importe y origen lícito de la inversión.', 'Plan de negocio y control de al menos el 50 %.'], consult: 'estrategia', source: ['Treaty Countries (travel.state.gov)', 'https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/fees/treaty.html'] },
+    work_dual: { light: 'verde', title: 'Con doble nacionalidad las vías de estudio y trabajo siguen abiertas.', route: 'F-1, J-1, H-1B, L-1 u O-1 con el pasaporte no restringido', confidence: 'Media', body: 'Las visas de estudiante y de trabajo se piden con el pasaporte del país no restringido. Las de trabajo requieren una empresa que te patrocine o méritos extraordinarios; las coordinamos con un abogado de inmigración en EE. UU.', basis: 'Proclamación 10998 (excepción para dobles nacionales); INA § 101(a)(15).', pending: ['Admisión (F-1) u oferta o petición aprobada (H, L, O).'], consult: 'estrategia' },
+    dual_visa: { light: 'verde', title: 'Puedes pedir la visa con tu otro pasaporte.', route: 'Visa B1/B2, F-1 u otra con el pasaporte no restringido', confidence: 'Media', body: 'La restricción afecta a quien solicita como venezolano. Si tu otra nacionalidad no está restringida, solicitas con ese pasaporte en el consulado donde residas. Ojo: el tiempo de espera de citas puede ser largo (en Bogotá rondaba los 7 meses para B1/B2 en septiembre de 2026).', basis: 'Proclamación 10998 (excepción para dobles nacionales).', pending: ['Que tu otra nacionalidad no esté en la lista de restricción o de fianza.', 'Tiempos de cita del consulado elegido.'], consult: 'expres' },
+    tramite_eu: { light: 'ambar', title: 'Tu mejor camino a EE. UU. es terminar la nacionalidad europea.', route: 'Nacionalidad europea → ESTA o E-2', confidence: 'Media', body: 'Con el pasaporte venezolano, las visas de turismo y estudio están suspendidas. En cuanto tengas el pasaporte europeo podrás viajar con ESTA. Te ayudamos a acelerar el expediente que ya tienes en curso.', basis: 'Proclamación 10998; Programa de Exención de Visa.', pending: ['Estado de tu expediente de nacionalidad.'], consult: 'revision', alt: ['Ver nacionalidades', '/#paises'] },
+    vigente: { light: 'verde', title: 'Tu visa vigente sigue sirviendo.', route: 'Viajar con la visa ya emitida', confidence: 'Alta', body: 'Las visas emitidas antes de las restricciones no fueron revocadas por la Proclamación. Puedes viajar mientras esté vigente, aunque el oficial de frontera decide la admisión. Cuando venza, no podrás renovarla como venezolano mientras siga la restricción.', basis: 'Proclamación 10998 (las visas válidas no se revocan).', pending: ['Fecha de vencimiento de tu visa y del pasaporte.'], consult: 'expres' },
+    b2_blocked: { light: 'rojo', title: 'Hoy no se emiten visas de turismo a venezolanos.', route: 'Esperar cambios o buscar otra nacionalidad', confidence: 'Alta', body: 'Desde el 9 de junio de 2025 está suspendida la emisión de visas B1/B2 a venezolanos, y la Proclamación 10998 la mantuvo desde el 1 de enero de 2026. Además, Venezuela está en la lista de fianza de visa (entre 10.000 y 20.000 USD desde agosto de 2026) para quien llegue a calificar. Te avisamos si cambia; mientras tanto, revisa si tienes derecho a una nacionalidad europea.', basis: 'Proclamaciones 10949 y 10998; programa de fianzas de visa (Final Rule de 3 de agosto de 2026).', pending: ['Si tienes ascendencia española, italiana, portuguesa u otra.'], consult: 'expres', alt: ['Evaluar mi nacionalidad europea', '/nacionalidad-espanola#evaluador'] },
+    f1_blocked: { light: 'rojo', title: 'Las visas de estudiante (F, M, J) están suspendidas para venezolanos.', route: 'Estudiar en Europa o esperar cambios', confidence: 'Alta', body: 'La suspensión incluye las visas F, M y J. Una alternativa real es estudiar en España, Portugal o Italia, con becas para latinoamericanos, y volver a plantear EE. UU. con otra nacionalidad o cuando cambien las reglas.', basis: 'Proclamaciones 10949 y 10998.', pending: [], consult: 'expres', alt: ['Ver becas en Europa', '/becas'] },
+    work: { light: 'ambar', title: 'Las visas de trabajo no están en la suspensión.', route: 'H-1B, L-1, O-1 u otras basadas en petición', confidence: 'Media', body: 'La restricción para Venezuela cubre B, F, M, J y visas de inmigrante, no las visas de trabajo basadas en petición. Requieren un empleador o méritos documentados y se solicitan fuera de Venezuela (la embajada en Caracas no procesa visas). Lo coordinamos con un abogado de inmigración colegiado en EE. UU.', basis: 'Proclamación 10998 (alcance de la restricción parcial); INA § 101(a)(15)(H), (L), (O).', pending: ['Petición aprobada por USCIS u oferta concreta.', 'Consulado de un tercer país para la entrevista.'], consult: 'estrategia' },
+    family: { light: 'ambar', title: 'Las visas de inmigrante están restringidas, con pocas excepciones.', route: 'Revisión de excepciones caso por caso', confidence: 'Baja', body: 'La Proclamación 10998 suspendió las visas de inmigrante para venezolanos y estrechó las excepciones para familiares. Hay que revisar tu caso concreto con un abogado de inmigración en EE. UU.; no inicies pagos con gestores que prometan resultados.', basis: 'Proclamación 10998.', pending: ['Relación familiar y estatus del familiar en EE. UU.'], consult: 'estrategia' },
+  },
+};
+
 export const TREES: Record<string, Tree> = {
   'nacionalidad-espanola': ES, 'nacionalidad-italiana': IT, 'nacionalidad-portuguesa': PT, 'nacionalidad-alemana': DE,
-  'nacionalidad-croata': HR, 'nacionalidad-britanica': UK, visados: VISAS, negocios: NEG, caribe: CARIBE,
+  'nacionalidad-croata': HR, 'nacionalidad-britanica': UK, visados: VISAS, negocios: NEG, caribe: CARIBE, 'visa-americana': US,
 };

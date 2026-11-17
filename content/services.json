@@ -262,7 +262,7 @@
   "motif": "<g fill=\"none\" stroke=\"#F0D9AE\" stroke-width=\"1.3\"><path d=\"M50 460 V300 H370 V460\"></path><path d=\"M80 300 A130 140 0 0 1 340 300\"></path><path d=\"M130 300 A80 140 0 0 1 290 300\" stroke-width=\"0.6\"></path><path d=\"M210 160 V300\" stroke-width=\"0.6\"></path><rect x=\"190\" y=\"126\" width=\"40\" height=\"34\"></rect><path d=\"M196 126 L210 92 L224 126\"></path><path d=\"M70 340 H350\"></path><path d=\"M90 460 V410 A20 20 0 0 1 130 410 V460 M150 460 V410 A20 20 0 0 1 190 410 V460 M230 460 V410 A20 20 0 0 1 270 410 V460 M290 460 V410 A20 20 0 0 1 330 410 V460\"></path></g>",
   "service_name": "Nacionalidad italiana",
   "vias_title": "Después de la reforma, <em class=\"accent\">cada línea es un caso</em>.",
-  "vias_lede": "Desde marzo de 2025 la ascendencia se limita en general a hijos y nietos de italianos nacidos en Italia, con excepciones. Por eso analizamos tu línea antes de mover un solo papel.",
+  "vias_lede": "Desde marzo de 2025 la ascendencia solo funciona en supuestos concretos: un padre, madre, abuelo o abuela exclusivamente italiano, residencia del progenitor en Italia o trámite iniciado antes del 27 de marzo de 2025. Por eso analizamos tu línea antes de mover un solo papel.",
   "vias": [
    {
     "title": "Vía consular",
@@ -383,7 +383,7 @@
    {
     "tag": "ROJO · ESTA VÍA NO APLICA HOY",
     "title": "La vía italiana no parece aplicar hoy.",
-    "body": "Con la reforma de 2025, sin un familiar nacido en Italia en las generaciones cercanas la ascendencia ya no aplica en general. Revisemos otras nacionalidades o visados.",
+    "body": "Con la reforma de 2025, sin un padre, madre, abuelo o abuela exclusivamente italiano la ascendencia ya no aplica en general. Revisemos otras nacionalidades o visados.",
     "next": "Ver otras nacionalidades",
     "nextSub": "Te proponemos la alternativa adecuada a tu perfil",
     "cta": "Ver opciones",
@@ -469,7 +469,7 @@
   "faqs": [
    {
     "q": "¿Qué cambió con la reforma de 2025?",
-    "a": "En general, la ascendencia se limita a hijos y nietos de italianos nacidos en Italia, con excepciones. Los trámites iniciados antes del 28 de marzo de 2025 siguen las reglas anteriores."
+    "a": "Desde 2025, quien nació fuera y tiene otra ciudadanía solo es italiano si un padre, madre, abuelo o abuela tiene (o tenía al morir) solo la ciudadanía italiana, si su padre o madre vivió 2 años en Italia antes de su nacimiento, o si inició el trámite antes del 27 de marzo de 2025. Los trámites iniciados antes del 28 de marzo de 2025 siguen las reglas anteriores."
    },
    {
     "q": "¿Qué es la vía judicial?",
@@ -1393,6 +1393,12 @@
     "title": "Arraigo y reagrupación",
     "text": "Para quien ya está en España o tiene familia con residencia legal.",
     "tag": ""
+   },
+   {
+    "title": "Estados Unidos",
+    "text": "Qué está suspendido para venezolanos y qué sigue abierto: doble nacionalidad, ESTA, E-2 y trabajo.",
+    "tag": "ACTUALIZADO 2026",
+    "href": "/visa-americana"
    }
   ],
   "eval_title": "¿Qué visado <em>encaja contigo</em>?",
