@@ -1,0 +1,591 @@
+{
+ "kb": [
+  {
+   "id": "precios",
+   "cat": "Precios y pagos",
+   "q": "¿Cuánto cuestan sus servicios?",
+   "a": "La consulta exprés por escrito cuesta USD 35, la consulta inicial de 30 minutos USD 60 y la de estrategia con informe USD 120. Los servicios completos van desde USD 250 (visado Caribe) hasta USD 4.500 (vía judicial italiana), con precio cerrado por escrito.",
+   "kw": [
+    "cuesta",
+    "precio",
+    "tarifa",
+    "cuanto",
+    "costo",
+    "valor",
+    "cobran"
+   ],
+   "link": [
+    "Ver todas las tarifas",
+    "/tarifas"
+   ]
+  },
+  {
+   "id": "cobro",
+   "cat": "Precios y pagos",
+   "q": "¿Por qué la consulta con abogado es de pago?",
+   "a": "Porque es asesoría legal real con un abogado especialista, no una llamada comercial. El importe se descuenta del servicio si contratas en los 30 días siguientes. La pre-evaluación conmigo sí es gratis.",
+   "kw": [
+    "gratis",
+    "gratuita",
+    "cobrar",
+    "de pago",
+    "pagar la consulta",
+    "por que cobran"
+   ]
+  },
+  {
+   "id": "pagos",
+   "cat": "Precios y pagos",
+   "q": "¿Cómo pago desde Venezuela?",
+   "a": "Con tarjeta internacional, PayPal, Zelle, Binance Pay (USDT) o transferencia en euros. Los servicios completos se pagan en 2 o 3 cuotas.",
+   "kw": [
+    "pago",
+    "pagar",
+    "zelle",
+    "binance",
+    "paypal",
+    "tarjeta",
+    "cuotas",
+    "usdt",
+    "transferencia",
+    "bolivares"
+   ]
+  },
+  {
+   "id": "reembolso",
+   "cat": "Precios y pagos",
+   "q": "¿Puedo cancelar o reprogramar mi consulta?",
+   "a": "Puedes reprogramar gratis hasta 24 horas antes. Si no te conectas a la cita sin avisar, la consulta se da por realizada.",
+   "kw": [
+    "cancel",
+    "reprogram",
+    "reembols",
+    "devol",
+    "cambiar la cita",
+    "mover la cita"
+   ]
+  },
+  {
+   "id": "familia",
+   "cat": "Precios y pagos",
+   "q": "¿Puedo incluir a mi familia?",
+   "a": "Sí. Cada familiar tiene su propio expediente y aplicamos un 15% de descuento desde el segundo miembro de la familia en el mismo trámite.",
+   "kw": [
+    "familia",
+    "hijos",
+    "hijo",
+    "esposa",
+    "esposo",
+    "pareja",
+    "hermano",
+    "padres"
+   ]
+  },
+  {
+   "id": "plazos",
+   "cat": "Proceso",
+   "q": "¿Cuánto tarda el trámite?",
+   "a": "Depende de la vía y del consulado o registro. En la propuesta te damos un plazo estimado por escrito y lo sigues en tiempo real desde Mi caso.",
+   "kw": [
+    "tarda",
+    "tiempo",
+    "plazo",
+    "demora",
+    "meses",
+    "cuando sale",
+    "rapido"
+   ]
+  },
+  {
+   "id": "viajar",
+   "cat": "Proceso",
+   "q": "¿Tengo que viajar a Europa?",
+   "a": "Depende de la vía. Muchas gestiones se hacen desde el consulado del país donde vives o en línea. En la consulta te decimos con exactitud si hace falta viajar y cuándo.",
+   "kw": [
+    "viajar",
+    "viaje",
+    "presencial",
+    "ir a espana",
+    "ir a italia",
+    "desde venezuela"
+   ]
+  },
+  {
+   "id": "documentos",
+   "cat": "Documentos",
+   "q": "¿Qué documentos necesito?",
+   "a": "Normalmente partidas de nacimiento de cada generación hasta ti, actas de matrimonio, tu pasaporte y las apostillas de los documentos venezolanos. La lista exacta depende de tu vía y la recibes tras la consulta.",
+   "kw": [
+    "documento",
+    "papeles",
+    "partida",
+    "acta",
+    "requisito",
+    "necesito"
+   ],
+   "link": [
+    "Descargar guía de documentos",
+    "/ayuda"
+   ]
+  },
+  {
+   "id": "apostilla",
+   "cat": "Documentos",
+   "q": "¿Ustedes gestionan apostillas y traducciones?",
+   "a": "Sí. Apostillas y legalizaciones desde USD 60 por documento y traducciones juradas desde USD 35 por página.",
+   "kw": [
+    "apostill",
+    "legaliz",
+    "traduc",
+    "jurad"
+   ]
+  },
+  {
+   "id": "buscar",
+   "cat": "Documentos",
+   "q": "No tengo la partida de mi familiar europeo",
+   "a": "La buscamos por ti en registros civiles, parroquias y archivos de Europa. El servicio cuesta desde USD 180 por acta e incluye el envío.",
+   "kw": [
+    "no tengo",
+    "buscar",
+    "encontrar",
+    "perdi",
+    "no consigo",
+    "localizar"
+   ]
+  },
+  {
+   "id": "cliente",
+   "cat": "Clientes",
+   "q": "Ya soy cliente, ¿dónde veo mi expediente?",
+   "a": "Entra en Mi caso con tu correo. Verás el estado de tu expediente, los documentos pendientes, tus pagos y los mensajes de tu abogado.",
+   "kw": [
+    "cliente",
+    "mi caso",
+    "expediente",
+    "estado",
+    "seguimiento",
+    "portal"
+   ],
+   "link": [
+    "Ir a Mi caso",
+    "/mi-caso"
+   ]
+  },
+  {
+   "id": "quienes",
+   "cat": "Sobre nosotros",
+   "q": "¿Quiénes son y por qué confiar en ustedes?",
+   "a": "Tu Diligencia Legal es la consultora de derecho migratorio de Certia Group. Trabajamos con precio cerrado por escrito, un abogado responsable por expediente y un portal donde sigues cada paso.",
+   "kw": [
+    "quienes",
+    "empresa",
+    "certia",
+    "confiable",
+    "confiar",
+    "estafa",
+    "seguro que son"
+   ],
+   "link": [
+    "Conocer al equipo",
+    "/nosotros"
+   ]
+  },
+  {
+   "id": "garantia",
+   "cat": "Sobre nosotros",
+   "q": "¿Garantizan que me aprueben?",
+   "a": "Ningún abogado serio puede garantizar la decisión de un consulado o de un juez. Sí garantizamos la vía correcta, un expediente completo y el precio cerrado por escrito.",
+   "kw": [
+    "garantiz",
+    "aprueben",
+    "asegur",
+    "negar",
+    "rechaz"
+   ]
+  },
+  {
+   "id": "es-quien",
+   "cat": "Nacionalidad española",
+   "q": "¿Califico para la nacionalidad española?",
+   "a": "Pueden calificar los hijos y nietos de españoles de origen, quienes estuvieron bajo la patria potestad de un español y los venezolanos con 2 años de residencia legal en España. La pre-evaluación te orienta en 2 minutos.",
+   "kw": [
+    "espana",
+    "espanol",
+    "espanola",
+    "califico espa"
+   ],
+   "link": [
+    "Hacer la pre-evaluación",
+    "/nacionalidad-espanola#evaluador"
+   ]
+  },
+  {
+   "id": "es-lmd",
+   "cat": "Nacionalidad española",
+   "q": "¿Sigue abierta la Ley de Memoria Democrática?",
+   "a": "El plazo general para solicitarla terminó en octubre de 2025. Si presentaste antes, seguimos tu expediente. Si no llegaste, revisamos otras vías como la opción o la residencia.",
+   "kw": [
+    "memoria",
+    "democratica",
+    "lmd",
+    "ley de nietos"
+   ]
+  },
+  {
+   "id": "es-residencia",
+   "cat": "Nacionalidad española",
+   "q": "¿Cómo funciona la nacionalidad por residencia?",
+   "a": "Los venezolanos, como iberoamericanos, pueden pedirla con 2 años de residencia legal y continuada en España, buena conducta y el examen CCSE aprobado.",
+   "kw": [
+    "residencia",
+    "vivo en espana",
+    "dos anos",
+    "2 anos",
+    "tiempo viviendo"
+   ]
+  },
+  {
+   "id": "es-examen",
+   "cat": "Nacionalidad española",
+   "q": "¿Tengo que hacer el DELE y el CCSE?",
+   "a": "Como venezolano no necesitas el DELE porque el español es tu lengua. El CCSE, de conocimientos de España, sí se exige en la vía de residencia, salvo excepciones.",
+   "kw": [
+    "dele",
+    "ccse",
+    "examen",
+    "prueba"
+   ]
+  },
+  {
+   "id": "it-quien",
+   "cat": "Nacionalidad italiana",
+   "q": "¿Califico para la nacionalidad italiana?",
+   "a": "Tras la reforma de 2025, la vía por ascendencia se limita en general a hijos y nietos de italianos nacidos en Italia, con excepciones. Los casos iniciados antes del 28 de marzo de 2025 siguen las reglas anteriores. Revisamos tu línea en la pre-evaluación.",
+   "kw": [
+    "italia",
+    "italiano",
+    "italiana",
+    "reforma"
+   ],
+   "link": [
+    "Hacer la pre-evaluación",
+    "/nacionalidad-italiana#evaluador"
+   ]
+  },
+  {
+   "id": "it-judicial",
+   "cat": "Nacionalidad italiana",
+   "q": "¿Qué es la vía judicial italiana?",
+   "a": "Es una demanda ante un tribunal en Italia. Se usa, por ejemplo, en líneas por vía materna anteriores a 1948. La lleva un abogado en Italia y cuesta desde USD 4.500.",
+   "kw": [
+    "judicial",
+    "juicio",
+    "tribunal",
+    "1948",
+    "demanda"
+   ]
+  },
+  {
+   "id": "pt-quien",
+   "cat": "Nacionalidad portuguesa",
+   "q": "¿Califico para la nacionalidad portuguesa?",
+   "a": "Los hijos de portugueses pueden obtenerla por atribución, y los nietos acreditando su vínculo con la comunidad portuguesa. La ley portuguesa ha tenido cambios recientes, así que confirmamos los requisitos vigentes en cada caso.",
+   "kw": [
+    "portugal",
+    "portugues",
+    "portuguesa",
+    "madeira",
+    "nietos portugal"
+   ],
+   "link": [
+    "Hacer la pre-evaluación",
+    "/nacionalidad-portuguesa#evaluador"
+   ]
+  },
+  {
+   "id": "de-quien",
+   "cat": "Nacionalidad alemana",
+   "q": "¿Califico para la nacionalidad alemana?",
+   "a": "Pueden calificar descendientes de alemanes que perdieron la nacionalidad por normas discriminatorias (por ejemplo, hijos de madre alemana antes de 1975) y descendientes de perseguidos por el nazismo. Alemania permite la doble nacionalidad desde 2024.",
+   "kw": [
+    "alemania",
+    "aleman",
+    "alemana",
+    "stag"
+   ],
+   "link": [
+    "Hacer la pre-evaluación",
+    "/nacionalidad-alemana#evaluador"
+   ]
+  },
+  {
+   "id": "hr-quien",
+   "cat": "Nacionalidad croata",
+   "q": "¿Califico para la nacionalidad croata?",
+   "a": "Los descendientes directos de emigrantes croatas pueden solicitarla por origen. Buscamos los registros de tu familia en Croacia y armamos el expediente.",
+   "kw": [
+    "croacia",
+    "croata",
+    "yugoslavia",
+    "dalmacia"
+   ],
+   "link": [
+    "Hacer la pre-evaluación",
+    "/nacionalidad-croata#evaluador"
+   ]
+  },
+  {
+   "id": "uk-quien",
+   "cat": "Nacionalidad británica",
+   "q": "¿Califico para la nacionalidad británica?",
+   "a": "Los hijos de ciudadanos británicos nacidos en el extranjero suelen ser británicos por descendencia, y hay vías de registro para casos como hijos de madre británica antes de 1983. Analizamos tu elegibilidad documento por documento.",
+   "kw": [
+    "reino unido",
+    "britanic",
+    "ingles",
+    "inglaterra",
+    "uk",
+    "escocia"
+   ],
+   "link": [
+    "Hacer la pre-evaluación",
+    "/nacionalidad-britanica#evaluador"
+   ]
+  },
+  {
+   "id": "nomada",
+   "cat": "Visados",
+   "q": "¿Puedo pedir la visa de nómada digital?",
+   "a": "Si trabajas en remoto para empresas fuera de España o Portugal y acreditas ingresos suficientes, sí. En España el umbral ronda el 200% del salario mínimo. Revisamos tus contratos e ingresos antes de presentar.",
+   "kw": [
+    "nomada",
+    "remoto",
+    "teletrabajo",
+    "freelance",
+    "trabajo online",
+    "d8"
+   ],
+   "link": [
+    "Ver visados",
+    "/visados"
+   ]
+  },
+  {
+   "id": "nolucrativa",
+   "cat": "Visados",
+   "q": "¿Qué es la residencia no lucrativa o la D7?",
+   "a": "Son residencias para quien vive de ingresos propios (pensión, rentas, ahorros) sin trabajar en el país. La no lucrativa es de España y la D7 de Portugal.",
+   "kw": [
+    "no lucrativa",
+    "d7",
+    "jubilad",
+    "pension",
+    "rentas",
+    "ahorros"
+   ]
+  },
+  {
+   "id": "estudios",
+   "cat": "Visados",
+   "q": "¿Me ayudan con la visa de estudios?",
+   "a": "Sí. Preparamos el expediente con tu admisión, medios económicos y seguro, y te acompañamos hasta la cita. Desde USD 600.",
+   "kw": [
+    "estudi",
+    "master",
+    "universidad",
+    "curso",
+    "maestria"
+   ]
+  },
+  {
+   "id": "arraigo",
+   "cat": "Visados",
+   "q": "Ya estoy en España sin papeles, ¿qué hago?",
+   "a": "La vía habitual es el arraigo. El reglamento de extranjería cambió en 2025 y hay varias modalidades. Revisamos tu tiempo en España y tu situación para elegir la correcta.",
+   "kw": [
+    "arraigo",
+    "sin papeles",
+    "irregular",
+    "ya estoy en espana",
+    "sin residencia"
+   ]
+  },
+  {
+   "id": "golden",
+   "cat": "Negocios",
+   "q": "¿Todavía existe la golden visa?",
+   "a": "España eliminó la golden visa por compra de inmuebles en abril de 2025. Hay alternativas como la visa de emprendedor, la de inversión en empresas o la D2 de Portugal.",
+   "kw": [
+    "golden",
+    "inversion",
+    "invertir",
+    "inmueble",
+    "comprar casa"
+   ],
+   "link": [
+    "Ver visas de negocios",
+    "/negocios"
+   ]
+  },
+  {
+   "id": "emprendedor",
+   "cat": "Negocios",
+   "q": "Quiero abrir una empresa en Europa",
+   "a": "Con la visa de emprendedor y el apoyo societario de Certia Group te ayudamos con el plan de negocio, la constitución de la empresa y la residencia. Desde USD 2.500.",
+   "kw": [
+    "empresa",
+    "emprend",
+    "negocio",
+    "startup",
+    "abrir",
+    "sociedad"
+   ]
+  },
+  {
+   "id": "caribe",
+   "cat": "Caribe",
+   "q": "¿Tramitan visas para el Caribe?",
+   "a": "Sí, visados de turismo y negocios y residencias en los destinos con más demanda venezolana. Los requisitos cambian con frecuencia y los verificamos antes de cada solicitud. Desde USD 250.",
+   "kw": [
+    "caribe",
+    "dominicana",
+    "panama",
+    "aruba",
+    "curazao",
+    "curacao",
+    "trinidad",
+    "bonaire"
+   ],
+   "link": [
+    "Ver Caribe",
+    "/caribe"
+   ]
+  }
+ ],
+ "topics": {
+  "general": {
+   "hi": "Hola, soy Diana. Resuelvo tus dudas al instante y te digo si tu caso parece viable. ¿Qué quieres saber?",
+   "chips": [
+    "precios",
+    "cobro",
+    "pagos",
+    "plazos",
+    "garantia"
+   ]
+  },
+  "es": {
+   "hi": "Hola, soy Diana. ¿Tienes dudas sobre la nacionalidad española? Pregúntame lo que quieras.",
+   "chips": [
+    "es-quien",
+    "es-lmd",
+    "es-residencia",
+    "es-examen",
+    "buscar"
+   ]
+  },
+  "it": {
+   "hi": "Hola, soy Diana. La ley italiana cambió en 2025: te explico qué significa para ti.",
+   "chips": [
+    "it-quien",
+    "it-judicial",
+    "buscar",
+    "plazos",
+    "precios"
+   ]
+  },
+  "pt": {
+   "hi": "Hola, soy Diana. ¿Tu familia viene de Portugal o Madeira? Te oriento al instante.",
+   "chips": [
+    "pt-quien",
+    "documentos",
+    "buscar",
+    "plazos",
+    "precios"
+   ]
+  },
+  "de": {
+   "hi": "Hola, soy Diana. Te explico quién puede recuperar la nacionalidad alemana.",
+   "chips": [
+    "de-quien",
+    "buscar",
+    "documentos",
+    "plazos",
+    "precios"
+   ]
+  },
+  "hr": {
+   "hi": "Hola, soy Diana. ¿Descendiente de croatas? Te digo por dónde empezar.",
+   "chips": [
+    "hr-quien",
+    "buscar",
+    "documentos",
+    "plazos",
+    "precios"
+   ]
+  },
+  "uk": {
+   "hi": "Hola, soy Diana. Te oriento sobre la nacionalidad británica por descendencia.",
+   "chips": [
+    "uk-quien",
+    "documentos",
+    "plazos",
+    "precios",
+    "pagos"
+   ]
+  },
+  "visas": {
+   "hi": "Hola, soy Diana. ¿Sin ascendencia europea? Hay visados para ti. Pregúntame.",
+   "chips": [
+    "nomada",
+    "nolucrativa",
+    "estudios",
+    "arraigo",
+    "precios"
+   ]
+  },
+  "negocios": {
+   "hi": "Hola, soy Diana. Te oriento sobre visas para emprender o invertir en Europa.",
+   "chips": [
+    "emprendedor",
+    "golden",
+    "precios",
+    "plazos",
+    "pagos"
+   ]
+  },
+  "caribe": {
+   "hi": "Hola, soy Diana. ¿Viajas o te mudas al Caribe? Te ayudo con el visado.",
+   "chips": [
+    "caribe",
+    "precios",
+    "plazos",
+    "pagos",
+    "documentos"
+   ]
+  },
+  "cliente": {
+   "hi": "Hola, soy Diana. ¿Tienes dudas sobre tu expediente o tu cita?",
+   "chips": [
+    "cliente",
+    "reembolso",
+    "pagos",
+    "plazos",
+    "documentos"
+   ]
+  }
+ },
+ "evalHref": {
+  "general": "/nacionalidad-espanola#evaluador",
+  "es": "/nacionalidad-espanola#evaluador",
+  "it": "/nacionalidad-italiana#evaluador",
+  "pt": "/nacionalidad-portuguesa#evaluador",
+  "de": "/nacionalidad-alemana#evaluador",
+  "hr": "/nacionalidad-croata#evaluador",
+  "uk": "/nacionalidad-britanica#evaluador",
+  "visas": "/visados#evaluador",
+  "negocios": "/negocios#evaluador",
+  "caribe": "/caribe#evaluador",
+  "cliente": "/mi-caso"
+ }
+}

@@ -1,0 +1,2054 @@
+[
+ {
+  "title": "Nacionalidad española — Tu Diligencia Legal",
+  "topic": "es",
+  "nat": true,
+  "bg": "#6A1F28",
+  "crumb": "Nacionalidades  /  Española",
+  "h1a": "Nacionalidad",
+  "h1b": "española",
+  "lede": "La vía más directa a Europa para miles de venezolanos con raíces españolas, y para quienes ya viven legalmente en España. Te decimos qué vía te corresponde y la gestionamos completa.",
+  "from": "USD 900",
+  "motif": "<g fill=\"none\" stroke=\"#F0D9AE\" stroke-width=\"1.3\"><path d=\"M40 460 V190 H380 V460\"></path><path d=\"M40 190 L210 80 L380 190\"></path><path d=\"M90 460 V290 A40 40 0 0 1 170 290 V460\"></path><path d=\"M250 460 V290 A40 40 0 0 1 330 290 V460\"></path><rect x=\"160\" y=\"200\" width=\"100\" height=\"62\"></rect><path d=\"M150 262 H270 M150 276 H270 M160 276 V290 M180 276 V290 M200 276 V290 M220 276 V290 M240 276 V290 M260 276 V290 M150 290 H270\"></path><circle cx=\"210\" cy=\"140\" r=\"20\"></circle></g><g fill=\"#E0574C\"><circle cx=\"166\" cy=\"258\" r=\"5\"></circle><circle cx=\"178\" cy=\"256\" r=\"4\"></circle><circle cx=\"244\" cy=\"258\" r=\"5\"></circle><circle cx=\"256\" cy=\"256\" r=\"4\"></circle></g>",
+  "service_name": "Nacionalidad española",
+  "vias_title": "Cuatro caminos hacia el <em class=\"accent\">mismo pasaporte</em>.",
+  "vias_lede": "Cada vía tiene requisitos, documentos y plazos distintos. Elegir mal la vía es el error más caro, por eso empezamos siempre por el diagnóstico.",
+  "vias": [
+   {
+    "title": "Por ascendencia",
+    "text": "Hijos y nietos de españoles de origen. Expedientes de la Ley de Memoria Democrática presentados a tiempo.",
+    "tag": "LA MÁS PEDIDA"
+   },
+   {
+    "title": "Por residencia",
+    "text": "Los venezolanos, como iberoamericanos, pueden solicitarla con 2 años de residencia legal y continuada en España.",
+    "tag": ""
+   },
+   {
+    "title": "Por opción",
+    "text": "Para quienes estuvieron bajo la patria potestad de un español, o cuyo padre o madre fue español nacido en España.",
+    "tag": ""
+   },
+   {
+    "title": "Carta de naturaleza",
+    "text": "Vía excepcional que concede el Gobierno por circunstancias especiales del solicitante.",
+    "tag": ""
+   }
+  ],
+  "eval_title": "Dos minutos para saber <em>por dónde empezar</em>.",
+  "questions": [
+   {
+    "text": "¿Qué familiar tuyo es o era español?",
+    "opts": [
+     [
+      "Mi padre o mi madre",
+      3
+     ],
+     [
+      "Mi abuelo o mi abuela",
+      3
+     ],
+     [
+      "Mi bisabuelo o bisabuela",
+      2
+     ],
+     [
+      "Ninguno",
+      0
+     ]
+    ]
+   },
+   {
+    "text": "¿Ese familiar nació en España?",
+    "opts": [
+     [
+      "Sí",
+      3
+     ],
+     [
+      "No",
+      1
+     ],
+     [
+      "No lo sé",
+      1
+     ],
+     [
+      "No aplica",
+      0
+     ]
+    ]
+   },
+   {
+    "text": "¿Vives legalmente en España?",
+    "opts": [
+     [
+      "No",
+      0
+     ],
+     [
+      "Sí, desde hace menos de 2 años",
+      1
+     ],
+     [
+      "Sí, desde hace 2 años o más",
+      0,
+      "g"
+     ]
+    ]
+   },
+   {
+    "text": "¿Tienes la partida de nacimiento de tu familiar o puedes conseguirla?",
+    "opts": [
+     [
+      "Sí, la tengo",
+      2
+     ],
+     [
+      "La estoy buscando",
+      1
+     ],
+     [
+      "No sé dónde está",
+      1
+     ]
+    ]
+   }
+  ],
+  "results": [
+   {
+    "tag": "VERDE · PERFIL VIABLE",
+    "title": "Tu perfil parece viable.",
+    "body": "Por tu línea familiar o tu residencia, podrías optar a la nacionalidad española. Un abogado confirmará la vía exacta y los documentos.",
+    "next": "Consulta inicial con abogado",
+    "nextSub": "30 min por videollamada · descontable del servicio",
+    "cta": "Agendar · USD 60",
+    "href": "/agendar"
+   },
+   {
+    "tag": "ÁMBAR · VIABLE CON PUNTOS A REVISAR",
+    "title": "Hay un camino, con puntos a revisar.",
+    "body": "Tu caso tiene elementos a confirmar, como la generación o el lugar de nacimiento de tu familiar. Recomendamos la consulta de estrategia con informe escrito.",
+    "next": "Consulta de estrategia",
+    "nextSub": "60 min + informe de viabilidad por escrito · descontable",
+    "cta": "Agendar · USD 120",
+    "href": "/agendar"
+   },
+   {
+    "tag": "ROJO · ESTA VÍA NO APLICA HOY",
+    "title": "La nacionalidad no es tu primer paso.",
+    "body": "Sin ascendencia española ni residencia, hoy no aplica. Pero hay visados para llegar a España: nómada digital, no lucrativa o estudios. Con ellos empieza a contar tu residencia.",
+    "next": "Ver visados y residencias",
+    "nextSub": "Te proponemos la alternativa adecuada a tu perfil",
+    "cta": "Ver opciones",
+    "href": "/visados"
+   }
+  ],
+  "steps_lede": "La mayor parte del trabajo es nuestra. Tú firmas, envías lo que te pedimos y acudes a tu cita.",
+  "steps": [
+   {
+    "title": "Consulta y estrategia",
+    "text": "Definimos la vía correcta y te entregamos la propuesta con precio cerrado.",
+    "who": "n"
+   },
+   {
+    "title": "Búsqueda de partidas en España",
+    "text": "Localizamos la partida de tu familiar en registros civiles y parroquiales.",
+    "who": "n"
+   },
+   {
+    "title": "Tus documentos venezolanos",
+    "text": "Solicitas tus partidas en Venezuela con nuestra guía paso a paso.",
+    "who": "t"
+   },
+   {
+    "title": "Apostillas y expediente",
+    "text": "Apostillamos, traducimos si hace falta y revisamos línea por línea.",
+    "who": "n"
+   },
+   {
+    "title": "Presentación",
+    "text": "Acudes a tu cita en el consulado o presentamos en línea, según la vía.",
+    "who": "t"
+   },
+   {
+    "title": "Resolución y pasaporte",
+    "text": "Seguimos el expediente hasta la resolución, la jura o inscripción y tu pasaporte.",
+    "who": "n"
+   }
+  ],
+  "docs": [
+   {
+    "head": "Por ascendencia",
+    "items": [
+     "Partida de nacimiento de tu familiar español",
+     "Partidas de cada generación hasta ti",
+     "Actas de matrimonio de la línea",
+     "Pasaporte o cédula vigente",
+     "Apostillas de documentos venezolanos"
+    ]
+   },
+   {
+    "head": "Por residencia",
+    "items": [
+     "TIE y prueba de 2 años de residencia legal",
+     "Partida de nacimiento apostillada",
+     "Antecedentes penales de Venezuela",
+     "Certificado de empadronamiento",
+     "Examen CCSE aprobado"
+    ]
+   }
+  ],
+  "prices": [
+   {
+    "name": "Por ascendencia u opción",
+    "includes": "Análisis del árbol, expediente completo y presentación",
+    "price": "USD 1.200"
+   },
+   {
+    "name": "Por residencia",
+    "includes": "Expediente, orientación para el CCSE y seguimiento",
+    "price": "USD 900"
+   },
+   {
+    "name": "Recurso ante denegación",
+    "includes": "Recurso de reposición o contencioso, según el caso",
+    "price": "USD 800"
+   },
+   {
+    "name": "Búsqueda de partida en España",
+    "includes": "Localización en registro civil o parroquial y envío",
+    "price": "USD 180"
+   }
+  ],
+  "faqs": [
+   {
+    "q": "¿Sigue abierta la Ley de Memoria Democrática?",
+    "a": "El plazo general terminó en octubre de 2025. Si presentaste antes, seguimos tu expediente. Si no llegaste, revisamos la opción o la residencia."
+   },
+   {
+    "q": "¿Tengo que hacer el DELE y el CCSE?",
+    "a": "Como venezolano no necesitas el DELE. El CCSE sí se exige en la vía de residencia, salvo excepciones."
+   },
+   {
+    "q": "¿Pierdo la nacionalidad venezolana?",
+    "a": "No. Como venezolano, al ser de un país iberoamericano no tienes que renunciar a tu nacionalidad al obtener la española."
+   },
+   {
+    "q": "¿Por qué la consulta con abogado es de pago?",
+    "a": "Porque es asesoría legal real con un especialista. Si contratas en 30 días, el importe se descuenta. La pre-evaluación y Diana son gratis."
+   },
+   {
+    "q": "¿Cómo pago desde Venezuela?",
+    "a": "Con tarjeta internacional, PayPal, Zelle, Binance Pay (USDT) o transferencia en euros. El servicio completo se paga en 2 o 3 cuotas."
+   }
+  ],
+  "placeholder": "Ej.: mi abuelo nació en Lugo en 1925 y emigró a Caracas. Tengo su cédula pero no su partida.",
+  "close_a": "Tu familia ya hizo el viaje de ida.",
+  "close_b": "Hagamos el de vuelta.",
+  "slug": "nacionalidad-espanola",
+  "h": null
+ },
+ {
+  "title": "Nacionalidad italiana — Tu Diligencia Legal",
+  "topic": "it",
+  "nat": true,
+  "bg": "#1E4D3B",
+  "crumb": "Nacionalidades  /  Italiana",
+  "h1a": "Nacionalidad",
+  "h1b": "italiana",
+  "lede": "La ley cambió en 2025 y muchas familias quedaron en duda. Revisamos tu línea con la norma vigente, te decimos si sigues calificando y por qué vía: consular o judicial.",
+  "from": "USD 1.800",
+  "motif": "<g fill=\"none\" stroke=\"#F0D9AE\" stroke-width=\"1.3\"><path d=\"M50 460 V300 H370 V460\"></path><path d=\"M80 300 A130 140 0 0 1 340 300\"></path><path d=\"M130 300 A80 140 0 0 1 290 300\" stroke-width=\"0.6\"></path><path d=\"M210 160 V300\" stroke-width=\"0.6\"></path><rect x=\"190\" y=\"126\" width=\"40\" height=\"34\"></rect><path d=\"M196 126 L210 92 L224 126\"></path><path d=\"M70 340 H350\"></path><path d=\"M90 460 V410 A20 20 0 0 1 130 410 V460 M150 460 V410 A20 20 0 0 1 190 410 V460 M230 460 V410 A20 20 0 0 1 270 410 V460 M290 460 V410 A20 20 0 0 1 330 410 V460\"></path></g>",
+  "service_name": "Nacionalidad italiana",
+  "vias_title": "Después de la reforma, <em class=\"accent\">cada línea es un caso</em>.",
+  "vias_lede": "Desde marzo de 2025 la ascendencia se limita en general a hijos y nietos de italianos nacidos en Italia, con excepciones. Por eso analizamos tu línea antes de mover un solo papel.",
+  "vias": [
+   {
+    "title": "Vía consular",
+    "text": "Para líneas que cumplen la norma vigente, con cita en el consulado italiano de tu país de residencia.",
+    "tag": "LA HABITUAL"
+   },
+   {
+    "title": "Vía judicial",
+    "text": "Demanda ante un tribunal en Italia, por ejemplo en líneas por vía materna anteriores a 1948.",
+    "tag": ""
+   },
+   {
+    "title": "Expedientes previos a 2025",
+    "text": "Si iniciaste el trámite antes del 28 de marzo de 2025, se aplican las reglas anteriores. Lo retomamos.",
+    "tag": ""
+   },
+   {
+    "title": "Por matrimonio",
+    "text": "Para cónyuges de ciudadanos italianos, con requisitos de convivencia e idioma.",
+    "tag": ""
+   }
+  ],
+  "eval_title": "¿Sigues calificando <em>tras la reforma</em>?",
+  "questions": [
+   {
+    "text": "¿Quién de tu familia nació en Italia?",
+    "opts": [
+     [
+      "Mi padre o mi madre",
+      3
+     ],
+     [
+      "Mi abuelo o mi abuela",
+      3
+     ],
+     [
+      "Mi bisabuelo o anterior",
+      1
+     ],
+     [
+      "Nadie / no lo sé",
+      0,
+      "r"
+     ]
+    ]
+   },
+   {
+    "text": "¿Iniciaste algún trámite (cita o demanda) antes del 28 de marzo de 2025?",
+    "opts": [
+     [
+      "Sí",
+      2
+     ],
+     [
+      "No",
+      1
+     ],
+     [
+      "No lo sé",
+      1
+     ]
+    ]
+   },
+   {
+    "text": "¿Hay una mujer en la línea que tuvo hijos antes de 1948?",
+    "opts": [
+     [
+      "No",
+      2
+     ],
+     [
+      "Sí",
+      1
+     ],
+     [
+      "No lo sé",
+      1
+     ]
+    ]
+   },
+   {
+    "text": "¿Tu familiar se naturalizó venezolano antes de que naciera su hijo?",
+    "opts": [
+     [
+      "No",
+      2
+     ],
+     [
+      "Sí",
+      0
+     ],
+     [
+      "No lo sé",
+      1
+     ]
+    ]
+   }
+  ],
+  "results": [
+   {
+    "tag": "VERDE · PERFIL VIABLE",
+    "title": "Tu perfil parece viable.",
+    "body": "Tu línea parece cumplir la norma vigente. Un abogado confirmará si te corresponde la vía consular o la judicial, y los documentos exactos.",
+    "next": "Consulta inicial con abogado",
+    "nextSub": "30 min por videollamada · descontable del servicio",
+    "cta": "Agendar · USD 60",
+    "href": "/agendar"
+   },
+   {
+    "tag": "ÁMBAR · VIABLE CON PUNTOS A REVISAR",
+    "title": "Hay un camino, con puntos a revisar.",
+    "body": "Tu caso depende de detalles como la generación, la fecha de naturalización o la línea materna. Recomendamos la consulta de estrategia con informe escrito.",
+    "next": "Consulta de estrategia",
+    "nextSub": "60 min + informe de viabilidad por escrito · descontable",
+    "cta": "Agendar · USD 120",
+    "href": "/agendar"
+   },
+   {
+    "tag": "ROJO · ESTA VÍA NO APLICA HOY",
+    "title": "La vía italiana no parece aplicar hoy.",
+    "body": "Con la reforma de 2025, sin un familiar nacido en Italia en las generaciones cercanas la ascendencia ya no aplica en general. Revisemos otras nacionalidades o visados.",
+    "next": "Ver otras nacionalidades",
+    "nextSub": "Te proponemos la alternativa adecuada a tu perfil",
+    "cta": "Ver opciones",
+    "href": "/#paises"
+   }
+  ],
+  "steps_lede": "Trabajamos con abogados en Italia para la vía judicial y con gestores en cada comune para las actas.",
+  "steps": [
+   {
+    "title": "Análisis de la línea",
+    "text": "Revisamos fechas, naturalizaciones y generaciones con la norma vigente.",
+    "who": "n"
+   },
+   {
+    "title": "Búsqueda de actas en Italia",
+    "text": "Solicitamos las actas al comune de origen de tu familia.",
+    "who": "n"
+   },
+   {
+    "title": "Documentos venezolanos",
+    "text": "Pides tus partidas y la constancia de no naturalización con nuestra guía.",
+    "who": "t"
+   },
+   {
+    "title": "Traducción y apostilla",
+    "text": "Traducimos al italiano y apostillamos cada documento.",
+    "who": "n"
+   },
+   {
+    "title": "Cita consular o demanda",
+    "text": "Acudes al consulado, o nuestro abogado presenta la demanda en Italia.",
+    "who": "t"
+   },
+   {
+    "title": "Reconocimiento y pasaporte",
+    "text": "Seguimos el expediente hasta la inscripción en el comune y tu pasaporte.",
+    "who": "n"
+   }
+  ],
+  "docs": [
+   {
+    "head": "De tu familiar italiano",
+    "items": [
+     "Acta de nacimiento del comune",
+     "Acta de matrimonio",
+     "Constancia de no naturalización (o fecha)",
+     "Acta de defunción, si aplica"
+    ]
+   },
+   {
+    "head": "De la línea hasta ti",
+    "items": [
+     "Partidas de nacimiento de cada generación",
+     "Actas de matrimonio",
+     "Traducciones al italiano",
+     "Apostillas",
+     "Pasaporte vigente"
+    ]
+   }
+  ],
+  "prices": [
+   {
+    "name": "Vía consular",
+    "includes": "Análisis, búsqueda documental, expediente y cita",
+    "price": "USD 1.800"
+   },
+   {
+    "name": "Vía judicial",
+    "includes": "Abogado en Italia, demanda y seguimiento hasta sentencia",
+    "price": "USD 4.500"
+   },
+   {
+    "name": "Por matrimonio",
+    "includes": "Expediente y presentación",
+    "price": "USD 1.500"
+   },
+   {
+    "name": "Búsqueda de acta en Italia",
+    "includes": "Solicitud al comune y envío",
+    "price": "USD 180"
+   }
+  ],
+  "faqs": [
+   {
+    "q": "¿Qué cambió con la reforma de 2025?",
+    "a": "En general, la ascendencia se limita a hijos y nietos de italianos nacidos en Italia, con excepciones. Los trámites iniciados antes del 28 de marzo de 2025 siguen las reglas anteriores."
+   },
+   {
+    "q": "¿Qué es la vía judicial?",
+    "a": "Una demanda ante un tribunal en Italia. La lleva un abogado italiano y no necesitas viajar en la mayoría de los casos."
+   },
+   {
+    "q": "Mi bisabuelo era italiano, ¿ya no puedo?",
+    "a": "Depende de tu caso concreto y de si iniciaste algo antes de 2025. Hazte la pre-evaluación o pide la consulta de estrategia."
+   },
+   {
+    "q": "¿Por qué la consulta con abogado es de pago?",
+    "a": "Porque es asesoría legal real con un especialista. Si contratas en 30 días, el importe se descuenta. La pre-evaluación y Diana son gratis."
+   },
+   {
+    "q": "¿Cómo pago desde Venezuela?",
+    "a": "Con tarjeta internacional, PayPal, Zelle, Binance Pay (USDT) o transferencia en euros. El servicio completo se paga en 2 o 3 cuotas."
+   }
+  ],
+  "placeholder": "Ej.: mi abuelo nació en Calabria en 1930 y emigró a Valencia en 1955. No sé si se naturalizó.",
+  "close_a": "La ley cambió.",
+  "close_b": "Tu derecho, quizá no.",
+  "slug": "nacionalidad-italiana",
+  "h": null
+ },
+ {
+  "title": "Nacionalidad portuguesa — Tu Diligencia Legal",
+  "topic": "pt",
+  "nat": true,
+  "bg": "#1F3B6B",
+  "crumb": "Nacionalidades  /  Portuguesa",
+  "h1a": "Nacionalidad",
+  "h1b": "portuguesa",
+  "lede": "Venezuela tiene una de las comunidades portuguesas y madeirenses más grandes del mundo. Si tu padre, madre o abuelos vinieron de Portugal, revisamos tu derecho con la ley vigente.",
+  "from": "USD 1.500",
+  "motif": "<g fill=\"none\" stroke=\"#F0D9AE\" stroke-width=\"1.3\"><rect x=\"70\" y=\"70\" width=\"94\" height=\"94\"></rect><circle cx=\"117\" cy=\"117\" r=\"26\"></circle><circle cx=\"117\" cy=\"117\" r=\"8\"></circle><path d=\"M70 70 Q117 107 164 70 M70 164 Q117 127 164 164\" stroke-width=\"0.6\"></path><rect x=\"164\" y=\"70\" width=\"94\" height=\"94\"></rect><circle cx=\"211\" cy=\"117\" r=\"26\"></circle><circle cx=\"211\" cy=\"117\" r=\"8\"></circle><path d=\"M164 70 Q211 107 258 70 M164 164 Q211 127 258 164\" stroke-width=\"0.6\"></path><rect x=\"258\" y=\"70\" width=\"94\" height=\"94\"></rect><circle cx=\"305\" cy=\"117\" r=\"26\"></circle><circle cx=\"305\" cy=\"117\" r=\"8\"></circle><path d=\"M258 70 Q305 107 352 70 M258 164 Q305 127 352 164\" stroke-width=\"0.6\"></path><rect x=\"70\" y=\"164\" width=\"94\" height=\"94\"></rect><circle cx=\"117\" cy=\"211\" r=\"26\"></circle><circle cx=\"117\" cy=\"211\" r=\"8\"></circle><path d=\"M70 164 Q117 201 164 164 M70 258 Q117 221 164 258\" stroke-width=\"0.6\"></path><rect x=\"164\" y=\"164\" width=\"94\" height=\"94\"></rect><circle cx=\"211\" cy=\"211\" r=\"26\"></circle><circle cx=\"211\" cy=\"211\" r=\"8\"></circle><path d=\"M164 164 Q211 201 258 164 M164 258 Q211 221 258 258\" stroke-width=\"0.6\"></path><rect x=\"258\" y=\"164\" width=\"94\" height=\"94\"></rect><circle cx=\"305\" cy=\"211\" r=\"26\"></circle><circle cx=\"305\" cy=\"211\" r=\"8\"></circle><path d=\"M258 164 Q305 201 352 164 M258 258 Q305 221 352 258\" stroke-width=\"0.6\"></path><rect x=\"70\" y=\"258\" width=\"94\" height=\"94\"></rect><circle cx=\"117\" cy=\"305\" r=\"26\"></circle><circle cx=\"117\" cy=\"305\" r=\"8\"></circle><path d=\"M70 258 Q117 295 164 258 M70 352 Q117 315 164 352\" stroke-width=\"0.6\"></path><rect x=\"164\" y=\"258\" width=\"94\" height=\"94\"></rect><circle cx=\"211\" cy=\"305\" r=\"26\"></circle><circle cx=\"211\" cy=\"305\" r=\"8\"></circle><path d=\"M164 258 Q211 295 258 258 M164 352 Q211 315 258 352\" stroke-width=\"0.6\"></path><rect x=\"258\" y=\"258\" width=\"94\" height=\"94\"></rect><circle cx=\"305\" cy=\"305\" r=\"26\"></circle><circle cx=\"305\" cy=\"305\" r=\"8\"></circle><path d=\"M258 258 Q305 295 352 258 M258 352 Q305 315 352 352\" stroke-width=\"0.6\"></path></g><g fill=\"none\" stroke=\"#F0D9AE\" stroke-width=\"0.5\" opacity=\"0.6\"><path d=\"M40 420 H380 M60 436 H360\"></path></g>",
+  "service_name": "Nacionalidad portuguesa",
+  "vias_title": "De Madeira a Caracas, <em class=\"accent\">y de vuelta</em>.",
+  "vias_lede": "La ley portuguesa ha tenido cambios recientes, así que confirmamos los requisitos vigentes en cada expediente antes de presentar.",
+  "vias": [
+   {
+    "title": "Hijos de portugueses",
+    "text": "Atribución de la nacionalidad a hijos de padre o madre portugueses nacidos en el extranjero.",
+    "tag": "LA MÁS DIRECTA"
+   },
+   {
+    "title": "Nietos de portugueses",
+    "text": "Para nietos que acrediten su vínculo con la comunidad portuguesa, por ejemplo con conocimiento del idioma.",
+    "tag": ""
+   },
+   {
+    "title": "Transcripciones",
+    "text": "Inscripción en Portugal de nacimientos y matrimonios venezolanos de la familia.",
+    "tag": ""
+   }
+  ],
+  "eval_title": "¿Tu familia vino de <em>Portugal o Madeira</em>?",
+  "questions": [
+   {
+    "text": "¿Quién es o era portugués?",
+    "opts": [
+     [
+      "Mi padre o mi madre",
+      3
+     ],
+     [
+      "Mi abuelo o mi abuela",
+      2
+     ],
+     [
+      "Mi bisabuelo o anterior",
+      0,
+      "r"
+     ],
+     [
+      "Nadie",
+      0,
+      "r"
+     ]
+    ]
+   },
+   {
+    "text": "¿Su nacimiento está registrado en Portugal (incluidas Madeira y Azores)?",
+    "opts": [
+     [
+      "Sí",
+      2
+     ],
+     [
+      "No lo sé",
+      1
+     ],
+     [
+      "No",
+      0
+     ]
+    ]
+   },
+   {
+    "text": "¿Hablas portugués o mantienes vínculos con Portugal?",
+    "opts": [
+     [
+      "Sí",
+      2
+     ],
+     [
+      "Un poco",
+      1
+     ],
+     [
+      "No",
+      0
+     ]
+    ]
+   }
+  ],
+  "results": [
+   {
+    "tag": "VERDE · PERFIL VIABLE",
+    "title": "Tu perfil parece viable.",
+    "body": "Tu perfil parece encajar con la atribución o la vía de nietos. Un abogado confirmará los requisitos vigentes y los documentos.",
+    "next": "Consulta inicial con abogado",
+    "nextSub": "30 min por videollamada · descontable del servicio",
+    "cta": "Agendar · USD 60",
+    "href": "/agendar"
+   },
+   {
+    "tag": "ÁMBAR · VIABLE CON PUNTOS A REVISAR",
+    "title": "Hay un camino, con puntos a revisar.",
+    "body": "Hay un camino, pero hay que reforzar el expediente: registros en Portugal o el vínculo con la comunidad. Recomendamos la consulta de estrategia.",
+    "next": "Consulta de estrategia",
+    "nextSub": "60 min + informe de viabilidad por escrito · descontable",
+    "cta": "Agendar · USD 120",
+    "href": "/agendar"
+   },
+   {
+    "tag": "ROJO · ESTA VÍA NO APLICA HOY",
+    "title": "La vía portuguesa no parece aplicar.",
+    "body": "Por ahora no encontramos una vía de nacionalidad portuguesa para tu perfil. Revisemos otras nacionalidades o un visado como la D7 o la D8 de nómada digital.",
+    "next": "Ver visados y residencias",
+    "nextSub": "Te proponemos la alternativa adecuada a tu perfil",
+    "cta": "Ver opciones",
+    "href": "/visados"
+   }
+  ],
+  "steps_lede": "Buscamos los registros en las conservatórias de Portugal y armamos el expediente completo.",
+  "steps": [
+   {
+    "title": "Análisis de la línea",
+    "text": "Confirmamos vía y requisitos vigentes.",
+    "who": "n"
+   },
+   {
+    "title": "Búsqueda de registros",
+    "text": "Localizamos el registro de tu familiar en Portugal o Madeira.",
+    "who": "n"
+   },
+   {
+    "title": "Documentos venezolanos",
+    "text": "Pides tus partidas con nuestra guía.",
+    "who": "t"
+   },
+   {
+    "title": "Transcripciones y expediente",
+    "text": "Transcribimos matrimonios y nacimientos y armamos la solicitud.",
+    "who": "n"
+   },
+   {
+    "title": "Seguimiento y cartão",
+    "text": "Seguimos el proceso hasta tu registro y tu cartão de cidadão.",
+    "who": "n"
+   }
+  ],
+  "docs": [
+   {
+    "head": "De tu familiar",
+    "items": [
+     "Certidão de nascimento portuguesa",
+     "Certidão de casamento",
+     "Documento de identidad portugués, si existe"
+    ]
+   },
+   {
+    "head": "Tuyos",
+    "items": [
+     "Partida de nacimiento apostillada",
+     "Antecedentes penales",
+     "Prueba de vínculo (idioma, viajes, asociaciones), si eres nieto",
+     "Pasaporte vigente"
+    ]
+   }
+  ],
+  "prices": [
+   {
+    "name": "Hijos de portugueses",
+    "includes": "Búsqueda de registros, transcripciones y solicitud",
+    "price": "USD 1.500"
+   },
+   {
+    "name": "Nietos de portugueses",
+    "includes": "Expediente reforzado de vínculo y solicitud",
+    "price": "USD 1.800"
+   },
+   {
+    "name": "Transcripción de matrimonio o nacimiento",
+    "includes": "Gestión en Portugal",
+    "price": "USD 350"
+   },
+   {
+    "name": "Búsqueda de registro en Portugal",
+    "includes": "Localización y envío",
+    "price": "USD 180"
+   }
+  ],
+  "faqs": [
+   {
+    "q": "Mi familia es de Madeira, ¿cuenta?",
+    "a": "Sí. Madeira y Azores son Portugal a todos los efectos de nacionalidad."
+   },
+   {
+    "q": "¿Tengo que hablar portugués?",
+    "a": "Para hijos de portugueses no suele ser necesario. Para nietos ayuda a acreditar el vínculo con la comunidad."
+   },
+   {
+    "q": "¿La ley portuguesa cambió?",
+    "a": "Sí, ha tenido reformas recientes. Por eso confirmamos los requisitos vigentes antes de presentar tu caso."
+   },
+   {
+    "q": "¿Por qué la consulta con abogado es de pago?",
+    "a": "Porque es asesoría legal real con un especialista. Si contratas en 30 días, el importe se descuenta. La pre-evaluación y Diana son gratis."
+   },
+   {
+    "q": "¿Cómo pago desde Venezuela?",
+    "a": "Con tarjeta internacional, PayPal, Zelle, Binance Pay (USDT) o transferencia en euros. El servicio completo se paga en 2 o 3 cuotas."
+   }
+  ],
+  "placeholder": "Ej.: mi padre nació en Funchal (Madeira) y llegó a Caracas en 1962.",
+  "close_a": "Tu apellido ya es portugués.",
+  "close_b": "Tu pasaporte puede serlo.",
+  "slug": "nacionalidad-portuguesa",
+  "h": null
+ },
+ {
+  "title": "Nacionalidad alemana — Tu Diligencia Legal",
+  "topic": "de",
+  "nat": true,
+  "bg": "#2B2B30",
+  "crumb": "Nacionalidades  /  Alemana",
+  "h1a": "Nacionalidad",
+  "h1b": "alemana",
+  "lede": "Alemania permite la doble nacionalidad desde 2024 y abrió vías para descendientes de quienes la perdieron por normas discriminatorias o persecución. Analizamos tu caso en los archivos.",
+  "from": "USD 2.200",
+  "motif": "<g fill=\"none\" stroke=\"#F0D9AE\" stroke-width=\"1.3\"><path d=\"M70 460 V200 H350 V460\"></path><path d=\"M50 210 L210 70 L370 210\"></path><path d=\"M70 290 H350 M70 380 H350 M140 200 V460 M210 200 V460 M280 200 V460\"></path><path d=\"M70 200 L140 290 M140 200 L70 290 M280 290 L350 380 M350 290 L280 380 M140 380 L210 460 M210 380 L140 460\" stroke-width=\"0.8\"></path><rect x=\"225\" y=\"220\" width=\"40\" height=\"52\"></rect><rect x=\"155\" y=\"310\" width=\"40\" height=\"52\"></rect><path d=\"M210 120 V160 M190 140 H230\" stroke-width=\"0.8\"></path></g>",
+  "service_name": "Nacionalidad alemana",
+  "vias_title": "Recuperar lo que <em class=\"accent\">se perdió</em>.",
+  "vias_lede": "La nacionalidad alemana no se transmite igual que la española o la italiana: cada caso exige analizar leyes de distintas épocas.",
+  "vias": [
+   {
+    "title": "Declaración §5 StAG",
+    "text": "Para descendientes que no la recibieron por normas discriminatorias, como hijos de madre alemana antes de 1975.",
+    "tag": "MÁS FRECUENTE"
+   },
+   {
+    "title": "Restitución §15 y art. 116",
+    "text": "Para perseguidos por el nazismo entre 1933 y 1945 y sus descendientes.",
+    "tag": ""
+   },
+   {
+    "title": "Certificado de nacionalidad",
+    "text": "Para confirmar que ya eres alemán por descendencia sin saberlo.",
+    "tag": ""
+   }
+  ],
+  "eval_title": "¿Tienes <em>raíces alemanas</em>?",
+  "questions": [
+   {
+    "text": "¿Quién era alemán?",
+    "opts": [
+     [
+      "Mi padre o mi madre",
+      3
+     ],
+     [
+      "Mi abuelo o mi abuela",
+      2
+     ],
+     [
+      "Mi bisabuelo o anterior",
+      1
+     ],
+     [
+      "Nadie",
+      0,
+      "r"
+     ]
+    ]
+   },
+   {
+    "text": "¿Alguien de tu familia fue perseguido o emigró entre 1933 y 1945?",
+    "opts": [
+     [
+      "Sí",
+      3
+     ],
+     [
+      "No",
+      0
+     ],
+     [
+      "No lo sé",
+      1
+     ]
+    ]
+   },
+   {
+    "text": "¿La línea pasa por una madre alemana casada con extranjero antes de 1975?",
+    "opts": [
+     [
+      "Sí",
+      2
+     ],
+     [
+      "No",
+      0
+     ],
+     [
+      "No lo sé",
+      1
+     ]
+    ]
+   },
+   {
+    "text": "¿Tienes documentos alemanes de tu familia?",
+    "opts": [
+     [
+      "Sí",
+      2
+     ],
+     [
+      "Algunos",
+      1
+     ],
+     [
+      "No",
+      0
+     ]
+    ]
+   }
+  ],
+  "results": [
+   {
+    "tag": "VERDE · PERFIL VIABLE",
+    "title": "Tu perfil parece viable.",
+    "body": "Tu historia familiar encaja con alguna de las vías alemanas. Un abogado confirmará cuál y qué archivos hay que consultar.",
+    "next": "Consulta inicial con abogado",
+    "nextSub": "30 min por videollamada · descontable del servicio",
+    "cta": "Agendar · USD 60",
+    "href": "/agendar"
+   },
+   {
+    "tag": "ÁMBAR · VIABLE CON PUNTOS A REVISAR",
+    "title": "Hay un camino, con puntos a revisar.",
+    "body": "Hay indicios de una vía, pero la nacionalidad alemana exige revisar leyes de varias épocas. Recomendamos la consulta de estrategia con informe escrito.",
+    "next": "Consulta de estrategia",
+    "nextSub": "60 min + informe de viabilidad por escrito · descontable",
+    "cta": "Agendar · USD 120",
+    "href": "/agendar"
+   },
+   {
+    "tag": "ROJO · ESTA VÍA NO APLICA HOY",
+    "title": "La vía alemana no parece aplicar.",
+    "body": "Con los datos que diste, no encontramos una vía alemana. Revisemos otras nacionalidades o visados europeos.",
+    "next": "Ver otras nacionalidades",
+    "nextSub": "Te proponemos la alternativa adecuada a tu perfil",
+    "cta": "Ver opciones",
+    "href": "/#paises"
+   }
+  ],
+  "steps_lede": "Investigamos en archivos alemanes y presentamos ante la Oficina Federal de Administración (BVA).",
+  "steps": [
+   {
+    "title": "Análisis histórico-legal",
+    "text": "Revisamos qué ley se aplicaba en cada nacimiento y matrimonio.",
+    "who": "n"
+   },
+   {
+    "title": "Búsqueda en archivos",
+    "text": "Consultamos registros civiles y archivos en Alemania.",
+    "who": "n"
+   },
+   {
+    "title": "Tus documentos",
+    "text": "Reúnes partidas y documentos familiares con nuestra guía.",
+    "who": "t"
+   },
+   {
+    "title": "Traducción y solicitud",
+    "text": "Traducimos al alemán y presentamos ante la BVA.",
+    "who": "n"
+   },
+   {
+    "title": "Resolución",
+    "text": "Seguimos el expediente hasta el certificado o la naturalización.",
+    "who": "n"
+   }
+  ],
+  "docs": [
+   {
+    "head": "De tu familiar alemán",
+    "items": [
+     "Pasaporte o documento alemán antiguo",
+     "Acta de nacimiento alemana",
+     "Acta de matrimonio",
+     "Pruebas de emigración o persecución, si aplica"
+    ]
+   },
+   {
+    "head": "De la línea hasta ti",
+    "items": [
+     "Partidas de cada generación",
+     "Actas de matrimonio",
+     "Traducciones juradas al alemán",
+     "Pasaporte vigente"
+    ]
+   }
+  ],
+  "prices": [
+   {
+    "name": "Declaración §5 StAG",
+    "includes": "Análisis, archivos y declaración",
+    "price": "USD 2.200"
+   },
+   {
+    "name": "Restitución §15 / art. 116",
+    "includes": "Investigación histórica y solicitud",
+    "price": "USD 2.500"
+   },
+   {
+    "name": "Certificado de nacionalidad",
+    "includes": "Análisis y solicitud",
+    "price": "USD 1.800"
+   },
+   {
+    "name": "Búsqueda en archivos alemanes",
+    "includes": "Localización por documento",
+    "price": "USD 220"
+   }
+  ],
+  "faqs": [
+   {
+    "q": "¿Puedo tener doble nacionalidad?",
+    "a": "Sí. Desde la reforma de 2024, Alemania permite en general la doble nacionalidad."
+   },
+   {
+    "q": "¿Tengo que hablar alemán?",
+    "a": "Para las vías de declaración y restitución normalmente no se exige examen de idioma."
+   },
+   {
+    "q": "¿Cuánto tarda la BVA?",
+    "a": "Suele ser un proceso largo. Te damos un plazo estimado por escrito y lo sigues desde Mi caso."
+   },
+   {
+    "q": "¿Por qué la consulta con abogado es de pago?",
+    "a": "Porque es asesoría legal real con un especialista. Si contratas en 30 días, el importe se descuenta. La pre-evaluación y Diana son gratis."
+   },
+   {
+    "q": "¿Cómo pago desde Venezuela?",
+    "a": "Con tarjeta internacional, PayPal, Zelle, Binance Pay (USDT) o transferencia en euros. El servicio completo se paga en 2 o 3 cuotas."
+   }
+  ],
+  "placeholder": "Ej.: mi abuela nació en Hamburgo y se casó con un venezolano en 1950.",
+  "close_a": "La historia les quitó algo.",
+  "close_b": "La ley permite recuperarlo.",
+  "slug": "nacionalidad-alemana",
+  "h": null
+ },
+ {
+  "title": "Nacionalidad croata — Tu Diligencia Legal",
+  "topic": "hr",
+  "nat": true,
+  "bg": "#17405F",
+  "crumb": "Nacionalidades  /  Croata",
+  "h1a": "Nacionalidad",
+  "h1b": "croata",
+  "lede": "Muchos croatas llegaron a Venezuela en el siglo XX. Sus descendientes directos pueden solicitar la nacionalidad croata y, con ella, un pasaporte de la Unión Europea.",
+  "from": "USD 1.800",
+  "motif": "<g fill=\"none\" stroke=\"#F0D9AE\" stroke-width=\"1.3\"><circle cx=\"330\" cy=\"100\" r=\"34\"></circle><rect x=\"170\" y=\"140\" width=\"56\" height=\"250\"></rect><path d=\"M170 140 L198 80 L226 140\"></path><path d=\"M184 200 V180 A14 14 0 0 1 212 180 V200 Z M184 260 V240 A14 14 0 0 1 212 240 V260 Z\"></path><path d=\"M20 390 H400\"></path><path d=\"M20 410 Q60 398 100 410 T180 410 T260 410 T340 410 T420 410 M20 432 Q60 420 100 432 T180 432 T260 432 T340 432 T420 432 M20 454 Q60 442 100 454 T180 454 T260 454 T340 454 T420 454\"></path><path d=\"M20 390 L70 320 L120 360 L150 330 L170 350 M226 350 L270 300 L330 360 L380 330 L400 350\" stroke-width=\"0.8\"></path></g>",
+  "service_name": "Nacionalidad croata",
+  "vias_title": "Un pasaporte europeo <em class=\"accent\">poco conocido</em>.",
+  "vias_lede": "Es una de las vías menos saturadas para descendientes de emigrantes. La clave está en encontrar los registros en Croacia.",
+  "vias": [
+   {
+    "title": "Descendientes de emigrantes",
+    "text": "Para descendientes directos de croatas que emigraron, por origen.",
+    "tag": "LA PRINCIPAL"
+   },
+   {
+    "title": "Hijos de croatas",
+    "text": "Inscripción por nacimiento en el registro croata.",
+    "tag": ""
+   },
+   {
+    "title": "Búsqueda de registros",
+    "text": "Localizamos actas en parroquias y registros de la región de origen.",
+    "tag": ""
+   }
+  ],
+  "eval_title": "¿Tu familia <em>vino de Croacia</em>?",
+  "questions": [
+   {
+    "text": "¿Quién emigró de Croacia?",
+    "opts": [
+     [
+      "Mi padre o mi madre",
+      3
+     ],
+     [
+      "Mi abuelo o mi abuela",
+      3
+     ],
+     [
+      "Mi bisabuelo o anterior",
+      2
+     ],
+     [
+      "Nadie",
+      0,
+      "r"
+     ]
+    ]
+   },
+   {
+    "text": "¿Sabes el pueblo o la región de origen?",
+    "opts": [
+     [
+      "Sí",
+      2
+     ],
+     [
+      "Aproximadamente",
+      1
+     ],
+     [
+      "No",
+      0
+     ]
+    ]
+   },
+   {
+    "text": "¿Tienes algún documento de esa persona?",
+    "opts": [
+     [
+      "Sí",
+      2
+     ],
+     [
+      "Algunos",
+      1
+     ],
+     [
+      "No",
+      0
+     ]
+    ]
+   }
+  ],
+  "results": [
+   {
+    "tag": "VERDE · PERFIL VIABLE",
+    "title": "Tu perfil parece viable.",
+    "body": "Como descendiente directo de emigrantes croatas, tu perfil parece viable. Un abogado confirmará los requisitos y los documentos.",
+    "next": "Consulta inicial con abogado",
+    "nextSub": "30 min por videollamada · descontable del servicio",
+    "cta": "Agendar · USD 60",
+    "href": "/agendar"
+   },
+   {
+    "tag": "ÁMBAR · VIABLE CON PUNTOS A REVISAR",
+    "title": "Hay un camino, con puntos a revisar.",
+    "body": "Hay un camino, pero falta información sobre el origen o los documentos. La consulta de estrategia te dará un plan de búsqueda.",
+    "next": "Consulta de estrategia",
+    "nextSub": "60 min + informe de viabilidad por escrito · descontable",
+    "cta": "Agendar · USD 120",
+    "href": "/agendar"
+   },
+   {
+    "tag": "ROJO · ESTA VÍA NO APLICA HOY",
+    "title": "La vía croata no parece aplicar.",
+    "body": "Sin un familiar croata en tu línea directa, esta vía no aplica. Revisemos otras nacionalidades o visados.",
+    "next": "Ver otras nacionalidades",
+    "nextSub": "Te proponemos la alternativa adecuada a tu perfil",
+    "cta": "Ver opciones",
+    "href": "/#paises"
+   }
+  ],
+  "steps_lede": "Trabajamos con gestores en Croacia para las búsquedas y la presentación.",
+  "steps": [
+   {
+    "title": "Análisis de la línea",
+    "text": "Revisamos generaciones y documentos disponibles.",
+    "who": "n"
+   },
+   {
+    "title": "Búsqueda en Croacia",
+    "text": "Localizamos actas en registros y parroquias.",
+    "who": "n"
+   },
+   {
+    "title": "Tus documentos",
+    "text": "Pides partidas en Venezuela con nuestra guía.",
+    "who": "t"
+   },
+   {
+    "title": "Traducción y solicitud",
+    "text": "Traducimos al croata y presentamos la solicitud.",
+    "who": "n"
+   },
+   {
+    "title": "Resolución y pasaporte",
+    "text": "Seguimos el expediente hasta tu pasaporte croata.",
+    "who": "n"
+   }
+  ],
+  "docs": [
+   {
+    "head": "De tu familiar croata",
+    "items": [
+     "Acta de nacimiento o bautismo",
+     "Documentos de emigración",
+     "Acta de matrimonio"
+    ]
+   },
+   {
+    "head": "Tuyos",
+    "items": [
+     "Partidas de cada generación",
+     "Traducciones al croata",
+     "Apostillas",
+     "Pasaporte vigente"
+    ]
+   }
+  ],
+  "prices": [
+   {
+    "name": "Nacionalidad por origen",
+    "includes": "Análisis, búsqueda y solicitud",
+    "price": "USD 1.800"
+   },
+   {
+    "name": "Búsqueda de acta en Croacia",
+    "includes": "Localización y envío",
+    "price": "USD 180"
+   },
+   {
+    "name": "Traducción jurada al croata",
+    "includes": "Por página",
+    "price": "USD 45"
+   }
+  ],
+  "faqs": [
+   {
+    "q": "¿Necesito hablar croata?",
+    "a": "Para descendientes de emigrantes normalmente no se exige examen de idioma. Lo confirmamos en tu caso."
+   },
+   {
+    "q": "Mi familiar decía que era yugoslavo",
+    "a": "Es habitual. Lo importante es el lugar de origen; si está en la actual Croacia, revisamos tu caso."
+   },
+   {
+    "q": "¿Por qué la consulta con abogado es de pago?",
+    "a": "Porque es asesoría legal real con un especialista. Si contratas en 30 días, el importe se descuenta. La pre-evaluación y Diana son gratis."
+   },
+   {
+    "q": "¿Cómo pago desde Venezuela?",
+    "a": "Con tarjeta internacional, PayPal, Zelle, Binance Pay (USDT) o transferencia en euros. El servicio completo se paga en 2 o 3 cuotas."
+   }
+  ],
+  "placeholder": "Ej.: mi bisabuelo salió de la isla de Brač hacia Venezuela en los años 20.",
+  "close_a": "Del Adriático al Caribe.",
+  "close_b": "Y de vuelta a Europa.",
+  "slug": "nacionalidad-croata",
+  "h": null
+ },
+ {
+  "title": "Nacionalidad británica — Tu Diligencia Legal",
+  "topic": "uk",
+  "nat": true,
+  "bg": "#2E3350",
+  "crumb": "Nacionalidades  /  Británica",
+  "h1a": "Nacionalidad",
+  "h1b": "británica",
+  "lede": "Si tu padre o tu madre es británico, quizá ya eres ciudadano sin saberlo, o puedes registrarte. Analizamos tu elegibilidad documento por documento.",
+  "from": "USD 1.600",
+  "motif": "<g fill=\"none\" stroke=\"#F0D9AE\" stroke-width=\"1.3\"><rect x=\"120\" y=\"180\" width=\"180\" height=\"280\"></rect><path d=\"M120 180 A90 90 0 0 1 300 180\"></path><path d=\"M210 180 V95 M210 180 L150 117 M210 180 L270 117 M210 180 L128 150 M210 180 L292 150\" stroke-width=\"0.7\"></path><path d=\"M210 180 V460\" stroke-width=\"0.8\"></path><rect x=\"138\" y=\"200\" width=\"54\" height=\"80\"></rect><rect x=\"228\" y=\"200\" width=\"54\" height=\"80\"></rect><rect x=\"138\" y=\"300\" width=\"54\" height=\"140\"></rect><rect x=\"228\" y=\"300\" width=\"54\" height=\"140\"></rect><circle cx=\"218\" cy=\"330\" r=\"5\"></circle><path d=\"M80 460 H340 M100 448 H320\" stroke-width=\"0.8\"></path><path d=\"M60 180 V460 M360 180 V460\" stroke-width=\"0.6\"></path></g>",
+  "service_name": "Nacionalidad británica",
+  "vias_title": "Puede que <em class=\"accent\">ya lo seas</em>.",
+  "vias_lede": "El Reino Unido no forma parte de la UE, pero su pasaporte abre muchas puertas. Las reglas dependen de la fecha y del lugar de nacimiento de tu progenitor.",
+  "vias": [
+   {
+    "title": "Por descendencia",
+    "text": "Hijos de ciudadanos británicos nacidos en el extranjero, que pueden pedir directamente su pasaporte.",
+    "tag": "LA MÁS DIRECTA"
+   },
+   {
+    "title": "Registro",
+    "text": "Vías de registro, por ejemplo para hijos de madre británica nacidos antes de 1983.",
+    "tag": ""
+   },
+   {
+    "title": "Análisis de elegibilidad",
+    "text": "Para casos con abuelos o líneas complejas, analizamos si existe alguna vía.",
+    "tag": ""
+   }
+  ],
+  "eval_title": "¿Tienes un <em>progenitor británico</em>?",
+  "questions": [
+   {
+    "text": "¿Quién es o era británico?",
+    "opts": [
+     [
+      "Mi padre",
+      3
+     ],
+     [
+      "Mi madre",
+      3
+     ],
+     [
+      "Mi abuelo o mi abuela",
+      1
+     ],
+     [
+      "Nadie",
+      0,
+      "r"
+     ]
+    ]
+   },
+   {
+    "text": "¿Esa persona nació en el Reino Unido?",
+    "opts": [
+     [
+      "Sí",
+      3
+     ],
+     [
+      "No",
+      1
+     ],
+     [
+      "No lo sé",
+      1
+     ]
+    ]
+   },
+   {
+    "text": "¿Tienes su pasaporte o partida británica?",
+    "opts": [
+     [
+      "Sí",
+      2
+     ],
+     [
+      "Puedo conseguirlo",
+      1
+     ],
+     [
+      "No",
+      0
+     ]
+    ]
+   }
+  ],
+  "results": [
+   {
+    "tag": "VERDE · PERFIL VIABLE",
+    "title": "Tu perfil parece viable.",
+    "body": "Tu perfil encaja con la nacionalidad por descendencia o con una vía de registro. Un abogado confirmará cuál.",
+    "next": "Consulta inicial con abogado",
+    "nextSub": "30 min por videollamada · descontable del servicio",
+    "cta": "Agendar · USD 60",
+    "href": "/agendar"
+   },
+   {
+    "tag": "ÁMBAR · VIABLE CON PUNTOS A REVISAR",
+    "title": "Hay un camino, con puntos a revisar.",
+    "body": "Hay una posible vía, pero depende de fechas y lugares concretos. La consulta de estrategia te dará la respuesta por escrito.",
+    "next": "Consulta de estrategia",
+    "nextSub": "60 min + informe de viabilidad por escrito · descontable",
+    "cta": "Agendar · USD 120",
+    "href": "/agendar"
+   },
+   {
+    "tag": "ROJO · ESTA VÍA NO APLICA HOY",
+    "title": "La vía británica no parece aplicar.",
+    "body": "Por línea de abuelos, la nacionalidad británica rara vez es posible. Revisemos otras nacionalidades europeas o visados.",
+    "next": "Ver otras nacionalidades",
+    "nextSub": "Te proponemos la alternativa adecuada a tu perfil",
+    "cta": "Ver opciones",
+    "href": "/#paises"
+   }
+  ],
+  "steps_lede": "Preparamos la solicitud ante el Home Office o la del pasaporte, según tu caso.",
+  "steps": [
+   {
+    "title": "Análisis de elegibilidad",
+    "text": "Revisamos fechas, lugares y estado civil de tus padres.",
+    "who": "n"
+   },
+   {
+    "title": "Documentos británicos",
+    "text": "Solicitamos partidas en el registro británico si faltan.",
+    "who": "n"
+   },
+   {
+    "title": "Tus documentos",
+    "text": "Reúnes partidas y pasaportes con nuestra guía.",
+    "who": "t"
+   },
+   {
+    "title": "Solicitud",
+    "text": "Presentamos el registro o la solicitud de pasaporte.",
+    "who": "n"
+   },
+   {
+    "title": "Ceremonia o pasaporte",
+    "text": "Te acompañamos hasta la ceremonia, si aplica, y tu pasaporte.",
+    "who": "n"
+   }
+  ],
+  "docs": [
+   {
+    "head": "De tu progenitor",
+    "items": [
+     "Partida de nacimiento británica",
+     "Pasaporte británico",
+     "Acta de matrimonio, si aplica"
+    ]
+   },
+   {
+    "head": "Tuyos",
+    "items": [
+     "Partida de nacimiento completa",
+     "Pasaporte vigente",
+     "Fotografías según formato"
+    ]
+   }
+  ],
+  "prices": [
+   {
+    "name": "Pasaporte por descendencia",
+    "includes": "Análisis y solicitud",
+    "price": "USD 1.200"
+   },
+   {
+    "name": "Registro como ciudadano",
+    "includes": "Análisis, solicitud y seguimiento",
+    "price": "USD 1.600"
+   },
+   {
+    "name": "Análisis de elegibilidad",
+    "includes": "Informe escrito",
+    "price": "USD 250"
+   }
+  ],
+  "faqs": [
+   {
+    "q": "Mi madre es británica y nací antes de 1983",
+    "a": "Puede existir una vía de registro para tu caso. Analizamos fechas y documentos en la consulta."
+   },
+   {
+    "q": "¿Mi abuelo británico me da derecho?",
+    "a": "En general no por sí solo, salvo casos particulares. La pre-evaluación te orienta."
+   },
+   {
+    "q": "¿Por qué la consulta con abogado es de pago?",
+    "a": "Porque es asesoría legal real con un especialista. Si contratas en 30 días, el importe se descuenta. La pre-evaluación y Diana son gratis."
+   },
+   {
+    "q": "¿Cómo pago desde Venezuela?",
+    "a": "Con tarjeta internacional, PayPal, Zelle, Binance Pay (USDT) o transferencia en euros. El servicio completo se paga en 2 o 3 cuotas."
+   }
+  ],
+  "placeholder": "Ej.: mi padre nació en Londres en 1958 y yo nací en Maracaibo en 1990.",
+  "close_a": "Una partida británica",
+  "close_b": "puede cambiarlo todo.",
+  "slug": "nacionalidad-britanica",
+  "h": null
+ },
+ {
+  "title": "Visados y residencias — Tu Diligencia Legal",
+  "topic": "visas",
+  "bg": "#13324A",
+  "crumb": "Visados y residencias",
+  "h1a": "Visados y",
+  "h1b": "residencias",
+  "lede": "Sin ascendencia europea también se puede. Nómada digital, residencia no lucrativa, estudios, arraigo o reagrupación: elegimos el visado que encaja con tu perfil y tus ingresos.",
+  "from": "USD 600",
+  "motif": "<g fill=\"none\" stroke=\"#F0D9AE\" stroke-width=\"1.3\"><path d=\"M30 230 Q200 20 390 120\" stroke-dasharray=\"4 7\"></path><path d=\"M378 108 L396 120 L374 128 Z\"></path><rect x=\"110\" y=\"250\" width=\"200\" height=\"170\" rx=\"14\"></rect><path d=\"M170 250 V224 A10 10 0 0 1 180 214 H240 A10 10 0 0 1 250 224 V250\"></path><path d=\"M150 250 V420 M270 250 V420\" stroke-width=\"0.8\"></path><path d=\"M110 300 H310\" stroke-width=\"0.6\"></path><circle cx=\"130\" cy=\"432\" r=\"8\"></circle><circle cx=\"290\" cy=\"432\" r=\"8\"></circle><rect x=\"236\" y=\"320\" width=\"54\" height=\"36\" rx=\"3\" stroke-width=\"0.8\"></rect></g>",
+  "service_name": "Visados y residencias",
+  "h": null,
+  "vias_title": "Un visado para <em class=\"accent\">cada plan de vida</em>.",
+  "vias_lede": "España, Portugal e Italia concentran la mayoría de nuestros casos. Te decimos cuál te conviene según tu trabajo, tus ahorros y tu familia.",
+  "vias": [
+   {
+    "title": "Nómada digital",
+    "text": "España y Portugal (D8), para quien trabaja en remoto para empresas extranjeras.",
+    "tag": "LA MÁS PEDIDA"
+   },
+   {
+    "title": "No lucrativa y D7",
+    "text": "Para vivir de rentas, pensión o ahorros sin trabajar en el país.",
+    "tag": ""
+   },
+   {
+    "title": "Estudios",
+    "text": "Grado, máster o cursos, con posibilidad de trabajar a tiempo parcial.",
+    "tag": ""
+   },
+   {
+    "title": "Arraigo y reagrupación",
+    "text": "Para quien ya está en España o tiene familia con residencia legal.",
+    "tag": ""
+   }
+  ],
+  "eval_title": "¿Qué visado <em>encaja contigo</em>?",
+  "questions": [
+   {
+    "text": "¿A qué país quieres ir?",
+    "opts": [
+     [
+      "España",
+      1
+     ],
+     [
+      "Portugal",
+      1
+     ],
+     [
+      "Italia",
+      1
+     ],
+     [
+      "Otro país de la UE",
+      1
+     ]
+    ]
+   },
+   {
+    "text": "¿Cómo te vas a mantener allí?",
+    "opts": [
+     [
+      "Trabajo en remoto para empresas de fuera",
+      3
+     ],
+     [
+      "Rentas, pensión o ahorros",
+      3
+     ],
+     [
+      "Voy a estudiar",
+      3
+     ],
+     [
+      "Buscaré trabajo al llegar",
+      0
+     ]
+    ]
+   },
+   {
+    "text": "¿Puedes demostrar ingresos o fondos estables?",
+    "opts": [
+     [
+      "Sí, desde hace más de 12 meses",
+      3
+     ],
+     [
+      "Sí, desde hace menos tiempo",
+      1
+     ],
+     [
+      "Todavía no",
+      0
+     ]
+    ]
+   },
+   {
+    "text": "¿Tienes antecedentes penales?",
+    "opts": [
+     [
+      "No",
+      2
+     ],
+     [
+      "Sí",
+      0,
+      "r"
+     ]
+    ]
+   }
+  ],
+  "results": [
+   {
+    "tag": "VERDE · PERFIL VIABLE",
+    "title": "Tu perfil parece viable.",
+    "body": "Tu perfil encaja con al menos un visado. Un abogado confirmará cuál y revisará tus ingresos y documentos.",
+    "next": "Consulta inicial con abogado",
+    "nextSub": "30 min por videollamada · descontable del servicio",
+    "cta": "Agendar · USD 60",
+    "href": "/agendar"
+   },
+   {
+    "tag": "ÁMBAR · VIABLE CON PUNTOS A REVISAR",
+    "title": "Hay un camino, con puntos a revisar.",
+    "body": "Hay un visado posible, pero debes reforzar ingresos o documentación. La consulta de estrategia te da un plan concreto.",
+    "next": "Consulta de estrategia",
+    "nextSub": "60 min + informe de viabilidad por escrito · descontable",
+    "cta": "Agendar · USD 120",
+    "href": "/agendar"
+   },
+   {
+    "tag": "ROJO · ESTA VÍA NO APLICA HOY",
+    "title": "Hoy no encajas en los visados habituales.",
+    "body": "Buscar trabajo al llegar o no poder acreditar ingresos complica los visados más comunes. Una consulta exprés te dice qué preparar para calificar.",
+    "next": "Consulta exprés por escrito",
+    "nextSub": "Te proponemos la alternativa adecuada a tu perfil",
+    "cta": "Ver opciones",
+    "href": "/agendar"
+   }
+  ],
+  "steps_lede": "Preparamos el expediente para que llegue completo al consulado. Es lo que más reduce las denegaciones.",
+  "steps": [
+   {
+    "title": "Elección del visado",
+    "text": "Comparamos opciones según tu perfil e ingresos.",
+    "who": "n"
+   },
+   {
+    "title": "Documentos",
+    "text": "Reúnes contratos, extractos y antecedentes con nuestra lista.",
+    "who": "t"
+   },
+   {
+    "title": "Revisión y expediente",
+    "text": "Revisamos cada documento, traducimos y apostillamos.",
+    "who": "n"
+   },
+   {
+    "title": "Cita consular",
+    "text": "Te preparamos para la cita y acudes con todo en orden.",
+    "who": "t"
+   },
+   {
+    "title": "Llegada y TIE",
+    "text": "Te guiamos con el empadronamiento y la tarjeta de residencia.",
+    "who": "n"
+   }
+  ],
+  "docs": [
+   {
+    "head": "Comunes",
+    "items": [
+     "Pasaporte con 12 meses de vigencia",
+     "Antecedentes penales apostillados",
+     "Seguro médico sin copagos",
+     "Certificado médico"
+    ]
+   },
+   {
+    "head": "Según el visado",
+    "items": [
+     "Contratos y facturas (nómada)",
+     "Extractos de 6-12 meses (no lucrativa)",
+     "Carta de admisión (estudios)",
+     "Prueba de parentesco (reagrupación)"
+    ]
+   }
+  ],
+  "prices": [
+   {
+    "name": "Nómada digital (ES o PT)",
+    "includes": "Expediente, revisión de ingresos y presentación",
+    "price": "USD 1.100"
+   },
+   {
+    "name": "No lucrativa o D7",
+    "includes": "Expediente y presentación",
+    "price": "USD 1.000"
+   },
+   {
+    "name": "Visa de estudios",
+    "includes": "Expediente y cita",
+    "price": "USD 600"
+   },
+   {
+    "name": "Arraigo o reagrupación",
+    "includes": "Expediente y seguimiento",
+    "price": "USD 800"
+   },
+   {
+    "name": "Renovación de residencia",
+    "includes": "Revisión y presentación",
+    "price": "USD 450"
+   }
+  ],
+  "faqs": [
+   {
+    "q": "¿Cuánto debo ganar para la visa de nómada digital?",
+    "a": "En España el umbral ronda el 200% del salario mínimo mensual. Revisamos tus ingresos antes de presentar."
+   },
+   {
+    "q": "¿Puedo llevar a mi familia?",
+    "a": "Sí, la mayoría de estos visados permiten incluir a cónyuge e hijos, con medios económicos adicionales."
+   },
+   {
+    "q": "¿El visado cuenta para la nacionalidad?",
+    "a": "En España, la residencia legal cuenta para la nacionalidad, salvo la de estudios en algunos casos. Para venezolanos bastan 2 años."
+   },
+   {
+    "q": "¿Por qué la consulta con abogado es de pago?",
+    "a": "Porque es asesoría legal real con un especialista. Si contratas en 30 días, el importe se descuenta. La pre-evaluación y Diana son gratis."
+   },
+   {
+    "q": "¿Cómo pago desde Venezuela?",
+    "a": "Con tarjeta internacional, PayPal, Zelle, Binance Pay (USDT) o transferencia en euros. El servicio completo se paga en 2 o 3 cuotas."
+   }
+  ],
+  "placeholder": "Ej.: soy diseñador, trabajo en remoto para una empresa de EE. UU. y quiero mudarme a Valencia con mi esposa.",
+  "close_a": "No necesitas un abuelo europeo.",
+  "close_b": "Necesitas el visado correcto.",
+  "slug": "visados"
+ },
+ {
+  "title": "Visas de negocios — Tu Diligencia Legal",
+  "topic": "negocios",
+  "bg": "#2D2A26",
+  "crumb": "Visas de negocios",
+  "h1a": "Visas de",
+  "h1b": "negocios",
+  "lede": "Emprender, invertir o trasladarte con tu empresa. Con el apoyo societario de Certia Group, preparamos el plan, la sociedad y la residencia en un solo expediente.",
+  "from": "USD 350",
+  "motif": "<g fill=\"none\" stroke=\"#F0D9AE\" stroke-width=\"1.3\"><path d=\"M10 460 H410\"></path><rect x=\"30\" y=\"300\" width=\"60\" height=\"160\"></rect><rect x=\"100\" y=\"220\" width=\"70\" height=\"240\"></rect><rect x=\"300\" y=\"260\" width=\"80\" height=\"200\"></rect><path d=\"M115 240 H155 M115 260 H155 M115 280 H155 M115 300 H155 M45 320 H75 M45 340 H75 M315 280 H365 M315 300 H365\" stroke-width=\"0.6\"></path><g transform=\"rotate(-6 250 200)\"><rect x=\"170\" y=\"80\" width=\"170\" height=\"230\"></rect><path d=\"M195 120 H315 M195 140 H315 M195 160 H315 M195 180 H290 M195 200 H315 M195 220 H270\" stroke-width=\"0.6\"></path><path d=\"M200 270 Q215 245 230 270 T262 262 T300 268\" stroke-width=\"1.1\"></path><circle cx=\"300\" cy=\"120\" r=\"0\" ></circle></g></g><circle cx=\"318\" cy=\"276\" r=\"18\" fill=\"none\" stroke=\"#E0574C\" stroke-width=\"1.6\"></circle>",
+  "service_name": "Visas de negocios",
+  "vias_title": "Residencia <em class=\"accent\">con un proyecto</em>.",
+  "vias_lede": "España eliminó la golden visa inmobiliaria en abril de 2025. Hoy las vías pasan por emprender, invertir en empresas o trasladar talento.",
+  "vias": [
+   {
+    "title": "Emprendedor",
+    "text": "Para proyectos innovadores en España, con informe favorable del plan de negocio.",
+    "tag": "CON CERTIA GROUP"
+   },
+   {
+    "title": "Inversor",
+    "text": "Inversión en empresas o proyectos productivos. En Portugal, la D2.",
+    "tag": ""
+   },
+   {
+    "title": "Traslado intraempresa",
+    "text": "Para directivos y especialistas de empresas con sede fuera de la UE.",
+    "tag": ""
+   },
+   {
+    "title": "Schengen de negocios",
+    "text": "Para reuniones, ferias y visitas comerciales de corta duración.",
+    "tag": ""
+   }
+  ],
+  "eval_title": "¿Tu proyecto <em>abre la puerta</em>?",
+  "questions": [
+   {
+    "text": "¿Qué quieres hacer en Europa?",
+    "opts": [
+     [
+      "Abrir una empresa",
+      3
+     ],
+     [
+      "Invertir en una empresa existente",
+      3
+     ],
+     [
+      "Trasladarme dentro de mi empresa",
+      3
+     ],
+     [
+      "Viajes de negocios cortos",
+      3
+     ]
+    ]
+   },
+   {
+    "text": "¿Tienes el capital para el proyecto?",
+    "opts": [
+     [
+      "Sí, disponible",
+      3
+     ],
+     [
+      "Parcialmente",
+      1
+     ],
+     [
+      "Todavía no",
+      0
+     ]
+    ]
+   },
+   {
+    "text": "¿Tienes experiencia o formación en el sector?",
+    "opts": [
+     [
+      "Sí",
+      2
+     ],
+     [
+      "Algo",
+      1
+     ],
+     [
+      "No",
+      0
+     ]
+    ]
+   },
+   {
+    "text": "¿Tienes un plan de negocio?",
+    "opts": [
+     [
+      "Sí",
+      2
+     ],
+     [
+      "En borrador",
+      1
+     ],
+     [
+      "No",
+      0
+     ]
+    ]
+   }
+  ],
+  "results": [
+   {
+    "tag": "VERDE · PERFIL VIABLE",
+    "title": "Tu perfil parece viable.",
+    "body": "Tu proyecto encaja con una visa de negocios. Un abogado y el equipo societario de Certia revisarán el plan y la estructura.",
+    "next": "Consulta inicial con abogado",
+    "nextSub": "30 min por videollamada · descontable del servicio",
+    "cta": "Agendar · USD 60",
+    "href": "/agendar"
+   },
+   {
+    "tag": "ÁMBAR · VIABLE CON PUNTOS A REVISAR",
+    "title": "Hay un camino, con puntos a revisar.",
+    "body": "El proyecto es viable, pero falta reforzar capital, experiencia o plan. La consulta de estrategia te da los pasos concretos.",
+    "next": "Consulta de estrategia",
+    "nextSub": "60 min + informe de viabilidad por escrito · descontable",
+    "cta": "Agendar · USD 120",
+    "href": "/agendar"
+   },
+   {
+    "tag": "ROJO · ESTA VÍA NO APLICA HOY",
+    "title": "Tu proyecto aún no está listo.",
+    "body": "Sin capital ni plan, las visas de negocios son difíciles hoy. Una consulta exprés te dice qué preparar primero.",
+    "next": "Consulta exprés por escrito",
+    "nextSub": "Te proponemos la alternativa adecuada a tu perfil",
+    "cta": "Ver opciones",
+    "href": "/agendar"
+   }
+  ],
+  "steps_lede": "Combinamos derecho migratorio y servicios societarios de Certia Group: un solo equipo, un solo expediente.",
+  "steps": [
+   {
+    "title": "Diagnóstico del proyecto",
+    "text": "Elegimos visa y estructura societaria.",
+    "who": "n"
+   },
+   {
+    "title": "Plan de negocio",
+    "text": "Lo redactas con nuestra plantilla y lo revisamos.",
+    "who": "t"
+   },
+   {
+    "title": "Constitución de la empresa",
+    "text": "Certia Group constituye la sociedad y abre la cuenta.",
+    "who": "n"
+   },
+   {
+    "title": "Solicitud de la visa",
+    "text": "Presentamos el expediente completo.",
+    "who": "n"
+   },
+   {
+    "title": "Residencia y operaciones",
+    "text": "Te acompañamos en la TIE y las obligaciones de la empresa.",
+    "who": "n"
+   }
+  ],
+  "docs": [
+   {
+    "head": "Del proyecto",
+    "items": [
+     "Plan de negocio",
+     "Prueba de capital o inversión",
+     "Estatutos o escritura, si existe"
+    ]
+   },
+   {
+    "head": "Personales",
+    "items": [
+     "Pasaporte vigente",
+     "CV y títulos",
+     "Antecedentes penales",
+     "Seguro médico"
+    ]
+   }
+  ],
+  "prices": [
+   {
+    "name": "Visa de emprendedor",
+    "includes": "Plan, expediente y apoyo societario Certia Group",
+    "price": "USD 2.500"
+   },
+   {
+    "name": "Visa de inversor / D2",
+    "includes": "Expediente y estructura",
+    "price": "USD 2.500"
+   },
+   {
+    "name": "Traslado intraempresa",
+    "includes": "Expediente y presentación",
+    "price": "USD 1.500"
+   },
+   {
+    "name": "Schengen de negocios",
+    "includes": "Expediente y revisión de la carta de invitación",
+    "price": "USD 350"
+   }
+  ],
+  "faqs": [
+   {
+    "q": "¿Todavía existe la golden visa?",
+    "a": "España la eliminó en abril de 2025. Hay alternativas como la visa de emprendedor, la de inversión en empresas o la D2 de Portugal."
+   },
+   {
+    "q": "¿Certia Group puede constituir mi empresa?",
+    "a": "Sí. Certia Group se encarga de la parte societaria y nosotros de la migratoria, coordinados en un mismo expediente."
+   },
+   {
+    "q": "¿Por qué la consulta con abogado es de pago?",
+    "a": "Porque es asesoría legal real con un especialista. Si contratas en 30 días, el importe se descuenta. La pre-evaluación y Diana son gratis."
+   },
+   {
+    "q": "¿Cómo pago desde Venezuela?",
+    "a": "Con tarjeta internacional, PayPal, Zelle, Binance Pay (USDT) o transferencia en euros. El servicio completo se paga en 2 o 3 cuotas."
+   }
+  ],
+  "placeholder": "Ej.: tengo una empresa de software en Caracas y quiero abrir una filial en Madrid.",
+  "close_a": "Tu negocio puede cruzar el Atlántico.",
+  "close_b": "Tú también.",
+  "slug": "negocios",
+  "h": null
+ },
+ {
+  "title": "Visados Caribe — Tu Diligencia Legal",
+  "topic": "caribe",
+  "bg": "#24596E",
+  "crumb": "Caribe",
+  "h1a": "Visados",
+  "h1b": "Caribe",
+  "lede": "Turismo, negocios o una nueva residencia cerca de casa. Tramitamos visados para los destinos caribeños con más demanda venezolana y verificamos los requisitos antes de cada solicitud.",
+  "from": "USD 250",
+  "motif": "<g fill=\"none\" stroke=\"#F0D9AE\" stroke-width=\"1.3\"><circle cx=\"300\" cy=\"110\" r=\"44\"></circle><path d=\"M300 40 V54 M300 166 V180 M230 110 H244 M356 110 H370\" stroke-width=\"0.8\"></path><path d=\"M120 400 Q130 300 150 200\" stroke-width=\"2\"></path><path d=\"M150 200 Q110 170 70 190 M150 200 Q120 150 140 120 M150 200 Q190 160 230 170 M150 200 Q200 200 220 240 M150 200 Q100 210 90 250\"></path><path d=\"M10 400 H410\"></path><path d=\"M10 420 Q50 408 90 420 T170 420 T250 420 T330 420 T410 420 M10 442 Q50 430 90 442 T170 442 T250 442 T330 442 T410 442\"></path></g>",
+  "service_name": "Visados Caribe",
+  "vias_title": "Cerca de casa, <em class=\"accent\">con los papeles en regla</em>.",
+  "vias_lede": "Los requisitos para venezolanos en el Caribe cambian con frecuencia. Los verificamos con cada consulado antes de presentar.",
+  "vias": [
+   {
+    "title": "Turismo",
+    "text": "Visados de visita para República Dominicana, Panamá, Aruba, Curazao y otros destinos.",
+    "tag": "LA MÁS PEDIDA"
+   },
+   {
+    "title": "Negocios",
+    "text": "Visados para reuniones, ferias y proyectos comerciales.",
+    "tag": ""
+   },
+   {
+    "title": "Residencia",
+    "text": "Permisos de residencia y trabajo según el destino.",
+    "tag": ""
+   }
+  ],
+  "eval_title": "¿Listo para <em>viajar</em>?",
+  "questions": [
+   {
+    "text": "¿A qué destino quieres ir?",
+    "opts": [
+     [
+      "República Dominicana",
+      1
+     ],
+     [
+      "Panamá",
+      1
+     ],
+     [
+      "Aruba, Curazao o Bonaire",
+      1
+     ],
+     [
+      "Trinidad y Tobago u otro",
+      1
+     ]
+    ]
+   },
+   {
+    "text": "¿Cuál es el motivo del viaje?",
+    "opts": [
+     [
+      "Turismo",
+      2
+     ],
+     [
+      "Negocios",
+      2
+     ],
+     [
+      "Residir",
+      2
+     ],
+     [
+      "Trabajar",
+      2
+     ]
+    ]
+   },
+   {
+    "text": "¿Tu pasaporte venezolano está vigente?",
+    "opts": [
+     [
+      "Sí, con más de 6 meses",
+      3
+     ],
+     [
+      "Vence pronto",
+      1
+     ],
+     [
+      "No",
+      0,
+      "r"
+     ]
+    ]
+   },
+   {
+    "text": "¿Te han negado una visa antes?",
+    "opts": [
+     [
+      "No",
+      2
+     ],
+     [
+      "Sí",
+      0
+     ]
+    ]
+   }
+  ],
+  "results": [
+   {
+    "tag": "VERDE · PERFIL VIABLE",
+    "title": "Tu perfil parece viable.",
+    "body": "Tu perfil parece listo para solicitar el visado. Un asesor verificará los requisitos vigentes del destino.",
+    "next": "Consulta inicial con abogado",
+    "nextSub": "30 min por videollamada · descontable del servicio",
+    "cta": "Agendar · USD 60",
+    "href": "/agendar"
+   },
+   {
+    "tag": "ÁMBAR · VIABLE CON PUNTOS A REVISAR",
+    "title": "Hay un camino, con puntos a revisar.",
+    "body": "Puedes solicitarlo, pero hay puntos a reforzar, como la vigencia del pasaporte o una negativa previa. La consulta de estrategia te prepara.",
+    "next": "Consulta de estrategia",
+    "nextSub": "60 min + informe de viabilidad por escrito · descontable",
+    "cta": "Agendar · USD 120",
+    "href": "/agendar"
+   },
+   {
+    "tag": "ROJO · ESTA VÍA NO APLICA HOY",
+    "title": "Primero, tu pasaporte.",
+    "body": "Sin pasaporte vigente no es posible solicitar el visado. Te orientamos sobre la prórroga o renovación antes de empezar.",
+    "next": "Consulta exprés por escrito",
+    "nextSub": "Te proponemos la alternativa adecuada a tu perfil",
+    "cta": "Ver opciones",
+    "href": "/agendar"
+   }
+  ],
+  "steps_lede": "Verificamos los requisitos del destino, preparamos el expediente y te acompañamos hasta la respuesta.",
+  "steps": [
+   {
+    "title": "Verificación de requisitos",
+    "text": "Confirmamos los requisitos vigentes del destino.",
+    "who": "n"
+   },
+   {
+    "title": "Documentos",
+    "text": "Reúnes los documentos con nuestra lista.",
+    "who": "t"
+   },
+   {
+    "title": "Expediente y solicitud",
+    "text": "Revisamos y presentamos la solicitud.",
+    "who": "n"
+   },
+   {
+    "title": "Respuesta",
+    "text": "Seguimos la solicitud hasta la respuesta.",
+    "who": "n"
+   }
+  ],
+  "docs": [
+   {
+    "head": "Comunes",
+    "items": [
+     "Pasaporte vigente",
+     "Fotografía reciente",
+     "Reserva de vuelo y alojamiento",
+     "Solvencia económica"
+    ]
+   },
+   {
+    "head": "Según el motivo",
+    "items": [
+     "Carta de invitación (negocios)",
+     "Contrato de trabajo (trabajo)",
+     "Antecedentes penales (residencia)"
+    ]
+   }
+  ],
+  "prices": [
+   {
+    "name": "Visado de turismo o negocios",
+    "includes": "Verificación, expediente y solicitud",
+    "price": "USD 250"
+   },
+   {
+    "name": "Residencia en el Caribe",
+    "includes": "Expediente y seguimiento",
+    "price": "USD 900"
+   },
+   {
+    "name": "Consulta exprés",
+    "includes": "Respuesta por escrito en 48 h",
+    "price": "USD 35"
+   }
+  ],
+  "faqs": [
+   {
+    "q": "¿Qué destinos piden visa a venezolanos?",
+    "a": "Varios destinos caribeños exigen visa y los requisitos cambian. Los verificamos en el momento de tu solicitud."
+   },
+   {
+    "q": "¿Me sirve un pasaporte prorrogado?",
+    "a": "Depende del destino. Lo confirmamos antes de presentar para evitar una negativa."
+   },
+   {
+    "q": "¿Por qué la consulta con abogado es de pago?",
+    "a": "Porque es asesoría legal real con un especialista. Si contratas en 30 días, el importe se descuenta. La pre-evaluación y Diana son gratis."
+   },
+   {
+    "q": "¿Cómo pago desde Venezuela?",
+    "a": "Con tarjeta internacional, PayPal, Zelle, Binance Pay (USDT) o transferencia en euros. El servicio completo se paga en 2 o 3 cuotas."
+   }
+  ],
+  "placeholder": "Ej.: quiero viajar a Punta Cana en marzo con mi familia, somos cuatro.",
+  "close_a": "El Caribe está cerca.",
+  "close_b": "El visado, también.",
+  "slug": "caribe",
+  "h": null
+ }
+]

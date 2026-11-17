@@ -1,0 +1,45 @@
+// Central access to environment variables.
+// Every integration degrades gracefully: if its keys are missing, the site keeps
+// working and the call is logged instead of sent (useful in local development).
+
+export const env = {
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+
+  hubspotToken: process.env.HUBSPOT_PRIVATE_APP_TOKEN || '',
+  hubspotPipeline: process.env.HUBSPOT_PIPELINE_ID || 'default',
+  hubspotStages: {
+    nuevo: process.env.HUBSPOT_STAGE_NUEVO || '',
+    preevaluado: process.env.HUBSPOT_STAGE_PREEVALUADO || '',
+    consultaPagada: process.env.HUBSPOT_STAGE_CONSULTA_PAGADA || '',
+    pagoPendiente: process.env.HUBSPOT_STAGE_PAGO_PENDIENTE || '',
+  },
+
+  stripeSecret: process.env.STRIPE_SECRET_KEY || '',
+  stripeWebhookSecret: process.env.STRIPE_WEBHOOK_SECRET || '',
+
+  calApiKey: process.env.CALCOM_API_KEY || '',
+
+  waToken: process.env.WHATSAPP_TOKEN || '',
+  waPhoneId: process.env.WHATSAPP_PHONE_NUMBER_ID || '',
+  waVerifyToken: process.env.WHATSAPP_VERIFY_TOKEN || '',
+  waApiVersion: process.env.WHATSAPP_API_VERSION || 'v23.0',
+  waTemplateLang: process.env.WHATSAPP_TEMPLATE_LANG || 'es',
+
+  anthropicKey: process.env.ANTHROPIC_API_KEY || '',
+  anthropicModel: process.env.ANTHROPIC_MODEL || 'claude-haiku-5-5',
+
+  resendKey: process.env.RESEND_API_KEY || '',
+  emailFrom: process.env.EMAIL_FROM || 'Tu Diligencia Legal <hola@tudiligencialegal.com>',
+  teamEmail: process.env.TEAM_NOTIFICATION_EMAIL || '',
+
+  sessionSecret: process.env.SESSION_SECRET || 'dev-only-change-me-dev-only-change-me',
+  blobToken: process.env.BLOB_READ_WRITE_TOKEN || '',
+
+  zelleEmail: process.env.ZELLE_EMAIL || '[correo Zelle]',
+  zelleName: process.env.ZELLE_NAME || '[Titular Zelle]',
+  binancePayId: process.env.BINANCE_PAY_ID || '[Binance Pay ID]',
+};
+
+export function devLog(service: string, payload: unknown) {
+  console.info(`[${service}] (sin credenciales, no enviado)`, JSON.stringify(payload).slice(0, 800));
+}
