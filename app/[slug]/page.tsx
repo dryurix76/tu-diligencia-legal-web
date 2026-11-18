@@ -18,9 +18,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { POSTS } from '@/lib/posts';
 
+// Focal point of each photo inside the landscape frame (objects sit low in the Portuguese one).
+const HERO_POS: Record<string, string> = { 'nacionalidad-portuguesa': '50% 92%' };
+
 const HERO_ALT: Record<string, string> = {
   'nacionalidad-espanola': 'Maleta antigua con una partida de nacimiento española, una foto de emigrantes en un barco y un pasaporte español',
   'nacionalidad-italiana': 'Cartas antiguas atadas, foto familiar frente a una casa de piedra, sello de un comune italiano y pasaporte europeo',
+  'nacionalidad-portuguesa': 'Azulejo, pañuelo bordado de Madeira, foto antigua del puerto de Funchal, documento con lazo y pasaporte europeo junto a una ventana al Atlántico',
   'nacionalidad-alemana': 'Documento alemán antiguo con sello, gafas, pluma, edelweiss y pasaporte europeo sobre un escritorio',
   'nacionalidad-croata': 'Libro de registro antiguo, foto de un puerto dálmata, chal tejido y pasaporte europeo frente al Adriático',
   'nacionalidad-britanica': 'Partida de nacimiento británica antigua, sobre de correo aéreo, brújula y pasaporte británico',
@@ -76,7 +80,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           <div className="hero-art" aria-hidden={heroImg ? undefined : true} style={{ position: 'relative', height: 460, minWidth: 0 }}>
             {heroImg ? (
               <div className="hero-photo" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 100, borderRadius: 4, overflow: 'hidden', boxShadow: '0 30px 70px rgba(0,0,0,0.35)' }}>
-                <Image src={heroImg} alt={HERO_ALT[p.slug] || `${p.h1a} ${p.h1b}`} fill priority sizes="(max-width: 980px) 100vw, 40vw" style={{ objectFit: 'cover' }} />
+                <Image src={heroImg} alt={HERO_ALT[p.slug] || `${p.h1a} ${p.h1b}`} fill priority sizes="(max-width: 980px) 100vw, 40vw" style={{ objectFit: 'cover', objectPosition: HERO_POS[p.slug] || '50% 50%' }} />
                 <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: `linear-gradient(180deg, transparent 70%, ${p.bg}66 100%)` }} />
               </div>
             ) : (
