@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { POSTS, CATEGORIES } from '@/lib/posts';
+import PostCover from './PostCover';
 
-export default function BlogList() {
+export default function BlogList({ images = {} }: { images?: Record<string, string> }) {
   const [cat, setCat] = useState('all');
   const list = cat === 'all' ? POSTS.slice(1) : POSTS.filter((p) => p.cat === cat);
   return (
@@ -15,10 +16,7 @@ export default function BlogList() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '40px 32px' }}>
         {list.map((p) => (
           <Link key={p.slug} href={`/blog/${p.slug}`} className="card-lift" style={{ textDecoration: 'none', color: '#0B1F33' }}>
-            <div style={{ height: 280, borderRadius: 4, background: p.bg, position: 'relative', display: 'flex', alignItems: 'flex-end', padding: 24 }}>
-              <span className="mono" style={{ position: 'absolute', top: 22, left: 24, fontSize: 11, letterSpacing: '0.2em', color: p.fg, opacity: 0.85 }}>{p.kicker}</span>
-              <span className="serif" style={{ fontSize: 72, fontStyle: 'italic', lineHeight: 0.88, letterSpacing: '-0.035em', color: p.fg }}>{p.word}</span>
-            </div>
+            <PostCover p={p} img={images[p.slug]} height={280} kicker />
             <p className="mono accent" style={{ margin: '20px 0 8px', fontSize: 12, letterSpacing: '0.1em' }}>{p.catLabel} · {p.mins} MIN</p>
             <p className="serif" style={{ margin: '0 0 8px', fontSize: 26, lineHeight: 1.15 }}>{p.title}</p>
             <p style={{ margin: 0, color: '#5E584E', fontSize: 15 }}>{p.excerpt}</p>

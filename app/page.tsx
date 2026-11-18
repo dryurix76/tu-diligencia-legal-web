@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import PostCover from '@/components/PostCover';
+import { postImages } from '@/lib/postImages';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Diana from '@/components/Diana';
@@ -30,6 +32,7 @@ const STEPS = [
 ];
 
 export default function Home() {
+  const blogImgs = postImages();
   return (
     <>
       <JsonLd data={faqLd(FAQS)} />
@@ -187,7 +190,7 @@ export default function Home() {
           <div className="g-3">
             {POSTS.slice(0, 3).map((p) => (
               <Link key={p.slug} href={`/blog/${p.slug}`} className="card-lift" style={{ textDecoration: 'none', color: '#0B1F33' }}>
-                <div style={{ height: 240, borderRadius: 4, background: p.bg, display: 'flex', alignItems: 'flex-end', padding: 24 }}><span className="serif" style={{ fontSize: 64, fontStyle: 'italic', color: p.fg, lineHeight: 0.9 }}>{p.word}</span></div>
+                <PostCover p={p} img={blogImgs[p.slug]} height={240} word={64} />
                 <p className="mono accent" style={{ margin: '20px 0 8px', fontSize: 12, letterSpacing: '0.1em' }}>{p.catLabel}</p>
                 <p className="serif" style={{ margin: 0, fontSize: 24, lineHeight: 1.2 }}>{p.title}</p>
               </Link>

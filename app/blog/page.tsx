@@ -7,11 +7,14 @@ import Diana from '@/components/Diana';
 import BlogList from '@/components/BlogList';
 import { GuideForm } from '@/components/Forms';
 import { POSTS } from '@/lib/posts';
+import { postImages } from '@/lib/postImages';
+import PostCover from '@/components/PostCover';
 
 export const metadata: Metadata = pageMeta('/blog');
 
 export default function Blog() {
   const f = POSTS[0];
+  const images = postImages();
   return (
     <>
       <div style={{ borderBottom: '1px solid rgba(11,31,51,0.15)' }}><Header dark={false} ctaBg="#0B7A59" ctaFg="#fff" ctaHref="/nacionalidad-espanola#evaluador" /></div>
@@ -23,7 +26,7 @@ export default function Blog() {
       </section>
       <section className="wrap" style={{ paddingTop: 32, paddingBottom: 72 }}>
         <Link href={`/blog/${f.slug}`} className="g-hero" style={{ textDecoration: 'none', color: '#0B1F33', alignItems: 'center' }}>
-          <div style={{ height: 460, borderRadius: 4, background: f.bg, display: 'flex', alignItems: 'flex-end', padding: 36 }}><span className="serif" style={{ fontSize: 'clamp(64px, 9vw, 120px)', fontStyle: 'italic', color: '#F0D9AE', lineHeight: 0.85, letterSpacing: '-0.04em' }}>{f.word}</span></div>
+          <PostCover p={f} img={images[f.slug]} height="clamp(280px, 60vw, 460px)" word="clamp(64px, 9vw, 120px)" wordColor="#F0D9AE" priority sizes="(max-width: 980px) 100vw, 55vw" />
           <div>
             <p className="mono accent" style={{ margin: '0 0 16px', fontSize: 12, letterSpacing: '0.14em' }}>{f.catLabel} · {f.mins} MIN DE LECTURA</p>
             <h2 className="h2" style={{ fontSize: 'clamp(36px, 4vw, 56px)' }}>{f.title}</h2>
@@ -32,7 +35,7 @@ export default function Blog() {
         </Link>
       </section>
       <section className="wrap g-side" style={{ paddingBottom: 120 }}>
-        <div><BlogList /></div>
+        <div><BlogList images={images} /></div>
         <aside style={{ background: '#0B1F33', color: '#F4EFE6', borderRadius: 6, padding: 32 }}>
           <p className="mono" style={{ margin: '0 0 12px', fontSize: 11.5, letterSpacing: '0.16em', color: '#C9B48C' }}>ALERTAS DE CAMBIOS DE LEY</p>
           <p className="serif" style={{ margin: '0 0 12px', fontSize: 30, lineHeight: 1.05 }}>Entérate antes de que el consulado se llene.</p>

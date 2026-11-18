@@ -9,6 +9,8 @@ import Diana from '@/components/Diana';
 import { POSTS } from '@/lib/posts';
 import { pageMeta, articleLd, faqLd, abs } from '@/lib/seo';
 import ShareBar from '@/components/ShareBar';
+import PostCover from '@/components/PostCover';
+import { postImages } from '@/lib/postImages';
 import { JsonLd, Breadcrumbs } from '@/components/Seo';
 
 export function generateStaticParams() { return POSTS.map((p) => ({ slug: p.slug })); }
@@ -63,7 +65,7 @@ export default async function Article({ params }: { params: Promise<{ slug: stri
         <h1 className="h2" style={{ fontSize: 'clamp(40px, 6vw, 64px)' }}>{p.title}</h1>
         <p style={{ fontSize: 20, color: '#4E4A43', margin: '24px 0 28px' }}>{p.excerpt}</p>
         <div style={{ marginBottom: 40 }}><ShareBar url={url} title={p.title} compact /></div>
-        <div style={{ height: 'clamp(200px, 50vw, 320px)', borderRadius: 4, background: p.bg, display: 'flex', alignItems: 'flex-end', padding: 32, marginBottom: 48 }}><span className="serif" style={{ fontSize: 'clamp(60px, 16vw, 96px)', fontStyle: 'italic', color: p.fg, lineHeight: 0.85 }}>{p.word}</span></div>
+        <div style={{ marginBottom: 48 }}><PostCover p={p} img={postImages()[p.slug]} height="clamp(220px, 52vw, 420px)" word="clamp(60px, 16vw, 96px)" priority sizes="(max-width: 860px) 100vw, 820px" /></div>
         {toc.length > 3 && (
           <nav aria-label="En este artículo" style={{ border: '1px solid rgba(11,31,51,0.14)', borderRadius: 8, padding: '20px 24px', marginBottom: 40 }}>
             <p className="mono" style={{ margin: '0 0 10px', fontSize: 11.5, letterSpacing: '0.12em', color: '#5E584E' }}>EN ESTE ARTÍCULO</p>
