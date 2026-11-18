@@ -1,5 +1,6 @@
 // Alt text for blog cover photos (public/blog/<slug>.webp).
 export const POST_ALT: Record<string, string> = {
+  'nacionalidad-espanola-todas-las-vias': 'Seis llaves antiguas sobre terciopelo burdeos junto a un pasaporte',
   'nietos-de-espanoles': 'Manos de un abuelo entregando a su nieto una foto antigua de un pueblo gallego en una cocina de Caracas',
   'residencia-dos-anos': 'Llave sobre el alféizar de un piso en Madrid con geranios y tejados al fondo',
   'apostillar-documentos-venezolanos': 'Sello en relieve con ojal metálico y cordón sobre un documento oficial',
