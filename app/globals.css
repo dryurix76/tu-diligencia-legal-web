@@ -157,3 +157,10 @@ table.prices td { border-top: 1px solid rgba(11, 31, 51, 0.15); }
 @media (max-width: 480px) { .hdr-cta { display: none !important; } }
 @media (max-width: 980px) { .hero-art { height: 340px !important; } }
 @media (max-width: 640px) { .hero-art { height: 280px !important; } }
+@media (max-width: 640px) { .hero-photo { bottom: 56px !important; } }
+@media (max-width: 640px) {
+  .hero-art:has(.hero-photo) { height: auto !important; }
+  .hero-photo { position: relative !important; inset: auto !important; height: 230px; }
+  .hero-price { position: relative !important; right: auto !important; bottom: auto !important; margin: -26px 12px 0 auto; width: fit-content; padding: 14px 18px !important; }
+  .hero-price .serif { font-size: 28px !important; }
+}

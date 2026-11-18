@@ -18,6 +18,14 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { POSTS } from '@/lib/posts';
 
+const HERO_ALT: Record<string, string> = {
+  'nacionalidad-espanola': 'Maleta antigua con una partida de nacimiento española, una foto de emigrantes en un barco y un pasaporte español',
+  'nacionalidad-italiana': 'Cartas antiguas atadas, foto familiar frente a una casa de piedra, sello de un comune italiano y pasaporte europeo',
+  'nacionalidad-alemana': 'Documento alemán antiguo con sello, gafas, pluma, edelweiss y pasaporte europeo sobre un escritorio',
+  'nacionalidad-croata': 'Libro de registro antiguo, foto de un puerto dálmata, chal tejido y pasaporte europeo frente al Adriático',
+  'nacionalidad-britanica': 'Partida de nacimiento británica antigua, sobre de correo aéreo, brújula y pasaporte británico',
+};
+
 export function generateStaticParams() {
   return SERVICES.map((s) => ({ slug: s.slug }));
 }
@@ -67,14 +75,14 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           </div>
           <div className="hero-art" aria-hidden={heroImg ? undefined : true} style={{ position: 'relative', height: 460, minWidth: 0 }}>
             {heroImg ? (
-              <div style={{ position: 'absolute', inset: 0, borderRadius: 4, overflow: 'hidden', boxShadow: '0 30px 70px rgba(0,0,0,0.35)' }}>
-                <Image src={heroImg} alt={`${p.h1a} ${p.h1b}: imagen ilustrativa`} fill priority sizes="(max-width: 980px) 100vw, 40vw" style={{ objectFit: 'cover' }} />
-                <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: `linear-gradient(180deg, transparent 45%, ${p.bg}cc 100%)` }} />
+              <div className="hero-photo" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 100, borderRadius: 4, overflow: 'hidden', boxShadow: '0 30px 70px rgba(0,0,0,0.35)' }}>
+                <Image src={heroImg} alt={HERO_ALT[p.slug] || `${p.h1a} ${p.h1b}`} fill priority sizes="(max-width: 980px) 100vw, 40vw" style={{ objectFit: 'cover' }} />
+                <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: `linear-gradient(180deg, transparent 70%, ${p.bg}66 100%)` }} />
               </div>
             ) : (
               <svg viewBox="0 0 420 460" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} dangerouslySetInnerHTML={{ __html: p.motif }} />
             )}
-            <div style={{ position: 'absolute', right: 0, bottom: 24, background: '#F4EFE6', color: '#0B1F33', padding: '22px 26px', borderRadius: 4, transform: 'rotate(3deg)', boxShadow: '0 24px 50px rgba(0,0,0,0.35)' }}>
+            <div className={heroImg ? 'hero-price' : undefined} style={{ position: 'absolute', right: 0, bottom: heroImg ? 0 : 24, background: '#F4EFE6', color: '#0B1F33', padding: '22px 26px', borderRadius: 4, transform: 'rotate(3deg)', boxShadow: '0 24px 50px rgba(0,0,0,0.35)' }}>
               <p className="mono" style={{ margin: 0, fontSize: 11, letterSpacing: '0.14em', color: '#5E584E' }}>SERVICIO COMPLETO</p>
               <p className="serif" style={{ margin: '4px 0 0', fontSize: 40, lineHeight: 1 }}>desde <em>{p.from}</em></p>
               <p style={{ margin: '6px 0 0', fontSize: 13, color: '#5E584E' }}>En 2 o 3 cuotas · tasas aparte</p>
