@@ -7,13 +7,13 @@ const NAV = [
   ['/tarifas', 'Tarifas'], ['/blog', 'Blog'], ['/ayuda', 'Ayuda'],
 ];
 
-export default function Header({ dark = true, ctaHref = '/agendar', ctaBg = '#3DD1A0', ctaFg = '#0B1F33' }: { dark?: boolean; ctaHref?: string; ctaBg?: string; ctaFg?: string }) {
-  const color = dark ? '#F4EFE6' : '#0B1F33';
+export default function Header({ dark = true, ctaHref = '/agendar', ctaBg = 'var(--green-lt)', ctaFg = 'var(--ink)' }: { dark?: boolean; ctaHref?: string; ctaBg?: string; ctaFg?: string }) {
+  const color = dark ? 'var(--paper)' : 'var(--ink)';
   return (
     <header className="wrap" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'space-between', minHeight: 84, gap: 16, flexWrap: 'nowrap', color }}>
       <span style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
         <Lockup dark={dark} />
-        <span className="hide-m hdr-certia" style={{ paddingLeft: 20, borderLeft: `1px solid ${dark ? 'rgba(244,239,230,0.25)' : 'rgba(11,31,51,0.2)'}` }}><Certia dark={dark} /></span>
+        <span className="hide-m hdr-certia" style={{ paddingLeft: 20, borderLeft: `1px solid ${dark ? 'color-mix(in srgb, var(--paper) 25%, transparent)' : 'color-mix(in srgb, var(--ink) 20%, transparent)'}` }}><Certia dark={dark} /></span>
       </span>
       <nav className="nav-links hide-m" aria-label="Principal">
         {NAV.map(([h, t]) => <Link key={h} href={h} className={h === '/caribe' || h === '/blog' ? 'nav-x' : h === '/negocios' || h === '/ayuda' ? 'nav-y' : undefined}>{t}</Link>)}

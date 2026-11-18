@@ -22,18 +22,18 @@ export default function MobileMenu({ dark = true }: { dark?: boolean }) {
     window.addEventListener('keydown', onKey);
     return () => { document.body.style.overflow = prev; window.removeEventListener('keydown', onKey); };
   }, [open]);
-  const color = dark ? '#F4EFE6' : '#0B1F33';
+  const color = dark ? 'var(--paper)' : 'var(--ink)';
 
   return (
     <>
-      <button type="button" className="show-m" aria-label="Abrir menú" aria-expanded={open} aria-controls="menu-movil" onClick={() => setOpen(true)} style={{ width: 48, height: 48, borderRadius: 999, border: `1.5px solid ${dark ? 'rgba(244,239,230,0.35)' : 'rgba(11,31,51,0.25)'}`, background: 'transparent', color, alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+      <button type="button" className="show-m" aria-label="Abrir menú" aria-expanded={open} aria-controls="menu-movil" onClick={() => setOpen(true)} style={{ width: 48, height: 48, borderRadius: 999, border: `1.5px solid ${dark ? 'color-mix(in srgb, var(--paper) 35%, transparent)' : 'color-mix(in srgb, var(--ink) 25%, transparent)'}`, background: 'transparent', color, alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
         <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
       </button>
       {open && (
-        <div id="menu-movil" role="dialog" aria-modal="true" aria-label="Menú" style={{ position: 'fixed', inset: 0, zIndex: 80, background: '#0B1F33', color: '#F4EFE6', overflowY: 'auto', padding: '18px 20px 32px' }}>
+        <div id="menu-movil" role="dialog" aria-modal="true" aria-label="Menú" style={{ position: 'fixed', inset: 0, zIndex: 80, background: 'var(--ink)', color: 'var(--paper)', overflowY: 'auto', padding: '18px 20px 32px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-            <Link href="/" className="serif" style={{ color: '#F4EFE6', fontSize: 23, textDecoration: 'none' }}>Tu Diligencia <em style={{ color: '#E8D3AE' }}>Legal</em></Link>
-            <button type="button" aria-label="Cerrar menú" onClick={() => setOpen(false)} style={{ width: 48, height: 48, borderRadius: 999, border: '1.5px solid rgba(244,239,230,0.35)', background: 'transparent', color: '#F4EFE6', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Link href="/" className="serif" style={{ color: 'var(--paper)', fontSize: 23, textDecoration: 'none' }}>Tu Diligencia <em style={{ color: 'var(--green-lt)' }}>Legal</em></Link>
+            <button type="button" aria-label="Cerrar menú" onClick={() => setOpen(false)} style={{ width: 48, height: 48, borderRadius: 999, border: '1.5px solid color-mix(in srgb, var(--paper) 35%, transparent)', background: 'transparent', color: 'var(--paper)', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
               <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
             </button>
           </div>
@@ -46,15 +46,15 @@ export default function MobileMenu({ dark = true }: { dark?: boolean }) {
           </div>
           {GROUPS.map(([g, links]) => (
             <nav key={g} aria-label={g} style={{ marginBottom: 26 }}>
-              <p className="mono" style={{ margin: '0 0 8px', fontSize: 11.5, letterSpacing: '0.14em', color: '#C9B48C' }}>{g.toUpperCase()}</p>
+              <p className="mono" style={{ margin: '0 0 8px', fontSize: 11.5, letterSpacing: '0.14em', color: 'var(--green-lt)' }}>{g.toUpperCase()}</p>
               {links.map(([h, t]) => (
-                <Link key={h} href={h} aria-current={path === h ? 'page' : undefined} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: 48, borderBottom: '1px solid rgba(244,239,230,0.12)', color: '#F4EFE6', textDecoration: 'none', fontSize: 19 }} className="serif">
-                  {t}<span aria-hidden="true" style={{ color: '#3DD1A0' }}>→</span>
+                <Link key={h} href={h} aria-current={path === h ? 'page' : undefined} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: 48, borderBottom: '1px solid color-mix(in srgb, var(--paper) 12%, transparent)', color: 'var(--paper)', textDecoration: 'none', fontSize: 19 }} className="serif">
+                  {t}<span aria-hidden="true" style={{ color: 'var(--green-lt)' }}>→</span>
                 </Link>
               ))}
             </nav>
           ))}
-          <p style={{ margin: 0, fontSize: 13.5, color: '#A9B2BE' }}>Tu Diligencia Legal · parte de Certia Group</p>
+          <p style={{ margin: 0, fontSize: 13.5, color: 'var(--on-dark-2)' }}>Tu Diligencia Legal · parte de Certia Group</p>
         </div>
       )}
     </>

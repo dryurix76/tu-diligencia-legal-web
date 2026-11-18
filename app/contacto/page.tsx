@@ -23,18 +23,18 @@ export default function Contacto() {
         <div className="wrap">
           <div className="g-4">
             {ROUTES.map(([h, n, t, d, cta, dark]) => (
-              <Link key={n} href={h} className="card-lift" style={{ background: dark ? '#0B1F33' : '#fff', color: dark ? '#F4EFE6' : '#0B1F33', borderRadius: 8, padding: 28, textDecoration: 'none', border: dark ? 0 : '1px solid rgba(11,31,51,0.08)', display: 'flex', flexDirection: 'column', gap: 12, minHeight: 230 }}>
-                <span className="mono" style={{ fontSize: 13, color: dark ? '#3DD1A0' : '#0B7A59' }}>{n}</span>
+              <Link key={n} href={h} className="card-lift" style={{ background: dark ? 'var(--ink)' : 'var(--card)', color: dark ? 'var(--paper)' : 'var(--ink)', borderRadius: 8, padding: 28, textDecoration: 'none', border: dark ? 0 : '1px solid color-mix(in srgb, var(--ink) 8%, transparent)', display: 'flex', flexDirection: 'column', gap: 12, minHeight: 230 }}>
+                <span className="mono" style={{ fontSize: 13, color: dark ? 'var(--green-lt)' : 'var(--green)' }}>{n}</span>
                 <p className="serif" style={{ margin: 0, fontSize: 26, lineHeight: 1.1 }}>{t}</p>
-                <p style={{ margin: 0, fontSize: 15, color: dark ? '#C9CFD6' : '#5E584E' }}>{d}</p>
-                <span style={{ marginTop: 'auto', fontWeight: 600, color: dark ? '#3DD1A0' : '#0B7A59' }}>{cta} →</span>
+                <p style={{ margin: 0, fontSize: 15, color: dark ? 'var(--on-dark)' : 'var(--muted)' }}>{d}</p>
+                <span style={{ marginTop: 'auto', fontWeight: 600, color: dark ? 'var(--green-lt)' : 'var(--green)' }}>{cta} →</span>
               </Link>
             ))}
           </div>
           <div className="g-3" style={{ marginTop: 64 }}>
-            <div><p className="mono" style={{ margin: '0 0 10px', fontSize: 12, letterSpacing: '0.14em', color: '#5E584E' }}>WHATSAPP</p><p className="serif" style={{ margin: 0, fontSize: 26 }}>{process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY || '+58 [NÚMERO]'}</p><p style={{ margin: '4px 0 0', color: '#5E584E', fontSize: 15 }}>Diana responde 24 h · asesores de lunes a viernes, 8:00 a 18:00 (Caracas)</p></div>
-            <div><p className="mono" style={{ margin: '0 0 10px', fontSize: 12, letterSpacing: '0.14em', color: '#5E584E' }}>CORREO</p><p className="serif" style={{ margin: 0, fontSize: 26 }}>{process.env.NEXT_PUBLIC_CONTACT_EMAIL || '[correo]@tudiligencialegal.com'}</p><p style={{ margin: '4px 0 0', color: '#5E584E', fontSize: 15 }}>Respuesta en un día hábil</p></div>
-            <div><p className="mono" style={{ margin: '0 0 10px', fontSize: 12, letterSpacing: '0.14em', color: '#5E584E' }}>OFICINAS</p><p className="serif" style={{ margin: 0, fontSize: 26 }}>Caracas · Madrid</p><p style={{ margin: '4px 0 0', color: '#5E584E', fontSize: 15 }}>Atención presencial solo con cita</p></div>
+            <div><p className="mono" style={{ margin: '0 0 10px', fontSize: 12, letterSpacing: '0.14em', color: 'var(--muted)' }}>WHATSAPP</p><p className="serif" style={{ margin: 0, fontSize: 26 }}>{process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY || '+58 [NÚMERO]'}</p><p style={{ margin: '4px 0 0', color: 'var(--muted)', fontSize: 15 }}>Diana responde 24 h · asesores de lunes a viernes, 8:00 a 18:00 (Caracas)</p></div>
+            <div><p className="mono" style={{ margin: '0 0 10px', fontSize: 12, letterSpacing: '0.14em', color: 'var(--muted)' }}>CORREO</p><p className="serif" style={{ margin: 0, fontSize: 26 }}>{process.env.NEXT_PUBLIC_CONTACT_EMAIL || '[correo]@tudiligencialegal.com'}</p><p style={{ margin: '4px 0 0', color: 'var(--muted)', fontSize: 15 }}>Respuesta en un día hábil</p></div>
+            <div><p className="mono" style={{ margin: '0 0 10px', fontSize: 12, letterSpacing: '0.14em', color: 'var(--muted)' }}>OFICINAS</p><p className="serif" style={{ margin: 0, fontSize: 26 }}>Caracas · Madrid</p><p style={{ margin: '4px 0 0', color: 'var(--muted)', fontSize: 15 }}>Atención presencial solo con cita</p></div>
           </div>
         </div>
       </section>

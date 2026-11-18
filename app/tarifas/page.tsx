@@ -38,16 +38,16 @@ export default function Tarifas() {
           {TABLES.map(([title, rows]) => (
             <div key={title} style={{ marginBottom: 56 }}>
               <h3 className="mono accent" style={{ margin: '0 0 8px', fontSize: 13, letterSpacing: '0.14em', fontWeight: 500 }}>{title.toUpperCase()}</h3>
-              <div style={{ overflowX: 'auto', borderTop: '2px solid #0B1F33' }}>
+              <div style={{ overflowX: 'auto', borderTop: '2px solid var(--ink)' }}>
                 <table className="prices"><tbody>{rows.map(([a, b, c]) => (
-                  <tr key={a}><td className="serif" style={{ padding: '20px 24px 20px 0', fontSize: 21 }}>{a}</td><td style={{ padding: '20px 24px 20px 0', color: '#5E584E', fontSize: 15 }}>{b}</td><td className="serif" style={{ padding: '20px 0', fontSize: 24, textAlign: 'right', whiteSpace: 'nowrap' }}>{c}</td></tr>
+                  <tr key={a}><td className="serif" style={{ padding: '20px 24px 20px 0', fontSize: 21 }}>{a}</td><td style={{ padding: '20px 24px 20px 0', color: 'var(--muted)', fontSize: 15 }}>{b}</td><td className="serif" style={{ padding: '20px 0', fontSize: 24, textAlign: 'right', whiteSpace: 'nowrap' }}>{c}</td></tr>
                 ))}</tbody></table>
               </div>
             </div>
           ))}
           <div className="g-3">
             {[['Pago antes de la cita', 'Sin pago no hay hueco en el calendario. Reprogramas gratis hasta 24 h antes.'], ['15% desde el segundo familiar', 'Cuando varios miembros de la familia comparten expediente.'], ['Pagas como te sea fácil', 'Tarjeta internacional, Zelle, Binance Pay (USDT) o transferencia en euros.']].map(([t, d]) => (
-              <div key={t} className="card" style={{ padding: 28 }}><p className="serif" style={{ margin: '0 0 8px', fontSize: 22 }}>{t}</p><p style={{ margin: 0, color: '#5E584E', fontSize: 15 }}>{d}</p></div>
+              <div key={t} className="card" style={{ padding: 28 }}><p className="serif" style={{ margin: '0 0 8px', fontSize: 22 }}>{t}</p><p style={{ margin: 0, color: 'var(--muted)', fontSize: 15 }}>{d}</p></div>
             ))}
           </div>
         </div>

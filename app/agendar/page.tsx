@@ -11,7 +11,7 @@ export default async function Agendar({ searchParams }: { searchParams: Promise<
   const sp = await searchParams;
   return (
     <>
-      <div style={{ background: '#0B1F33' }}><Header dark ctaHref="/nacionalidad-espanola#evaluador" /></div>
+      <div style={{ background: 'var(--ink)' }}><Header dark ctaHref="/nacionalidad-espanola#evaluador" /></div>
       <Booking initialType={sp.tipo || 'inicial'} cancelled={sp.cancelado === '1'} />
       <Footer />
       <Diana topic="general" />

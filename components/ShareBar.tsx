@@ -19,14 +19,14 @@ export default function ShareBar({ url, title, compact = false }: { url: string;
   const [copied, setCopied] = useState(false);
   const [native, setNative] = useState(false);
   useEffect(() => { setNative(typeof navigator !== 'undefined' && typeof navigator.share === 'function'); }, []);
-  const btn: React.CSSProperties = { display: 'inline-flex', alignItems: 'center', gap: 8, minHeight: 44, padding: compact ? '0 12px' : '0 16px', borderRadius: 999, border: '1.5px solid rgba(11,31,51,0.16)', background: '#fff', color: '#0B1F33', fontSize: 14, fontWeight: 500, textDecoration: 'none', cursor: 'pointer', font: 'inherit' };
+  const btn: React.CSSProperties = { display: 'inline-flex', alignItems: 'center', gap: 8, minHeight: 44, padding: compact ? '0 12px' : '0 16px', borderRadius: 999, border: '1.5px solid color-mix(in srgb, var(--ink) 16%, transparent)', background: 'var(--card)', color: 'var(--ink)', fontSize: 14, fontWeight: 500, textDecoration: 'none', cursor: 'pointer', font: 'inherit' };
   const done = (net: string) => track('share', { method: net, content_type: 'article', item_id: url });
 
   return (
     <div role="group" aria-label="Compartir este artículo" style={{ display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center' }}>
-      <span className="mono" style={{ fontSize: 11.5, letterSpacing: '0.12em', color: '#5E584E', marginRight: 4 }}>COMPARTIR</span>
+      <span className="mono" style={{ fontSize: 11.5, letterSpacing: '0.12em', color: 'var(--muted)', marginRight: 4 }}>COMPARTIR</span>
       {native && (
-        <button type="button" style={{ ...btn, background: '#0B1F33', color: '#F4EFE6', borderColor: '#0B1F33' }} onClick={async () => { try { await navigator.share({ title, text: title, url }); done('native'); } catch { /* cancelled */ } }}>
+        <button type="button" style={{ ...btn, background: 'var(--ink)', color: 'var(--paper)', borderColor: 'var(--ink)' }} onClick={async () => { try { await navigator.share({ title, text: title, url }); done('native'); } catch { /* cancelled */ } }}>
           <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16a3 3 0 0 0-2.4 1.2l-6.7-3.4a3 3 0 0 0 0-1.6l6.7-3.4A3 3 0 1 0 15 7a3 3 0 0 0 .1.8L8.4 11.2a3 3 0 1 0 0 3.6l6.7 3.4A3 3 0 1 0 18 16Z" fill="currentColor" /></svg>Compartir
         </button>
       )}

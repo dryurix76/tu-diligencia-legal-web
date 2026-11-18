@@ -11,7 +11,7 @@ export default async function MiCaso({ searchParams }: { searchParams: Promise<{
   const sp = await searchParams;
   return (
     <>
-      <div style={{ background: '#0B1F33' }}><Header dark /></div>
+      <div style={{ background: 'var(--ink)' }}><Header dark /></div>
       <Portal linkError={sp.error === 'enlace'} />
       <Footer />
       <Diana topic="cliente" />

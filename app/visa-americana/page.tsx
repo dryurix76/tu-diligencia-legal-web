@@ -13,7 +13,7 @@ import { US_STATUS, US_FACTS, US_SERVICES, US_UPDATED } from '@/lib/usvisa';
 
 export const metadata: Metadata = pageMeta('/visa-americana');
 
-const COLOR = { cerrado: '#A3312A', parcial: '#C98A12', abierto: '#0B7A59' } as const;
+const COLOR = { cerrado: 'var(--ink)', parcial: 'var(--muted)', abierto: 'var(--green)' } as const;
 const LABEL = { cerrado: 'SUSPENDIDA', parcial: 'MUY LIMITADA', abierto: 'ABIERTA' } as const;
 
 const FAQS = [
@@ -29,10 +29,10 @@ export default function VisaAmericana() {
   return (
     <>
       <JsonLd data={[serviceLd('/visa-americana', 'Visa americana para venezolanos', 'Diagnóstico de vías abiertas para viajar a Estados Unidos con pasaporte venezolano o con doble nacionalidad: ESTA, E-2, trabajo y visas con otro pasaporte.', US_SERVICES.map((s) => ({ name: s.name, includes: s.desc, price: `USD ${s.usd}` }))), faqLd(FAQS)]} />
-      <PageHero path="/visa-americana" crumb="Visa americana" a="Visa americana." b="La verdad, sin humo." lede="Con pasaporte venezolano, las visas de turismo y estudio están suspendidas. Pero hay caminos abiertos: la doble nacionalidad, el ESTA con pasaporte europeo, la E-2 y las visas de trabajo. Te decimos cuál es el tuyo.">
+      <PageHero path="/visa-americana" crumb="Visa americana" code="USA" file="US-050" facts={[['B1/B2 · pasaporte VE', 'Suspendida', 'Proclamación 10998'], ['Embajada en Caracas', 'Sin visados', 'reabrió el 30/3/2026'], ['Con pasaporte UE', 'ESTA', 'turismo o negocios, 90 días'], ['Diagnóstico', `USD ${US_SERVICES[0].usd}`, 'qué vía tienes abierta']]} a="Visa americana." b="La verdad, sin humo." lede="Con pasaporte venezolano, las visas de turismo y estudio están suspendidas. Pero hay caminos abiertos: la doble nacionalidad, el ESTA con pasaporte europeo, la E-2 y las visas de trabajo. Te decimos cuál es el tuyo.">
         <div style={{ display: 'flex', gap: 12, marginTop: 36, flexWrap: 'wrap' }}>
-          <a className="btn btn-mint" href="#evaluador">Ver qué vía tengo</a>
-          <a className="btn btn-ghost" href="#situacion" style={{ color: '#F4EFE6', borderColor: 'rgba(244,239,230,0.4)' }}>Situación actual</a>
+          <a className="btn btn-mint" href="#evaluador">Ver qué vía tengo <span className="arr" aria-hidden="true">→</span></a>
+          <a className="btn btn-ghost" href="#situacion" style={{ color: 'var(--paper)', borderColor: 'color-mix(in srgb, var(--paper) 40%, transparent)' }}>Situación actual</a>
         </div>
       </PageHero>
 
@@ -42,21 +42,21 @@ export default function VisaAmericana() {
           <h2 className="h2" style={{ maxWidth: 860 }}>Qué está <em>cerrado</em> y qué sigue <em>abierto</em> para venezolanos.</h2>
           <div className="g-3" style={{ marginTop: 40 }}>
             {US_STATUS.map((s) => (
-              <article key={s.k} className="card" style={{ padding: 26, background: '#fff', borderTop: `4px solid ${COLOR[s.state]}` }}>
+              <article key={s.k} className="card" style={{ padding: 26, background: 'var(--card)', borderTop: `4px solid ${COLOR[s.state]}` }}>
                 <span className="mono" style={{ fontSize: 11, letterSpacing: '0.12em', color: COLOR[s.state] }}>{LABEL[s.state]}</span>
                 <h3 className="serif" style={{ margin: '8px 0 6px', fontSize: 23, fontWeight: 400 }}>{s.k}</h3>
                 <p style={{ margin: '0 0 6px', fontWeight: 600, fontSize: 15 }}>{s.t}</p>
-                <p style={{ margin: 0, fontSize: 14.5, color: '#4E4A43' }}>{s.d}</p>
+                <p style={{ margin: 0, fontSize: 14.5, color: 'var(--ink-80)' }}>{s.d}</p>
               </article>
             ))}
           </div>
           <h3 className="mono accent" style={{ margin: '64px 0 8px', fontSize: 13, letterSpacing: '0.14em', fontWeight: 500 }}>DISPONIBILIDAD CONSULAR Y COSTES</h3>
-          <div style={{ overflowX: 'auto', borderTop: '2px solid #0B1F33' }}>
+          <div style={{ overflowX: 'auto', borderTop: '2px solid var(--ink)' }}>
             <table className="prices"><tbody>{US_FACTS.map(([a, b]) => (
-              <tr key={a}><td className="serif" style={{ padding: '18px 24px 18px 0', fontSize: 20, verticalAlign: 'top', minWidth: 220 }}>{a}</td><td style={{ padding: '18px 0', color: '#4E4A43', fontSize: 15.5 }}>{b}</td></tr>
+              <tr key={a}><td className="serif" style={{ padding: '18px 24px 18px 0', fontSize: 20, verticalAlign: 'top', minWidth: 220 }}>{a}</td><td style={{ padding: '18px 0', color: 'var(--ink-80)', fontSize: 15.5 }}>{b}</td></tr>
             ))}</tbody></table>
           </div>
-          <p style={{ marginTop: 18, fontSize: 13.5, color: '#5E584E' }}>Fuentes: Departamento de Estado (travel.state.gov), Proclamaciones 10949 y 10998, Federal Register de 3 de agosto de 2026. Las reglas cambian con frecuencia: confirmamos la situación el día de tu consulta.</p>
+          <p style={{ marginTop: 18, fontSize: 13.5, color: 'var(--muted)' }}>Fuentes: Departamento de Estado (travel.state.gov), Proclamaciones 10949 y 10998, Federal Register de 3 de agosto de 2026. Las reglas cambian con frecuencia: confirmamos la situación el día de tu consulta.</p>
         </div>
       </section>
 
@@ -78,18 +78,18 @@ export default function VisaAmericana() {
           <h2 className="h2">Lo que sí podemos hacer <em>por ti</em>.</h2>
           <div className="g-2" style={{ marginTop: 40, gap: 20 }}>
             {US_SERVICES.map((s) => (
-              <article key={s.id} className="card" style={{ padding: 28, background: '#fff', display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <article key={s.id} className="card" style={{ padding: 28, background: 'var(--card)', display: 'flex', flexDirection: 'column', gap: 10 }}>
                 <h3 className="serif" style={{ margin: 0, fontSize: 26, fontWeight: 400 }}>{s.name}</h3>
-                <p className="serif" style={{ margin: 0, fontSize: 34, color: '#0B7A59' }}>{s.id === 'trabajo' ? 'Desde ' : ''}USD {s.usd}</p>
-                <p style={{ margin: 0, color: '#4E4A43', fontSize: 15 }}>{s.desc}</p>
+                <p className="serif" style={{ margin: 0, fontSize: 34, color: 'var(--green)' }}>{s.id === 'trabajo' ? 'Desde ' : ''}USD {s.usd}</p>
+                <p style={{ margin: 0, color: 'var(--ink-80)', fontSize: 15 }}>{s.desc}</p>
                 <Link className="btn btn-ink" href={`/agendar?tipo=${s.id === 'trabajo' ? 'estrategia' : s.id === 'diagnostico' ? 'inicial' : 'expres'}`} style={{ marginTop: 'auto', alignSelf: 'flex-start' }}>Empezar</Link>
               </article>
             ))}
           </div>
-          <div className="card" style={{ marginTop: 32, padding: 28, background: '#0B1F33', color: '#F4EFE6' }}>
+          <div className="card" style={{ marginTop: 32, padding: 28, background: 'var(--ink)', color: 'var(--paper)' }}>
             <p className="serif" style={{ margin: '0 0 8px', fontSize: 26 }}>La llave más segura: un pasaporte europeo.</p>
-            <p style={{ margin: '0 0 18px', color: '#C9CFD6' }}>Si tienes padres o abuelos españoles, italianos o portugueses, la nacionalidad europea te permite viajar a EE. UU. con ESTA y optar a la E-2. Es lo que mejor sabemos hacer.</p>
-            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}><Link className="btn btn-mint" href="/nacionalidad-espanola#evaluador">Evaluar nacionalidad española</Link><Link className="btn btn-ghost" href="/nacionalidad-italiana#evaluador" style={{ color: '#F4EFE6', borderColor: 'rgba(244,239,230,0.4)' }}>Italiana</Link><Link className="btn btn-ghost" href="/nacionalidad-portuguesa#evaluador" style={{ color: '#F4EFE6', borderColor: 'rgba(244,239,230,0.4)' }}>Portuguesa</Link></div>
+            <p style={{ margin: '0 0 18px', color: 'var(--on-dark)' }}>Si tienes padres o abuelos españoles, italianos o portugueses, la nacionalidad europea te permite viajar a EE. UU. con ESTA y optar a la E-2. Es lo que mejor sabemos hacer.</p>
+            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}><Link className="btn btn-mint" href="/nacionalidad-espanola#evaluador">Evaluar nacionalidad española</Link><Link className="btn btn-ghost" href="/nacionalidad-italiana#evaluador" style={{ color: 'var(--paper)', borderColor: 'color-mix(in srgb, var(--paper) 40%, transparent)' }}>Italiana</Link><Link className="btn btn-ghost" href="/nacionalidad-portuguesa#evaluador" style={{ color: 'var(--paper)', borderColor: 'color-mix(in srgb, var(--paper) 40%, transparent)' }}>Portuguesa</Link></div>
           </div>
         </div>
       </section>

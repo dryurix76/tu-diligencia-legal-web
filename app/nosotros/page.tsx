@@ -9,7 +9,7 @@ import { ContactSection } from '@/components/Forms';
 export const metadata: Metadata = pageMeta('/nosotros');
 
 // Replace with the real team (name, role, bar number, photo in /public/equipo/).
-const TEAM = [['#6A1F28', 'E', '[Nombre y apellido]', 'Abogada · Nacionalidad española · colegiada [n.º]'], ['#1E4D3B', 'I', '[Nombre y apellido]', 'Abogado · Nacionalidad italiana'], ['#1F3B6B', 'P', '[Nombre y apellido]', 'Abogada · Portugal y visados'], ['#2D2A26', 'C', '[Nombre y apellido]', 'Director · Certia Group']];
+const TEAM = [['var(--ink)', 'E', '[Nombre y apellido]', 'Abogada · Nacionalidad española · colegiada [n.º]'], ['var(--green-dk)', 'I', '[Nombre y apellido]', 'Abogado · Nacionalidad italiana'], ['var(--ink)', 'P', '[Nombre y apellido]', 'Abogada · Portugal y visados'], ['var(--ink)', 'C', '[Nombre y apellido]', 'Director · Certia Group']];
 
 export default function Nosotros() {
   return (
@@ -18,7 +18,7 @@ export default function Nosotros() {
       <section className="section">
         <div className="wrap g-2" style={{ alignItems: 'start' }}>
           <p className="serif" style={{ margin: 0, fontSize: 'clamp(40px, 5vw, 60px)', lineHeight: 1, fontWeight: 320, letterSpacing: '-0.035em' }}>“No vendemos esperanza. Vendemos un <em className="accent">expediente</em> bien hecho.”</p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 20, color: '#4E4A43' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 20, color: 'var(--ink-80)' }}>
             <p style={{ margin: 0 }}>[Historia de la firma: cuándo nació, por qué y cuántas familias ha acompañado.]</p>
             <p style={{ margin: 0 }}>Desde que formamos parte de Certia Group sumamos estructura corporativa, cumplimiento y apoyo societario, para acompañar también a quien emigra con un negocio.</p>
             <Certia dark={false} h={26} />
@@ -27,10 +27,10 @@ export default function Nosotros() {
       </section>
       <section className="dark section">
         <div className="wrap">
-          <h2 className="h2" style={{ marginBottom: 56 }}>Cómo <em style={{ color: '#E8D3AE' }}>trabajamos</em></h2>
+          <h2 className="h2" style={{ marginBottom: 56 }}>Cómo <em style={{ color: 'var(--green-lt)' }}>trabajamos</em></h2>
           <div className="g-4">
             {[['Diagnóstico primero', 'Nunca empezamos un expediente sin confirmar la vía correcta.'], ['Precio cerrado', 'Por escrito, con lo que incluye y lo que no.'], ['Un abogado responsable', 'Con nombre y número de colegiado, de principio a fin.'], ['Todo a la vista', 'Tu expediente, tus pagos y tus mensajes en Mi caso.']].map(([t, d], i) => (
-              <div key={t}><span className="mono" style={{ fontSize: 13, color: '#3DD1A0' }}>0{i + 1}</span><p className="serif" style={{ margin: '12px 0 8px', fontSize: 26 }}>{t}</p><p style={{ margin: 0, color: '#A9B2BE', fontSize: 15 }}>{d}</p></div>
+              <div key={t}><span className="mono" style={{ fontSize: 13, color: 'var(--green-lt)' }}>0{i + 1}</span><p className="serif" style={{ margin: '12px 0 8px', fontSize: 26 }}>{t}</p><p style={{ margin: 0, color: 'var(--on-dark-2)', fontSize: 15 }}>{d}</p></div>
             ))}
           </div>
         </div>
@@ -40,7 +40,7 @@ export default function Nosotros() {
           <h2 className="h2" style={{ marginBottom: 48 }}>El equipo</h2>
           <div className="g-4">
             {TEAM.map(([bg, ini, n, r]) => (
-              <div key={r}><div style={{ aspectRatio: '4 / 5', borderRadius: 6, background: bg, position: 'relative', overflow: 'hidden' }}><span className="serif" style={{ fontSize: 120, fontStyle: 'italic', color: 'rgba(244,239,230,0.16)', position: 'absolute', right: 12, top: -10 }}>{ini}</span></div><p className="serif" style={{ margin: '16px 0 2px', fontSize: 22 }}>{n}</p><p style={{ margin: 0, fontSize: 14.5, color: '#5E584E' }}>{r}</p></div>
+              <div key={r}><div style={{ aspectRatio: '4 / 5', borderRadius: 6, background: bg, position: 'relative', overflow: 'hidden' }}><span className="serif" style={{ fontSize: 120, fontStyle: 'italic', color: 'color-mix(in srgb, var(--paper) 16%, transparent)', position: 'absolute', right: 12, top: -10 }}>{ini}</span></div><p className="serif" style={{ margin: '16px 0 2px', fontSize: 22 }}>{n}</p><p style={{ margin: 0, fontSize: 14.5, color: 'var(--muted)' }}>{r}</p></div>
             ))}
           </div>
         </div>

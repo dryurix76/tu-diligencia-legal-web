@@ -26,11 +26,11 @@ export function Sent({ caseId, tier, service }: { caseId: string; tier: string; 
       : 'Un asesor revisa tu mensaje en horario laboral. Si tienes una duda puntual, la consulta exprés por escrito te da la respuesta de un abogado en 48 h.';
   return (
     <div className="fade">
-      <svg width="72" height="72" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="none" stroke="#0B7A59" strokeWidth="3" /><path d="M38 62 L54 78 L84 44" fill="none" stroke="#0B7A59" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+      <svg width="72" height="72" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="none" stroke="var(--green)" strokeWidth="3" /><path d="M38 62 L54 78 L84 44" fill="none" stroke="var(--green)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" /></svg>
       <p className="serif" style={{ margin: '20px 0 10px', fontSize: 34, lineHeight: 1.1 }}>Recibido. Tu caso es el <em>{caseId}</em>.</p>
-      <p style={{ margin: '0 0 24px', color: '#4E4A43' }}>{msg}</p>
+      <p style={{ margin: '0 0 24px', color: 'var(--ink-80)' }}>{msg}</p>
       <div className="card" style={{ padding: '18px 20px', fontSize: 14.5 }}>
-        <p className="mono" style={{ margin: '0 0 8px', fontSize: 11.5, letterSpacing: '0.12em', color: '#5E584E' }}>WHATSAPP · DIANA</p>
+        <p className="mono" style={{ margin: '0 0 8px', fontSize: 11.5, letterSpacing: '0.12em', color: 'var(--muted)' }}>WHATSAPP · DIANA</p>
         <p style={{ margin: 0 }}>Hola, soy Diana de Tu Diligencia Legal. Recibimos tu caso {caseId} sobre {service.toLowerCase()}. Te escribo por aquí con el siguiente paso.</p>
       </div>
       <div style={{ display: 'flex', gap: 10, marginTop: 20, flexWrap: 'wrap' }}>
@@ -88,7 +88,7 @@ export function GuideForm({ service = 'Aún no lo sé', dark = true, cta = 'Reci
   if (state === 'done') return (
     <div className="fade" role="status">
       <p className="serif" style={{ margin: '0 0 6px', fontSize: 24 }}>Listo. Te enviamos el enlace de descarga.</p>
-      <p style={{ margin: 0, fontSize: 14.5, color: dark ? '#C9CFD6' : '#5E584E' }}>Revisa {email || 'tu correo'} (y la carpeta de spam o promociones). El enlace es personal y funciona 30 días.</p>
+      <p style={{ margin: 0, fontSize: 14.5, color: dark ? 'var(--on-dark)' : 'var(--muted)' }}>Revisa {email || 'tu correo'} (y la carpeta de spam o promociones). El enlace es personal y funciona 30 días.</p>
     </div>
   );
   return (
@@ -101,12 +101,12 @@ export function GuideForm({ service = 'Aún no lo sé', dark = true, cta = 'Reci
       if (ok) { track('sign_up', { method: 'guia', service, guide: g }); setEmail(v.email); }
       setState(ok ? 'done' : 'error');
     }} style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-      {choose && <label style={{ flex: '1 1 100%' }}><span className="sr-only">Guía</span><select className="field" name="guide" defaultValue={guide || 'nacionalidad-espanola'} style={{ background: '#F4EFE6' }}>{Object.entries(GUIDES).map(([k, g]) => <option key={k} value={k}>{g.title}</option>)}</select></label>}
-      <label style={{ flex: '1 1 160px' }}><span className="sr-only">Nombre</span><input className="field" name="name" required minLength={2} placeholder="Tu nombre" style={{ background: '#F4EFE6' }} /></label>
-      <label style={{ flex: '1 1 200px' }}><span className="sr-only">Correo electrónico</span><input className="field" name="email" type="email" required placeholder="tu@correo.com" style={{ background: '#F4EFE6' }} /></label>
+      {choose && <label style={{ flex: '1 1 100%' }}><span className="sr-only">Guía</span><select className="field" name="guide" defaultValue={guide || 'nacionalidad-espanola'} style={{ background: 'var(--paper)' }}>{Object.entries(GUIDES).map(([k, g]) => <option key={k} value={k}>{g.title}</option>)}</select></label>}
+      <label style={{ flex: '1 1 160px' }}><span className="sr-only">Nombre</span><input className="field" name="name" required minLength={2} placeholder="Tu nombre" style={{ background: 'var(--paper)' }} /></label>
+      <label style={{ flex: '1 1 200px' }}><span className="sr-only">Correo electrónico</span><input className="field" name="email" type="email" required placeholder="tu@correo.com" style={{ background: 'var(--paper)' }} /></label>
       <button type="submit" className={`btn ${dark ? 'btn-mint' : 'btn-ink'}`} disabled={state === 'busy'} style={{ minHeight: 54 }}>{state === 'busy' ? 'Enviando…' : cta}</button>
       {state === 'error' && <p className="err" style={{ width: '100%' }}>No pudimos enviarla. Intenta de nuevo.</p>}
-      <p style={{ width: '100%', margin: 0, fontSize: 12.5, color: dark ? '#A9B2BE' : '#5E584E' }}>Te enviamos un enlace de descarga por correo. Al pedirla aceptas la <a href="/legal/privacidad" style={{ color: 'inherit' }}>política de privacidad</a> y recibir comunicaciones de Tu Diligencia Legal; puedes darte de baja cuando quieras.</p>
+      <p style={{ width: '100%', margin: 0, fontSize: 12.5, color: dark ? 'var(--on-dark-2)' : 'var(--muted)' }}>Te enviamos un enlace de descarga por correo. Al pedirla aceptas la <a href="/legal/privacidad" style={{ color: 'inherit' }}>política de privacidad</a> y recibir comunicaciones de Tu Diligencia Legal; puedes darte de baja cuando quieras.</p>
     </form>
   );
 }

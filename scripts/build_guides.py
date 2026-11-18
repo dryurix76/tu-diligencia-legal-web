@@ -23,8 +23,8 @@ for name, f in [('Serif', 'Fraunces-Regular.ttf'), ('Serif-It', 'Fraunces-Italic
     pdfmetrics.registerFont(TTFont(name, os.path.join(FONTS, f)))
 pdfmetrics.registerFontFamily('Sans', normal='Sans', bold='Sans-Bold', italic='Sans', boldItalic='Sans-Bold')
 
-INK, SAND, GREEN, RED, GOLD, MUTED = HexColor('#0B1F33'), HexColor('#F4EFE6'), HexColor('#0B7A59'), HexColor('#A3312A'), HexColor('#E8D3AE'), HexColor('#5E584E')
-LIGHT = {'verde': HexColor('#12A37A'), 'ambar': HexColor('#C98A12'), 'rojo': RED}
+INK, SAND, GREEN, RED, GOLD, MUTED = HexColor('#0B1F33'), HexColor('#F4EFE6'), HexColor('#0B7A59'), HexColor('#0B1F33'), HexColor('#8BBAA7'), HexColor('#515D69')
+LIGHT = {'verde': HexColor('#0B7A59'), 'ambar': HexColor('#515D69'), 'rojo': RED}
 LIGHT_TXT = {'verde': 'VIABLE', 'ambar': 'VIABLE CON PUNTOS A REVISAR', 'rojo': 'ESTA VÍA NO · HAY ALTERNATIVAS'}
 SITE = os.environ.get('NEXT_PUBLIC_SITE_URL', 'https://tudiligencialegal.com').rstrip('/')
 EMAIL = 'info@tudiligencialegal.com'
@@ -58,12 +58,12 @@ def cover(c, doc):
     w, h = A4
     c.saveState()
     c.setFillColor(INK); c.rect(0, 0, w, h, stroke=0, fill=1)
-    c.setStrokeColor(HexColor('#1B3049'))
+    c.setStrokeColor(HexColor('#223445'))
     for x in range(0, int(w), 57): c.line(x, 0, x, h)
     for y in range(0, int(h), 57): c.line(0, y, w, y)
     c.setFillColor(SAND); c.setFont('Serif', 20); c.drawString(22 * mm, h - 28 * mm, 'Tu Diligencia Legal')
     c.setFillColor(RED); c.circle(22 * mm + c.stringWidth('Tu Diligencia Legal', 'Serif', 20) + 4, h - 28 * mm + 1.5, 3.2, stroke=0, fill=1)
-    c.setFillColor(HexColor('#A9B2BE')); c.setFont('Mono', 8); c.drawString(22 * mm, h - 34 * mm, 'PARTE DE CERTIA GROUP · DERECHO MIGRATORIO')
+    c.setFillColor(HexColor('#A5A8A9')); c.setFont('Mono', 8); c.drawString(22 * mm, h - 34 * mm, 'PARTE DE CERTIA GROUP · DERECHO MIGRATORIO')
     c.setFillColor(GOLD); c.setFont('Mono', 9); c.drawString(22 * mm, 120 * mm, f'GUÍA GRATUITA · ACTUALIZADA EN {TODAY.upper()}')
     # title wrapped
     from reportlab.lib.utils import simpleSplit
@@ -71,9 +71,9 @@ def cover(c, doc):
     y = 108 * mm
     c.setFillColor(SAND); c.setFont('Serif', 34)
     for ln in lines: c.drawString(22 * mm, y, ln); y -= 40
-    c.setFillColor(HexColor('#C9CFD6')); c.setFont('Sans', 11)
+    c.setFillColor(HexColor('#CACAC6')); c.setFont('Sans', 11)
     for ln in simpleSplit(doc.guide_desc, 'Sans', 11, w - 44 * mm): c.drawString(22 * mm, y - 6, ln); y -= 15
-    c.setFillColor(HexColor('#A9B2BE')); c.setFont('Sans', 8.5)
+    c.setFillColor(HexColor('#A5A8A9')); c.setFont('Sans', 8.5)
     c.drawString(22 * mm, 18 * mm, f'Para {doc.reader} · {SITE.replace("https://", "")} · {EMAIL}')
     c.restoreState()
 
@@ -83,7 +83,7 @@ def page(c, doc):
     c.setFillColor(INK); c.setFont('Serif', 10); c.drawString(20 * mm, h - 14 * mm, 'Tu Diligencia Legal')
     c.setFillColor(RED); c.circle(20 * mm + c.stringWidth('Tu Diligencia Legal', 'Serif', 10) + 2.5, h - 14 * mm + 0.8, 1.8, stroke=0, fill=1)
     c.setFillColor(MUTED); c.setFont('Mono', 7.5); c.drawRightString(w - 20 * mm, h - 14 * mm, doc.guide_title.upper()[:70])
-    c.setStrokeColor(HexColor('#D9D2C5')); c.line(20 * mm, h - 17 * mm, w - 20 * mm, h - 17 * mm)
+    c.setStrokeColor(HexColor('#D3D2CD')); c.line(20 * mm, h - 17 * mm, w - 20 * mm, h - 17 * mm)
     c.setFont('Sans', 7.5); c.setFillColor(MUTED)
     c.drawString(20 * mm, 12 * mm, f'Información orientativa a {TODAY}. No sustituye el análisis de un abogado con tus documentos. {SITE.replace("https://", "")}')
     c.drawRightString(w - 20 * mm, 12 * mm, str(doc.page))
@@ -115,7 +115,7 @@ def tree_section(tree, skip=()):
                  Paragraph(f'<b>Vía:</b> {t(r["route"])}', S['p']), Paragraph(t(r['body']), S['p']),
                  Paragraph(f'<b>Base legal:</b> {t(r["basis"])}', S['small'])]
         if r.get('pending'): block += [Paragraph('<b>A confirmar con un abogado:</b>', S['small'])] + bullets(r['pending'], 'small')
-        out += [KeepTogether([card(block, bg=HexColor('#FBF8F2'), border=LIGHT[r['light']])]), Spacer(1, 7)]
+        out += [KeepTogether([card(block, bg=HexColor('#FBF9F6'), border=LIGHT[r['light']])]), Spacer(1, 7)]
     return out
 
 def service_extras(svc):
@@ -124,7 +124,7 @@ def service_extras(svc):
         out += [Paragraph(f'<b>{t(d["head"])}</b>', S['p'])] + bullets(d['items'])
     out += [Paragraph('Precios', S['h2'])]
     data = [[Paragraph('<b>Servicio</b>', S['cell']), Paragraph('<b>Incluye</b>', S['cell']), Paragraph('<b>Precio</b>', S['cell'])]] + [[Paragraph(t(p['name']), S['cell']), Paragraph(t(p['includes']), S['cell']), Paragraph(t(p['price']), S['cellb'])] for p in svc.get('prices', [])]
-    tb = Table(data, colWidths=[60 * mm, 82 * mm, 28 * mm]); tb.setStyle(TableStyle([('LINEBELOW', (0, 0), (-1, -1), 0.4, HexColor('#D9D2C5')), ('LINEABOVE', (0, 0), (-1, 0), 1.2, INK), ('VALIGN', (0, 0), (-1, -1), 'TOP'), ('TOPPADDING', (0, 0), (-1, -1), 5), ('BOTTOMPADDING', (0, 0), (-1, -1), 5)]))
+    tb = Table(data, colWidths=[60 * mm, 82 * mm, 28 * mm]); tb.setStyle(TableStyle([('LINEBELOW', (0, 0), (-1, -1), 0.4, HexColor('#D3D2CD')), ('LINEABOVE', (0, 0), (-1, 0), 1.2, INK), ('VALIGN', (0, 0), (-1, -1), 'TOP'), ('TOPPADDING', (0, 0), (-1, -1), 5), ('BOTTOMPADDING', (0, 0), (-1, -1), 5)]))
     out += [tb, Paragraph('Las consultas se pagan por adelantado y se descuentan si contratas en 30 días. Tasas oficiales, traducciones y apostillas aparte.', S['small'])]
     out += [Paragraph('Preguntas frecuentes', S['h2'])]
     for f in svc.get('faqs', []):
@@ -195,17 +195,17 @@ def main(path):
           Paragraph('Las becas para estudiar en Europa existen, pero se ganan con meses de antelación y con una solicitud impecable. Esta guía reúne las convocatorias más útiles para venezolanos en España, Portugal e Italia en el curso 2026-2027, con lo que cubren, sus plazos, el coste real de estudiar en cada país y los enlaces oficiales.', S['p']),
           Paragraph('Calendario anual de convocatorias', S['h2'])]
     cal = Table([[Paragraph(f'<b>{t(a)}</b>', S['cell']), Paragraph(t(b), S['cell'])] for a, b in C['CALENDAR']], colWidths=[40 * mm, 130 * mm])
-    cal.setStyle(TableStyle([('LINEBELOW', (0, 0), (-1, -1), 0.4, HexColor('#D9D2C5')), ('TOPPADDING', (0, 0), (-1, -1), 5), ('BOTTOMPADDING', (0, 0), (-1, -1), 5)]))
+    cal.setStyle(TableStyle([('LINEBELOW', (0, 0), (-1, -1), 0.4, HexColor('#D3D2CD')), ('TOPPADDING', (0, 0), (-1, -1), 5), ('BOTTOMPADDING', (0, 0), (-1, -1), 5)]))
     st.append(cal)
     for c in C['BECAS']:
         st += [PageBreak(), Paragraph(f'BECAS EN {t(c["name"]).upper()}', S['kicker']), Paragraph(f'Estudiar en {t(c["name"])}', S['h1']), Paragraph(t(c['intro']), S['p'])]
         for b in c['becas']:
             st += [KeepTogether([card([Paragraph(t(b['level']).upper(), S['kicker']), Paragraph(t(b['name']), ParagraphStyle('x', parent=S['h2'], spaceBefore=0)),
                 Paragraph(f'<b>Para quién:</b> {t(b["who"])}', S['p']), Paragraph(f'<b>Qué cubre:</b> {t(b["covers"])}', S['p']), Paragraph(f'<b>Importe:</b> {t(b["amount"])}', S['p']),
-                Paragraph(f'<b>Última convocatoria:</b> {t(b["window"])} · <b>Próxima:</b> {t(b["next"])}', S['p']), Paragraph(f'<link href="{b["url"]}" color="#0B7A59">{t(b["url"])}</link>', S['small'])], bg=HexColor('#FBF8F2'), border=GREEN)]), Spacer(1, 6)]
+                Paragraph(f'<b>Última convocatoria:</b> {t(b["window"])} · <b>Próxima:</b> {t(b["next"])}', S['p']), Paragraph(f'<link href="{b["url"]}" color="#0B7A59">{t(b["url"])}</link>', S['small'])], bg=HexColor('#FBF9F6'), border=GREEN)]), Spacer(1, 6)]
         st += [Paragraph('Cuánto cuesta', S['h2'])]
         tb = Table([[Paragraph(t(a), S['cellb']), Paragraph(t(b), S['cell'])] for a, b in c['costs']], colWidths=[75 * mm, 95 * mm])
-        tb.setStyle(TableStyle([('LINEBELOW', (0, 0), (-1, -1), 0.4, HexColor('#D9D2C5')), ('LINEABOVE', (0, 0), (-1, 0), 1.2, INK), ('VALIGN', (0, 0), (-1, -1), 'TOP'), ('TOPPADDING', (0, 0), (-1, -1), 5), ('BOTTOMPADDING', (0, 0), (-1, -1), 5)]))
+        tb.setStyle(TableStyle([('LINEBELOW', (0, 0), (-1, -1), 0.4, HexColor('#D3D2CD')), ('LINEABOVE', (0, 0), (-1, 0), 1.2, INK), ('VALIGN', (0, 0), (-1, -1), 'TOP'), ('TOPPADDING', (0, 0), (-1, -1), 5), ('BOTTOMPADDING', (0, 0), (-1, -1), 5)]))
         st += [tb, Spacer(1, 6), card([Paragraph(f'<b>Nuestro consejo:</b> {t(c["tip"])}', S['p'])])]
     st += [PageBreak(), Paragraph('SERVICIO', S['kicker']), Paragraph('Te buscamos tu beca', S['h1']),
            Paragraph('Trabajamos con especialistas en admisiones y becas internacionales. Si consigues la admisión, también tramitamos tu visado de estudios.', S['p'])]

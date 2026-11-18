@@ -17,7 +17,7 @@ export default function BecaForm({ plan = '' }: { plan?: string }) {
   if (caseId) return (
     <div className="fade">
       <p className="serif" style={{ margin: '0 0 10px', fontSize: 32, lineHeight: 1.1 }}>Listo. Revisa tu correo.</p>
-      <p style={{ margin: '0 0 18px', color: '#4E4A43' }}>Te enviamos el enlace para descargar la guía de becas 2026 (caso {caseId}). Un asesor revisa tu perfil y te escribe en horario laboral.</p>
+      <p style={{ margin: '0 0 18px', color: 'var(--ink-80)' }}>Te enviamos el enlace para descargar la guía de becas 2026 (caso {caseId}). Un asesor revisa tu perfil y te escribe en horario laboral.</p>
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}><Link className="btn btn-green" href="/agendar?tipo=inicial">Hablar con un asesor</Link><Link className="btn btn-ghost" href="/visados">Visado de estudios</Link></div>
     </div>
   );

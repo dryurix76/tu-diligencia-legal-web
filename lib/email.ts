@@ -94,29 +94,29 @@ export function richEmail(e: RichEmail) {
   ];
   const faqs = faqsFor(e.service);
   const socials = socialLinks();
-  const row = (k: string, v: string) => `<tr><td style="padding:8px 12px 8px 0;color:#5E584E;font-size:14px;vertical-align:top;white-space:nowrap">${esc(k)}</td><td style="padding:8px 0;font-size:14px">${esc(v)}</td></tr>`;
+  const row = (k: string, v: string) => `<tr><td style="padding:8px 12px 8px 0;color:#515D69;font-size:14px;vertical-align:top;white-space:nowrap">${esc(k)}</td><td style="padding:8px 0;font-size:14px">${esc(v)}</td></tr>`;
   return `<!doctype html><html lang="es"><body style="margin:0;background:#F4EFE6;font-family:Arial,Helvetica,sans-serif;color:#0B1F33">
 <div style="max-width:600px;margin:0 auto;padding:32px 22px">
-<table role="presentation" width="100%"><tr><td style="font-family:Georgia,serif;font-size:21px">Tu Diligencia <em style="color:#0B7A59">Legal</em></td><td align="right" style="font-size:11px;color:#5E584E;letter-spacing:1px">PARTE DE CERTIA GROUP</td></tr></table>
-<div style="background:#fff;border-radius:10px;padding:28px;margin-top:20px">
+<table role="presentation" width="100%"><tr><td style="font-family:Georgia,serif;font-size:21px">Tu Diligencia <em style="color:#0B7A59">Legal</em></td><td align="right" style="font-size:11px;color:#515D69;letter-spacing:1px">PARTE DE CERTIA GROUP</td></tr></table>
+<div style="background:#FBF9F6;border-radius:10px;padding:28px;margin-top:20px">
 ${e.caseId ? `<p style="margin:0 0 8px;font-size:12px;letter-spacing:1.5px;color:#0B7A59">CASO ${esc(e.caseId)}</p>` : ''}
 <h1 style="font-family:Georgia,serif;font-weight:normal;font-size:27px;line-height:1.15;margin:0 0 16px">${esc(e.title)}</h1>
 <div style="font-size:15.5px;line-height:1.6">${e.intro}</div>
-${e.summary?.length ? `<p style="margin:24px 0 6px;font-size:12px;letter-spacing:1.5px;color:#5E584E">LO QUE NOS ENVIASTE</p><table role="presentation" style="border-collapse:collapse;width:100%">${e.summary.filter(([, v]) => v).map(([k, v]) => row(k, v)).join('')}</table>` : ''}
-${e.steps?.length ? `<p style="margin:24px 0 6px;font-size:12px;letter-spacing:1.5px;color:#5E584E">PRÓXIMOS PASOS</p><ol style="margin:0;padding-left:20px;font-size:15px;line-height:1.6">${e.steps.map((s) => `<li style="margin-bottom:6px">${s}</li>`).join('')}</ol>` : ''}
+${e.summary?.length ? `<p style="margin:24px 0 6px;font-size:12px;letter-spacing:1.5px;color:#515D69">LO QUE NOS ENVIASTE</p><table role="presentation" style="border-collapse:collapse;width:100%">${e.summary.filter(([, v]) => v).map(([k, v]) => row(k, v)).join('')}</table>` : ''}
+${e.steps?.length ? `<p style="margin:24px 0 6px;font-size:12px;letter-spacing:1.5px;color:#515D69">PRÓXIMOS PASOS</p><ol style="margin:0;padding-left:20px;font-size:15px;line-height:1.6">${e.steps.map((s) => `<li style="margin-bottom:6px">${s}</li>`).join('')}</ol>` : ''}
 ${e.extraHtml || ''}
-${e.cta ? `<p style="margin:28px 0 4px"><a href="${e.cta.href}" style="background:#0B7A59;color:#fff;text-decoration:none;padding:14px 26px;border-radius:999px;font-weight:bold;display:inline-block">${esc(e.cta.label)}</a></p>` : ''}
+${e.cta ? `<p style="margin:28px 0 4px"><a href="${e.cta.href}" style="background:#0B7A59;color:#FBF9F6;text-decoration:none;padding:14px 26px;border-radius:999px;font-weight:bold;display:inline-block">${esc(e.cta.label)}</a></p>` : ''}
 </div>
-${faqs.length ? `<div style="background:#fff;border-radius:10px;padding:24px 28px;margin-top:16px"><p style="margin:0 0 10px;font-size:12px;letter-spacing:1.5px;color:#5E584E">RESPUESTAS RÁPIDAS</p>${faqs.map((f) => `<p style="margin:0 0 4px;font-weight:bold;font-size:14.5px">${esc(f.q)}</p><p style="margin:0 0 14px;font-size:14px;line-height:1.55;color:#4E4A43">${esc(f.a)}</p>`).join('')}</div>` : ''}
+${faqs.length ? `<div style="background:#FBF9F6;border-radius:10px;padding:24px 28px;margin-top:16px"><p style="margin:0 0 10px;font-size:12px;letter-spacing:1.5px;color:#515D69">RESPUESTAS RÁPIDAS</p>${faqs.map((f) => `<p style="margin:0 0 4px;font-weight:bold;font-size:14.5px">${esc(f.q)}</p><p style="margin:0 0 14px;font-size:14px;line-height:1.55;color:#304050">${esc(f.a)}</p>`).join('')}</div>` : ''}
 <div style="padding:22px 6px 0;font-size:13.5px;line-height:1.9">
 ${links.map(([l, h]) => `<a href="${h}" style="color:#0B7A59;text-decoration:none;margin-right:14px;white-space:nowrap">${l} →</a>`).join(' ')}
 </div>
-<div style="padding:18px 6px 0;font-size:13px;color:#4E4A43;line-height:1.7">
+<div style="padding:18px 6px 0;font-size:13px;color:#304050;line-height:1.7">
 <strong>Contacto:</strong> ${esc(process.env.NEXT_PUBLIC_CONTACT_EMAIL || TEAM_EMAIL)}${process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY ? ` · WhatsApp ${esc(process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY)}` : ''} · <a href="${site}" style="color:#0B7A59">${site.replace(/^https?:\/\//, '')}</a>
 ${socials.length ? `<br>${socials.map(([n, h]) => `<a href="${h}" style="color:#0B1F33;margin-right:12px">${n}</a>`).join('')}` : ''}
 ${process.env.NEXT_PUBLIC_CERTIA_URL || 'https://certia.group' ? `<br>Una empresa de <a href="${process.env.NEXT_PUBLIC_CERTIA_URL || 'https://certia.group'}" style="color:#0B1F33">Certia Group</a>` : ''}
 </div>
-<p style="font-size:11.5px;color:#5E584E;margin-top:22px;line-height:1.5">La información de este correo es orientativa y no constituye asesoría jurídica hasta la consulta con un abogado. Puedes ejercer tus derechos de protección de datos escribiendo a ${esc(TEAM_EMAIL)}. <a href="${site}/legal/privacidad" style="color:#5E584E">Privacidad</a> · <a href="${site}/legal/terminos" style="color:#5E584E">Condiciones</a> · <a href="${site}/legal/reembolsos" style="color:#5E584E">Reembolsos</a> · <a href="${site}/legal/aviso-legal" style="color:#5E584E">Aviso legal</a></p>
+<p style="font-size:11.5px;color:#515D69;margin-top:22px;line-height:1.5">La información de este correo es orientativa y no constituye asesoría jurídica hasta la consulta con un abogado. Puedes ejercer tus derechos de protección de datos escribiendo a ${esc(TEAM_EMAIL)}. <a href="${site}/legal/privacidad" style="color:#515D69">Privacidad</a> · <a href="${site}/legal/terminos" style="color:#515D69">Condiciones</a> · <a href="${site}/legal/reembolsos" style="color:#515D69">Reembolsos</a> · <a href="${site}/legal/aviso-legal" style="color:#515D69">Aviso legal</a></p>
 </div></body></html>`;
 }
 
@@ -128,7 +128,7 @@ export function layout(title: string, body: string, cta?: { label: string; href:
 // Every submission is copied to the team mailbox with all its data.
 export async function notifyTeam(subject: string, data: Record<string, unknown>, replyTo?: string) {
   const rows = Object.entries(data).filter(([, v]) => v !== undefined && v !== '' && v !== null)
-    .map(([k, v]) => `<tr><td style="padding:6px 12px 6px 0;color:#5E584E;vertical-align:top;white-space:nowrap">${esc(k)}</td><td style="padding:6px 0">${esc(typeof v === 'object' ? JSON.stringify(v) : v)}</td></tr>`).join('');
-  const html = `<!doctype html><html><body style="font-family:Arial,sans-serif;color:#0B1F33;font-size:14px"><h2 style="font-family:Georgia,serif;font-weight:normal">${esc(subject)}</h2><table style="border-collapse:collapse">${rows}</table><p style="color:#5E584E;font-size:12px;margin-top:20px">Enviado automáticamente por ${SITE()} · <a href="${SITE()}/admin">Abrir panel</a></p></body></html>`;
+    .map(([k, v]) => `<tr><td style="padding:6px 12px 6px 0;color:#515D69;vertical-align:top;white-space:nowrap">${esc(k)}</td><td style="padding:6px 0">${esc(typeof v === 'object' ? JSON.stringify(v) : v)}</td></tr>`).join('');
+  const html = `<!doctype html><html><body style="font-family:Arial,sans-serif;color:#0B1F33;font-size:14px"><h2 style="font-family:Georgia,serif;font-weight:normal">${esc(subject)}</h2><table style="border-collapse:collapse">${rows}</table><p style="color:#515D69;font-size:12px;margin-top:20px">Enviado automáticamente por ${SITE()} · <a href="${SITE()}/admin">Abrir panel</a></p></body></html>`;
   return sendEmail(TEAM_EMAIL, `[Web] ${subject}`, html, { replyTo });
 }

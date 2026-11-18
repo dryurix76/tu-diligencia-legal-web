@@ -15,7 +15,7 @@ export default function Calculator({ items = SERVICE_PRICES, title }: { items?: 
   const extra = Math.round(base * 0.85 * (n - 1));
   const disc = paid ? 60 : 0;
   const total = base + extra - disc;
-  const round: React.CSSProperties = { width: 48, height: 48, borderRadius: '50%', border: '1.5px solid rgba(11,31,51,0.25)', background: '#fff', fontSize: 22, cursor: 'pointer', color: '#0B1F33' };
+  const round: React.CSSProperties = { width: 48, height: 48, borderRadius: '50%', border: '1.5px solid color-mix(in srgb, var(--ink) 25%, transparent)', background: 'var(--card)', fontSize: 22, cursor: 'pointer', color: 'var(--ink)' };
 
   return (
     <div className="panel" style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -40,15 +40,15 @@ export default function Calculator({ items = SERVICE_PRICES, title }: { items?: 
         </div>
       </div>
       <label className="check" style={{ fontSize: 15, alignItems: 'center' }}><input type="checkbox" checked={paid} onChange={() => setPaid(!paid)} />Ya pagué la consulta inicial (USD 60) en los últimos 30 días</label>
-      <div style={{ background: '#0B1F33', color: '#F4EFE6', borderRadius: 8, padding: 28 }}>
+      <div style={{ background: 'var(--ink)', color: 'var(--paper)', borderRadius: 8, padding: 28 }}>
         {[['Servicio base', fmt(base)], [n > 1 ? `${n - 1} familiar${n > 2 ? 'es' : ''} adicional${n > 2 ? 'es' : ''} (−15%)` : 'Familiares adicionales', fmt(extra)], ['Descuento por consulta', '− ' + fmt(disc)]].map(([l, v]) => (
-          <div key={l} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14, color: '#A9B2BE', paddingBottom: 8 }}><span>{l}</span><span>USD {v}</span></div>
+          <div key={l} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14, color: 'var(--on-dark-2)', paddingBottom: 8 }}><span>{l}</span><span>USD {v}</span></div>
         ))}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', paddingTop: 16, borderTop: '1px solid rgba(244,239,230,0.15)', gap: 16, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', paddingTop: 16, borderTop: '1px solid color-mix(in srgb, var(--paper) 15%, transparent)', gap: 16, flexWrap: 'wrap' }}>
           <span className="serif" style={{ fontSize: 22 }}>Total estimado</span>
-          <span className="serif" style={{ fontSize: 'clamp(38px, 10vw, 52px)', color: '#3DD1A0', lineHeight: 1, whiteSpace: 'nowrap' }} aria-live="polite">USD {fmt(total)}</span>
+          <span className="serif" style={{ fontSize: 'clamp(38px, 10vw, 52px)', color: 'var(--green-lt)', lineHeight: 1, whiteSpace: 'nowrap' }} aria-live="polite">USD {fmt(total)}</span>
         </div>
-        <p style={{ margin: '8px 0 0', textAlign: 'right', fontSize: 14, color: '#C9CFD6' }}>{cuotas === 1 ? 'Un solo pago' : `${cuotas} cuotas de USD ${fmt(total / cuotas)}`} · tasas oficiales aparte</p>
+        <p style={{ margin: '8px 0 0', textAlign: 'right', fontSize: 14, color: 'var(--on-dark)' }}>{cuotas === 1 ? 'Un solo pago' : `${cuotas} cuotas de USD ${fmt(total / cuotas)}`} · tasas oficiales aparte</p>
       </div>
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
         <Link className="btn btn-green" href="/agendar?tipo=inicial">Agendar la consulta inicial</Link>

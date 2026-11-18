@@ -7,7 +7,7 @@ export function JsonLd({ data }: { data: object | object[] }) {
 
 // Visible breadcrumbs + BreadcrumbList markup.
 export function Breadcrumbs({ items, dark = true }: { items: [string, string][]; dark?: boolean }) {
-  const color = dark ? '#F0D9AE' : '#5E584E';
+  const color = dark ? 'var(--green-lt)' : 'var(--muted)';
   return (
     <>
       <JsonLd data={breadcrumbLd(items)} />

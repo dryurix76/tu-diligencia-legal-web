@@ -34,9 +34,9 @@ export default async function Admin({ searchParams }: { searchParams: Promise<{ 
       </div>
       <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 10, margin: '28px 0' }}>
         {health.map(([n, ok, hint]) => (
-          <div key={n} className="card" style={{ padding: 14, borderLeft: `4px solid ${ok ? '#12A37A' : '#A3312A'}` }}>
-            <strong>{n}</strong> <span style={{ color: ok ? '#0B7A59' : '#A3312A' }}>{ok ? 'activo' : 'sin configurar'}</span>
-            <p style={{ margin: '4px 0 0', fontSize: 12.5, color: '#5E584E' }}>{hint}</p>
+          <div key={n} className="card" style={{ padding: 14, borderLeft: `4px solid ${ok ? 'var(--green)' : 'var(--green)'}` }}>
+            <strong>{n}</strong> <span style={{ color: ok ? 'var(--green)' : 'var(--green)' }}>{ok ? 'activo' : 'sin configurar'}</span>
+            <p style={{ margin: '4px 0 0', fontSize: 12.5, color: 'var(--muted)' }}>{hint}</p>
           </div>
         ))}
       </section>
@@ -51,14 +51,14 @@ export default async function Admin({ searchParams }: { searchParams: Promise<{ 
       <p style={{ margin: '0 0 12px' }}>{rows.length} registros · <strong>{pending} pagos pendientes</strong></p>
       <div style={{ overflowX: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14, minWidth: 1000 }}>
-          <thead><tr style={{ textAlign: 'left', borderBottom: '2px solid #0B1F33' }}>{['Fecha', 'Tipo', 'Estado', 'Caso / ref', 'Cliente', 'Servicio', 'Importe', 'Detalle', 'Acciones'].map((h) => <th key={h} style={{ padding: 8 }}>{h}</th>)}</tr></thead>
+          <thead><tr style={{ textAlign: 'left', borderBottom: '2px solid var(--ink)' }}>{['Fecha', 'Tipo', 'Estado', 'Caso / ref', 'Cliente', 'Servicio', 'Importe', 'Detalle', 'Acciones'].map((h) => <th key={h} style={{ padding: 8 }}>{h}</th>)}</tr></thead>
           <tbody>
             {rows.map((r) => (
-              <tr key={r.id} style={{ borderBottom: '1px solid rgba(11,31,51,0.12)', verticalAlign: 'top' }}>
+              <tr key={r.id} style={{ borderBottom: '1px solid color-mix(in srgb, var(--ink) 12%, transparent)', verticalAlign: 'top' }}>
                 <td style={{ padding: 8, whiteSpace: 'nowrap' }}>{new Date(r.created_at).toLocaleString('es-VE', { timeZone: 'America/Caracas' })}</td>
                 <td style={{ padding: 8 }}>{r.kind}</td>
-                <td style={{ padding: 8 }}><span style={{ padding: '3px 8px', borderRadius: 4, background: r.status === 'pagado' ? '#E3F5EE' : r.status === 'pendiente_pago' ? '#FFF1DC' : '#EEF0F3' }}>{r.status}</span></td>
-                <td style={{ padding: 8 }}>{r.case_id}<br /><span style={{ color: '#5E584E', fontSize: 12 }}>{r.ref}</span></td>
+                <td style={{ padding: 8 }}><span style={{ padding: '3px 8px', borderRadius: 4, background: r.status === 'pagado' ? 'var(--green-wash)' : r.status === 'pendiente_pago' ? 'var(--paper)' : 'var(--paper-2)' }}>{r.status}</span></td>
+                <td style={{ padding: 8 }}>{r.case_id}<br /><span style={{ color: 'var(--muted)', fontSize: 12 }}>{r.ref}</span></td>
                 <td style={{ padding: 8 }}>{r.name}<br /><a href={`mailto:${r.email}`}>{r.email}</a><br />{r.phone && <a href={`https://wa.me/${r.phone.replace(/\D/g, '')}`}>{r.phone}</a>}</td>
                 <td style={{ padding: 8 }}>{r.service}</td>
                 <td style={{ padding: 8 }}>{r.amount_usd ? `USD ${r.amount_usd}` : ''}<br /><span style={{ fontSize: 12 }}>{r.payload?.method}</span></td>

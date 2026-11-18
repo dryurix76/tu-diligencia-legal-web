@@ -20,11 +20,11 @@ export default async function Ayuda({ searchParams }: { searchParams: Promise<{ 
       <section style={{ padding: '0 0 112px' }}><div className="wrap"><HelpCenter /></div></section>
       <section id="guias" className="dark section">
         <div className="wrap">
-          {expired && <p role="alert" className="card" style={{ padding: '14px 18px', marginBottom: 28, color: '#0B1F33' }}>Ese enlace de descarga caducó o no es válido. Pide la guía otra vez y te enviamos uno nuevo.</p>}
-          <h2 className="h2" style={{ marginBottom: 48 }}>Guías gratuitas <em style={{ color: '#E8D3AE' }}>en PDF</em></h2>
+          {expired && <p role="alert" className="card" style={{ padding: '14px 18px', marginBottom: 28, color: 'var(--ink)' }}>Ese enlace de descarga caducó o no es válido. Pide la guía otra vez y te enviamos uno nuevo.</p>}
+          <h2 className="h2" style={{ marginBottom: 48 }}>Guías gratuitas <em style={{ color: 'var(--green-lt)' }}>en PDF</em></h2>
           <div className="g-3">
             {Object.entries(GUIDES).map(([k, g]) => (
-              <div key={k} style={{ background: '#15293F', borderRadius: 8, padding: 28, display: 'flex', flexDirection: 'column', gap: 12 }}><span className="mono" style={{ fontSize: 11.5, letterSpacing: '0.14em', color: '#C9B48C' }}>{g.service.toUpperCase()}</span><p className="serif" style={{ margin: 0, fontSize: 24 }}>{g.title}</p><p style={{ margin: 0, fontSize: 14.5, color: '#A9B2BE' }}>{g.desc}</p></div>
+              <div key={k} style={{ background: 'var(--ink-2)', borderRadius: 8, padding: 28, display: 'flex', flexDirection: 'column', gap: 12 }}><span className="mono" style={{ fontSize: 11.5, letterSpacing: '0.14em', color: 'var(--green-lt)' }}>{g.service.toUpperCase()}</span><p className="serif" style={{ margin: 0, fontSize: 24 }}>{g.title}</p><p style={{ margin: 0, fontSize: 14.5, color: 'var(--on-dark-2)' }}>{g.desc}</p></div>
             ))}
           </div>
           <div style={{ marginTop: 28, maxWidth: 720 }}><GuideForm choose cta="Enviarme la guía" /></div>

@@ -29,24 +29,24 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
   const siblings = LANDINGS.filter((x) => x.parent === slug && x.slug !== sub);
   const list = (items: string[], dark = false) => (
     <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
-      {items.map((it) => <li key={it} style={{ display: 'flex', gap: 12 }}><span aria-hidden="true" style={{ color: dark ? '#E8D3AE' : '#0B7A59' }}>—</span><span>{it}</span></li>)}
+      {items.map((it) => <li key={it} style={{ display: 'flex', gap: 12 }}><span aria-hidden="true" style={{ color: dark ? 'var(--green-lt)' : 'var(--green)' }}>—</span><span>{it}</span></li>)}
     </ul>
   );
 
   return (
     <>
       <JsonLd data={[faqLd(l.faqs), serviceLd(path, l.title, l.description, [{ name: l.title, includes: 'Expediente completo', price: l.from }])]} />
-      <section style={{ background: parent.bg, color: '#F4EFE6', position: 'relative', overflow: 'hidden' }}>
-        <Header dark ctaHref={`/${slug}#evaluador`} ctaBg="#F4EFE6" ctaFg={parent.bg} />
+      <section style={{ background: parent.bg, color: 'var(--paper)', position: 'relative', overflow: 'hidden' }}>
+        <Header dark ctaHref={`/${slug}#evaluador`} ctaBg="var(--paper)" ctaFg={parent.bg} />
         <div className="wrap" style={{ position: 'relative', paddingTop: 48, paddingBottom: 88 }}>
           <Breadcrumbs items={[['Inicio', '/'], [`${parent.h1a} ${parent.h1b}`, `/${slug}`], [l.navLabel, path]]} />
-          <h1 className="h1">{l.h1a} <em style={{ color: '#F0D9AE' }}>{l.h1b}</em></h1>
-          <p style={{ margin: '32px 0 0', maxWidth: 640, fontSize: 19, color: '#EFE6DE' }}>{l.lede}</p>
+          <h1 className="h1">{l.h1a} <em style={{ color: 'var(--green-lt)' }}>{l.h1b}</em></h1>
+          <p style={{ margin: '32px 0 0', maxWidth: 640, fontSize: 19, color: 'var(--on-dark)' }}>{l.lede}</p>
           <div style={{ display: 'flex', gap: 16, marginTop: 40, flexWrap: 'wrap', alignItems: 'center' }}>
-            <Link className="btn btn-lg" href={`/${slug}#evaluador`} style={{ background: '#F4EFE6', color: parent.bg }}>¿Calificas? Descúbrelo en 2 minutos</Link>
-            <span style={{ color: '#F0D9AE' }}>Servicio completo desde <strong>{l.from}</strong></span>
+            <Link className="btn btn-lg" href={`/${slug}#evaluador`} style={{ background: 'var(--paper)', color: parent.bg }}>¿Calificas? Descúbrelo en 2 minutos</Link>
+            <span style={{ color: 'var(--green-lt)' }}>Servicio completo desde <strong>{l.from}</strong></span>
           </div>
-          <p className="mono" style={{ margin: '32px 0 0', fontSize: 12, color: '#F0D9AE', opacity: 0.85 }}>Información revisada por nuestro equipo legal el {new Date(l.reviewed + 'T12:00:00').toLocaleDateString('es-VE', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+          <p className="mono" style={{ margin: '32px 0 0', fontSize: 12, color: 'var(--green-lt)', opacity: 0.85 }}>Información revisada por nuestro equipo legal el {new Date(l.reviewed + 'T12:00:00').toLocaleDateString('es-VE', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
         </div>
       </section>
 
@@ -54,7 +54,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
         <div className="wrap g-3" style={{ alignItems: 'start', gap: 48 }}>
           <div><h2 className="serif" style={{ margin: '0 0 20px', fontSize: 32, fontWeight: 400 }}>¿Quién puede?</h2>{list(l.who)}</div>
           <div><h2 className="serif" style={{ margin: '0 0 20px', fontSize: 32, fontWeight: 400 }}>Requisitos clave</h2>{list(l.reqs)}</div>
-          <div style={{ background: '#0B1F33', color: '#E1E4E8', borderRadius: 8, padding: 32 }}><h2 className="serif" style={{ margin: '0 0 20px', fontSize: 32, fontWeight: 400, color: '#F4EFE6' }}>Documentos</h2>{list(l.docs, true)}</div>
+          <div style={{ background: 'var(--ink)', color: 'var(--on-dark)', borderRadius: 8, padding: 32 }}><h2 className="serif" style={{ margin: '0 0 20px', fontSize: 32, fontWeight: 400, color: 'var(--paper)' }}>Documentos</h2>{list(l.docs, true)}</div>
         </div>
       </section>
 
@@ -63,7 +63,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
           <div>
             <h2 className="h2">Cómo lo <em className="accent">hacemos</em></h2>
             <ol style={{ margin: '32px 0 0', padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 18 }}>
-              {l.steps.map((s, i) => <li key={s} style={{ display: 'flex', gap: 18 }}><span className="serif" style={{ width: 40, height: 40, borderRadius: '50%', background: '#0B1F33', color: '#F4EFE6', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flex: 'none', fontStyle: 'italic' }}>{i + 1}</span><span style={{ paddingTop: 8 }}>{s}</span></li>)}
+              {l.steps.map((s, i) => <li key={s} style={{ display: 'flex', gap: 18 }}><span className="serif" style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--ink)', color: 'var(--paper)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flex: 'none', fontStyle: 'italic' }}>{i + 1}</span><span style={{ paddingTop: 8 }}>{s}</span></li>)}
             </ol>
             <div style={{ display: 'flex', gap: 10, marginTop: 36, flexWrap: 'wrap' }}>
               <Link className="btn btn-green" href={`/${slug}#evaluador`}>Hacer la pre-evaluación</Link>

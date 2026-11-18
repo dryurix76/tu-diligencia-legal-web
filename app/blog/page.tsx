@@ -17,29 +17,29 @@ export default function Blog() {
   const images = postImages();
   return (
     <>
-      <div style={{ borderBottom: '1px solid rgba(11,31,51,0.15)' }}><Header dark={false} ctaBg="#0B7A59" ctaFg="#fff" ctaHref="/nacionalidad-espanola#evaluador" /></div>
+      <div style={{ borderBottom: '1px solid color-mix(in srgb, var(--ink) 15%, transparent)' }}><Header dark={false} ctaBg="var(--green)" ctaFg="var(--card)" ctaHref="/nacionalidad-espanola#evaluador" /></div>
       <section className="wrap" style={{ paddingTop: 56 }}>
-        <div className="mono" style={{ display: 'flex', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap', fontSize: 12, letterSpacing: '0.14em', color: '#4E4A43', borderBottom: '2px solid #0B1F33', paddingBottom: 14 }}>
+        <div className="mono" style={{ display: 'flex', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap', fontSize: 12, letterSpacing: '0.14em', color: 'var(--ink-80)', borderBottom: '2px solid var(--ink)', paddingBottom: 14 }}>
           <span>VOLUMEN I</span><span className="hide-m">NACIONALIDADES, VISADOS Y CAMBIOS DE LEY, EXPLICADOS POR ABOGADOS</span><span>EDICIÓN VENEZUELA</span>
         </div>
         <h1 className="serif" style={{ margin: 0, padding: '18px 0 10px', fontSize: 'clamp(84px, 15vw, 220px)', lineHeight: 0.88, fontWeight: 300, letterSpacing: '-0.055em', textAlign: 'center' }}>El <em className="accent">Archivo</em></h1>
       </section>
       <section className="wrap" style={{ paddingTop: 32, paddingBottom: 72 }}>
-        <Link href={`/blog/${f.slug}`} className="g-hero" style={{ textDecoration: 'none', color: '#0B1F33', alignItems: 'center' }}>
-          <PostCover p={f} img={images[f.slug]} height="clamp(280px, 60vw, 460px)" word="clamp(64px, 9vw, 120px)" wordColor="#F0D9AE" priority sizes="(max-width: 980px) 100vw, 55vw" />
+        <Link href={`/blog/${f.slug}`} className="g-hero" style={{ textDecoration: 'none', color: 'var(--ink)', alignItems: 'center' }}>
+          <PostCover p={f} img={images[f.slug]} height="clamp(280px, 60vw, 460px)" word="clamp(64px, 9vw, 120px)" wordColor="var(--green-lt)" priority sizes="(max-width: 980px) 100vw, 55vw" />
           <div>
             <p className="mono accent" style={{ margin: '0 0 16px', fontSize: 12, letterSpacing: '0.14em' }}>{f.catLabel} · {f.mins} MIN DE LECTURA</p>
             <h2 className="h2" style={{ fontSize: 'clamp(36px, 4vw, 56px)' }}>{f.title}</h2>
-            <p style={{ margin: '24px 0 0', color: '#4E4A43', fontSize: 18 }}>{f.excerpt}</p>
+            <p style={{ margin: '24px 0 0', color: 'var(--ink-80)', fontSize: 18 }}>{f.excerpt}</p>
           </div>
         </Link>
       </section>
       <section className="wrap g-side" style={{ paddingBottom: 120 }}>
         <div><BlogList images={images} /></div>
-        <aside style={{ background: '#0B1F33', color: '#F4EFE6', borderRadius: 6, padding: 32 }}>
-          <p className="mono" style={{ margin: '0 0 12px', fontSize: 11.5, letterSpacing: '0.16em', color: '#C9B48C' }}>ALERTAS DE CAMBIOS DE LEY</p>
+        <aside style={{ background: 'var(--ink)', color: 'var(--paper)', borderRadius: 6, padding: 32 }}>
+          <p className="mono" style={{ margin: '0 0 12px', fontSize: 11.5, letterSpacing: '0.16em', color: 'var(--green-lt)' }}>ALERTAS DE CAMBIOS DE LEY</p>
           <p className="serif" style={{ margin: '0 0 12px', fontSize: 30, lineHeight: 1.05 }}>Entérate antes de que el consulado se llene.</p>
-          <p style={{ margin: '0 0 22px', color: '#A9B2BE', fontSize: 15 }}>Un aviso por correo cuando cambia una ley o se abren citas. Sin spam.</p>
+          <p style={{ margin: '0 0 22px', color: 'var(--on-dark-2)', fontSize: 15 }}>Un aviso por correo cuando cambia una ley o se abren citas. Sin spam.</p>
           <GuideForm cta="Quiero las alertas" />
         </aside>
       </section>
