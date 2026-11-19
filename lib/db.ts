@@ -31,7 +31,7 @@ async function init() {
       )`;
       await q`CREATE INDEX IF NOT EXISTS submissions_email_idx ON submissions (lower(email))`;
       await q`CREATE INDEX IF NOT EXISTS submissions_ref_idx ON submissions (ref)`;
-    })();
+    })().catch((e) => { ready = null; throw e; }); // si falla, se reintenta en la próxima petición
   }
   return ready;
 }

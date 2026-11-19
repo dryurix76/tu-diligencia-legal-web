@@ -12,6 +12,7 @@ async function hs<T = any>(path: string, init: RequestInit = {}): Promise<T> {
     ...init,
     headers: { Authorization: `Bearer ${env.hubspotToken}`, 'Content-Type': 'application/json', ...(init.headers || {}) },
     cache: 'no-store',
+    signal: AbortSignal.timeout(10000),
   });
   if (!res.ok) throw new Error(`HubSpot ${path} ${res.status}: ${await res.text()}`);
   return (res.status === 204 ? (undefined as T) : await res.json()) as T;

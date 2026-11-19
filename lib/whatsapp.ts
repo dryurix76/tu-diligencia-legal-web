@@ -16,6 +16,7 @@ async function send(body: Record<string, unknown>) {
     method: 'POST',
     headers: { Authorization: `Bearer ${env.waToken}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({ messaging_product: 'whatsapp', ...body }),
+    signal: AbortSignal.timeout(10000),
   });
   if (!res.ok) console.error('WhatsApp error', res.status, await res.text());
 }
