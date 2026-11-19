@@ -1,3 +1,4 @@
+import { SITE_URL } from '@/lib/env';
 import { NextResponse } from 'next/server';
 import { put } from '@vercel/blob';
 import { env } from '@/lib/env';
@@ -37,7 +38,7 @@ export async function POST(req: Request) {
     title: 'Documento recibido', caseId,
     intro: `<p>Hemos recibido <strong>${docName.replace(/</g, '&lt;')}</strong> en tu expediente. Tu abogado lo revisará y, si hace falta corregir algo, te avisaremos por correo y WhatsApp.</p>`,
     steps: ['Puedes seguir subiendo documentos desde Mi caso.', 'Revisa que los documentos venezolanos estén apostillados y legibles.'],
-    cta: { label: 'Ir a Mi caso', href: `${(process.env.NEXT_PUBLIC_SITE_URL || '').replace(/\/$/, '')}/mi-caso` },
+    cta: { label: 'Ir a Mi caso', href: `${SITE_URL}/mi-caso` },
   }));
   return NextResponse.json({ ok: true });
 }

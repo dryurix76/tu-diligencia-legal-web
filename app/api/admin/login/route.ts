@@ -1,3 +1,4 @@
+import { SITE_URL } from '@/lib/env';
 import { NextResponse } from 'next/server';
 import crypto from 'node:crypto';
 import { signToken, ADMIN_COOKIE } from '@/lib/session';
@@ -10,7 +11,7 @@ export async function POST(req: Request) {
   const a = Buffer.from(String(password || '')), b = Buffer.from(real);
   if (!real || a.length !== b.length || !crypto.timingSafeEqual(a, b)) return NextResponse.json({ error: 'Contraseña incorrecta.' }, { status: 401 });
   const res = NextResponse.json({ ok: true });
-  res.cookies.set(ADMIN_COOKIE, await signToken('admin', 'admin', '8h'), { httpOnly: true, secure: (process.env.NEXT_PUBLIC_SITE_URL || '').startsWith('https'), sameSite: 'strict', path: '/', maxAge: 8 * 3600 });
+  res.cookies.set(ADMIN_COOKIE, await signToken('admin', 'admin', '8h'), { httpOnly: true, secure: SITE_URL.startsWith('https'), sameSite: 'strict', path: '/', maxAge: 8 * 3600 });
   return res;
 }
 

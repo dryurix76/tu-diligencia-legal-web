@@ -2,8 +2,15 @@
 // Every integration degrades gracefully: if its keys are missing, the site keeps
 // working and the call is logged instead of sent (useful in local development).
 
+// Dirección pública del sitio. Si falta NEXT_PUBLIC_SITE_URL en un entorno, se usa el
+// dominio de producción que Vercel expone, y si tampoco existe, el dominio oficial.
+// (Antes caía en localhost: enlaces de correos, canónicas y sitemap quedaban rotos.)
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL
+  || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : '')
+  || (process.env.NODE_ENV === 'production' ? 'https://www.tudiligencialegal.com' : 'http://localhost:3000')).replace(/\/$/, '');
+
 export const env = {
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+  siteUrl: SITE_URL,
 
   hubspotToken: process.env.HUBSPOT_PRIVATE_APP_TOKEN || '',
   hubspotPipeline: process.env.HUBSPOT_PIPELINE_ID || 'default',

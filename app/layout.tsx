@@ -1,3 +1,4 @@
+import { SITE_URL } from '@/lib/env';
 import type { Metadata, Viewport } from 'next';
 import { JsonLd } from '@/components/Seo';
 import ScrollTop from '@/components/ScrollTop';
@@ -11,7 +12,7 @@ import '@fontsource/ibm-plex-mono/500.css';
 import '@fontsource/homemade-apple/400.css';
 import './globals.css';
 
-const site = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+const site = SITE_URL;
 
 export const metadata: Metadata = {
   metadataBase: new URL(site),

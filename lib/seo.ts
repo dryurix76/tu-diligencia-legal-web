@@ -1,9 +1,10 @@
+import { SITE_URL } from '@/lib/env';
 import type { Metadata } from 'next';
 
 // Central SEO configuration: titles, descriptions, canonical URLs and schema.org JSON-LD.
 
 export const SITE = {
-  url: (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, ''),
+  url: SITE_URL,
   name: 'Tu Diligencia Legal',
   legalName: process.env.NEXT_PUBLIC_LEGAL_NAME || 'Tu Diligencia Legal',
   phone: process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY || '',
