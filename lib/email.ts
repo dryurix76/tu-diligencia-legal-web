@@ -23,7 +23,8 @@ export async function sendEmail(to: string, subject: string, html: string, opts:
   if (!provider) { devLog('email', { to, subject }); return false; }
   if (provider === 'smtp') {
     const port = Number(process.env.SMTP_PORT || 465);
-    const secure = (process.env.SMTP_SECURE || (port === 465 ? 'true' : 'false')) === 'true';
+    // El 465 siempre es SSL directo; en 587/25 se negocia STARTTLS (secure=false).
+    const secure = port === 465 ? true : (process.env.SMTP_SECURE || 'false') === 'true';
     try {
       smtp = smtp || nodemailer.createTransport({
         host: process.env.SMTP_HOST, port, secure,
