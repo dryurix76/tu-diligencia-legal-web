@@ -21,24 +21,32 @@ export async function sendEmail(to: string, subject: string, html: string, opts:
   if (!to) return false;
   const provider = emailProvider();
   if (!provider) { devLog('email', { to, subject }); return false; }
-  try {
-    if (provider === 'smtp') {
+  if (provider === 'smtp') {
+    const port = Number(process.env.SMTP_PORT || 465);
+    const secure = (process.env.SMTP_SECURE || (port === 465 ? 'true' : 'false')) === 'true';
+    try {
       smtp = smtp || nodemailer.createTransport({
-        host: process.env.SMTP_HOST,
-        port: Number(process.env.SMTP_PORT || 465),
-        secure: (process.env.SMTP_SECURE || 'true') === 'true',
+        host: process.env.SMTP_HOST, port, secure,
         auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
         connectionTimeout: 10000, greetingTimeout: 10000, socketTimeout: 20000,
       });
       await smtp.sendMail({ from: env.emailFrom, to, subject, html, replyTo: opts.replyTo, attachments: opts.attachments });
       return true;
+    } catch (e) {
+      // Sin datos secretos: solo host, puerto y modo, para poder diagnosticar en los logs.
+      console.error(`Email error (SMTP ${process.env.SMTP_HOST}:${port}, secure=${secure})`, (e as Error)?.message || e);
+      smtp = null;
+      if (!env.resendKey) return false;
+      console.info('Email: SMTP falló, reintentando con Resend');
     }
+  }
+  try {
     resend = resend || new Resend(env.resendKey);
     const { error } = await resend.emails.send({ from: env.emailFrom, to, subject, html, replyTo: opts.replyTo, attachments: opts.attachments });
     if (error) { console.error('Resend error', error); return false; }
     return true;
   } catch (e) {
-    console.error('Email error', e);
+    console.error('Email error (Resend)', e);
     return false;
   }
 }
