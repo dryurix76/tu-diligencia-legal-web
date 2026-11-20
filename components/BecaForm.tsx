@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import PhoneField from './PhoneField';
 import Link from 'next/link';
 import { postJSON, formValues } from '@/lib/client';
 import { track, getAttribution } from '@/lib/track';
@@ -28,19 +29,19 @@ export default function BecaForm({ plan = '' }: { plan?: string }) {
       const v = formValues(e.currentTarget);
       setBusy(true); setError('');
       const { ok, data } = await postJSON<any>('/api/lead', {
-        name: v.name, email: v.email, phone: `${v.prefix} ${v.phone}`.trim(), service: 'Becas y estudios', source: 'beca', timing: v.plan ? '3m' : 'info', page: '/becas',
+        name: v.name, email: v.email, phone: v.phone, service: 'Becas y estudios', source: 'beca', timing: v.plan ? '3m' : 'info', page: '/becas',
         message: v.message, consent: v.consent === 'on', website: v.website || '', attribution: getAttribution(),
         extra: { 'Nivel': v.level, 'País de destino': v.dest, 'Área de estudio': v.area, 'Título y promedio': v.grades, 'Idiomas': v.langs, 'Presupuesto propio': v.budget, 'Servicio de interés': v.plan },
       });
       setBusy(false);
       if (!ok) { setError(data.error || 'No pudimos registrar tu solicitud. Intenta de nuevo.'); return; }
-      track('sign_up', { method: 'beca' }, { email: v.email, phone: `${v.prefix}${v.phone}` });
+      track('sign_up', { method: 'beca' }, { email: v.email, phone: v.phone });
       setCaseId(data.caseId);
     }} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16 }}>
         <label className="lbl">Nombre y apellido<input className="field" name="name" required minLength={2} autoComplete="name" /></label>
         <label className="lbl">Correo electrónico<input className="field" name="email" type="email" required autoComplete="email" /></label>
-        <label className="lbl">WhatsApp<span style={{ display: 'flex', gap: 8 }}><select className="field" name="prefix" aria-label="Prefijo" style={{ width: 108, flex: 'none' }}>{['+58', '+34', '+57', '+507', '+1', '+56', '+51', '+39', '+351'].map((p) => <option key={p}>{p}</option>)}</select><input className="field" name="phone" type="tel" autoComplete="tel" placeholder="412 000 0000" /></span></label>
+        <PhoneField required={false} />
         {SEL('level', '¿Qué quieres estudiar?', ['Grado', 'Máster', 'Doctorado', 'Curso o idioma'])}
         {SEL('dest', 'País de destino', ['España', 'Portugal', 'Italia', 'Cualquiera de los tres'])}
         <label className="lbl">Área de estudio<input className="field" name="area" required placeholder="Ej.: ingeniería, medicina, derecho" /></label>

@@ -18,7 +18,7 @@ const FAQS = [
   { q: '¿Por qué cobran la consulta?', a: 'Porque es asesoría legal real con un abogado especialista, no una llamada comercial. Y si contratas el servicio en los 30 días siguientes, te descontamos lo que pagaste.' },
   { q: '¿Puedo saber gratis si califico?', a: 'Sí. La pre-evaluación es gratuita y te da un semáforo orientativo en 2 minutos. La confirmación la da un abogado en la consulta.' },
   { q: '¿Tengo que viajar a España?', a: 'Depende de la vía. Muchas gestiones se hacen desde el consulado del país donde vives. Te lo decimos con exactitud en la consulta.' },
-  { q: '¿Cómo pago desde Venezuela?', a: 'Con tarjeta internacional, Zelle, Binance Pay (USDT) o transferencia en euros. Los servicios se pagan en 2 o 3 cuotas.' },
+  { q: '¿Cómo pago desde Venezuela?', a: 'Con tarjeta internacional, Pago Móvil en bolívares (a tasa BCV), Zelle o Binance Pay (USDT). Los servicios se pagan en 2 o 3 cuotas.' },
   { q: '¿Y si no encuentro la partida de mi abuelo?', a: 'La buscamos por ti en registros civiles y parroquiales de España. Es un servicio aparte, desde USD 180 por acta.' },
   { q: '¿Cuánto tarda el proceso?', a: 'Depende de la vía y del consulado. En la propuesta te damos un plazo estimado por escrito y lo sigues en tiempo real desde Mi caso.' },
 ];
@@ -63,7 +63,7 @@ export default function Home() {
             <ul className="ticks" style={{ marginTop: 32 }}>
               <li>Precio cerrado por escrito</li>
               <li>Pago en 2 o 3 cuotas</li>
-              <li>Zelle, tarjeta o Binance Pay</li>
+              <li>Pago Móvil, Zelle, tarjeta o Binance</li>
             </ul>
             <div style={{ marginTop: 36, paddingTop: 22, borderTop: '1px solid var(--line-dark)', display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center', fontSize: 14, color: 'var(--on-dark-2)' }}>
               <span className="meta" style={{ fontSize: 10.5, color: 'var(--green-lt)' }}>También</span>

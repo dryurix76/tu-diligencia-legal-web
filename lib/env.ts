@@ -45,6 +45,12 @@ export const env = {
   zelleEmail: process.env.ZELLE_EMAIL || '[correo Zelle]',
   zelleName: process.env.ZELLE_NAME || '[Titular Zelle]',
   binancePayId: process.env.BINANCE_PAY_ID || '[Binance Pay ID]',
+
+  // Pago Móvil (bolívares). Datos de la cuenta que recibe; se muestran al cliente.
+  pmBank: process.env.PAGOMOVIL_BANCO || '',          // p. ej. "0134 Banesco"
+  pmPhone: process.env.PAGOMOVIL_TELEFONO || '',      // p. ej. "0414-0000000"
+  pmId: process.env.PAGOMOVIL_RIF || '',              // RIF o cédula del titular, p. ej. "J-00000000-0"
+  pmName: process.env.PAGOMOVIL_TITULAR || '',
 };
 
 export function devLog(service: string, payload: unknown) {

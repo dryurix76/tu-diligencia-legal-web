@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import PhoneField from './PhoneField';
 import Link from 'next/link';
 import { postJSON, formValues } from '@/lib/client';
 import { TimingChips } from './Forms';
@@ -53,12 +54,12 @@ function LegacyEvaluator({ questions, results, service }: { questions: EvalQuest
     if (!timing) { setError('Dinos cuándo quieres empezar.'); return; }
     setBusy(true); setError('');
     const { ok, data } = await postJSON<any>('/api/lead', {
-      name: v.name, email: v.email, phone: `${v.prefix} ${v.phone}`.trim(), service, timing, light: LIGHTS[level], source: 'evaluador',
+      name: v.name, email: v.email, phone: v.phone, service, timing, light: LIGHTS[level], source: 'evaluador',
       answers: questions.map((qq, i) => `${qq.text} → ${qq.opts[ans[i]][0]}`), attribution: getAttribution(), consent: v.consent === 'on', page: typeof window !== 'undefined' ? window.location.pathname : '', website: v.website || '',
     });
     setBusy(false);
     if (!ok) { setError(data.error || 'No pudimos guardar tu resultado. Intenta de nuevo.'); return; }
-    track('generate_lead', { source: 'evaluador', tier: data.tier, light: LIGHTS[level], service }, { email: v.email, phone: `${v.prefix}${v.phone}` });
+    track('generate_lead', { source: 'evaluador', tier: data.tier, light: LIGHTS[level], service }, { email: v.email, phone: v.phone });
     setCaseId(data.caseId);
     setStage('result');
   };
@@ -88,7 +89,7 @@ function LegacyEvaluator({ questions, results, service }: { questions: EvalQuest
           <label className="lbl">Nombre y apellido<input className="field" name="name" required minLength={2} autoComplete="name" /></label>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16 }}>
             <label className="lbl">Correo electrónico<input className="field" name="email" type="email" required autoComplete="email" placeholder="tu@correo.com" /></label>
-            <label className="lbl">WhatsApp<span style={{ display: 'flex', gap: 8 }}><select className="field" name="prefix" aria-label="Prefijo" style={{ width: 108, flex: 'none' }}>{['+58', '+34', '+57', '+507', '+1', '+56', '+51'].map((p) => <option key={p}>{p}</option>)}</select><input className="field" name="phone" type="tel" required autoComplete="tel" placeholder="412 000 0000" /></span></label>
+            <PhoneField />
           </div>
           <TimingChips value={timing} onChange={setTiming} />
           <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: -9999 }} />
@@ -161,14 +162,14 @@ function TreeEvaluator({ tree, service }: { tree: Tree; service: string }) {
     if (!timing) { setError('Dinos cuándo quieres empezar.'); return; }
     setBusy(true); setError('');
     const { ok, data } = await postJSON<any>('/api/lead', {
-      name: v.name, email: v.email, phone: `${v.prefix} ${v.phone}`.trim(), service, timing, light: R.light, source: 'evaluador',
+      name: v.name, email: v.email, phone: v.phone, service, timing, light: R.light, source: 'evaluador',
       answers: path.map((s) => `${tree.nodes[s.node].text} → ${tree.nodes[s.node].opts[s.opt].label}`),
       result: { title: R.title, route: R.route, confidence: R.confidence, basis: R.basis, pending: R.pending },
       attribution: getAttribution(), consent: v.consent === 'on', page: typeof window !== 'undefined' ? window.location.pathname : '', website: v.website || '',
     });
     setBusy(false);
     if (!ok) { setError(data.error || 'No pudimos guardar tu resultado. Intenta de nuevo.'); return; }
-    track('generate_lead', { source: 'evaluador', tier: data.tier, light: R.light, service }, { email: v.email, phone: `${v.prefix}${v.phone}` });
+    track('generate_lead', { source: 'evaluador', tier: data.tier, light: R.light, service }, { email: v.email, phone: v.phone });
     setCaseId(data.caseId);
     setStage('result');
   };
@@ -200,7 +201,7 @@ function TreeEvaluator({ tree, service }: { tree: Tree; service: string }) {
           <label className="lbl">Nombre y apellido<input className="field" name="name" required minLength={2} autoComplete="name" /></label>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16 }}>
             <label className="lbl">Correo electrónico<input className="field" name="email" type="email" required autoComplete="email" placeholder="tu@correo.com" /></label>
-            <label className="lbl">WhatsApp<span style={{ display: 'flex', gap: 8 }}><select className="field" name="prefix" aria-label="Prefijo" style={{ width: 108, flex: 'none' }}>{['+58', '+34', '+57', '+507', '+1', '+56', '+51', '+39', '+351'].map((p) => <option key={p}>{p}</option>)}</select><input className="field" name="phone" type="tel" required autoComplete="tel" placeholder="412 000 0000" /></span></label>
+            <PhoneField />
           </div>
           <TimingChips value={timing} onChange={setTiming} />
           <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: -9999 }} />

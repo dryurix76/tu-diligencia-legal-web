@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import PhoneField from './PhoneField';
 import Link from 'next/link';
 import { postJSON, formValues } from '@/lib/client';
 import { TIMING, SERVICE_OPTIONS, COUNTRIES } from '@/lib/catalog';
@@ -68,7 +69,7 @@ export function ContactForm({ service = 'Aún no lo sé', withReason = false, pa
         <label className="lbl">Nombre y apellido<input className="field" name="name" required minLength={2} autoComplete="name" /></label>
         <label className="lbl">País donde vives<select className="field" name="country">{COUNTRIES.map((c) => <option key={c}>{c}</option>)}</select></label>
         <label className="lbl">Correo electrónico<input className="field" name="email" type="email" required autoComplete="email" /></label>
-        <label className="lbl">WhatsApp<input className="field" name="phone" type="tel" required autoComplete="tel" placeholder="+58 412 000 0000" /></label>
+        <PhoneField />
       </div>
       {withReason && <label className="lbl">Motivo<select className="field" name="reason"><option>Quiero iniciar un trámite</option><option>Tengo una duda sobre mi caso</option><option>Soy cliente</option><option>Prensa o alianzas</option><option>Otro</option></select></label>}
       <label className="lbl">Servicio<select className="field" name="service" defaultValue={service}>{[service, ...SERVICE_OPTIONS.filter((s) => s !== service)].map((s) => <option key={s}>{s}</option>)}</select></label>

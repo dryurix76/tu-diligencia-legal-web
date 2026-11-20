@@ -1,4 +1,6 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, after } from 'next/server';
+import { withTimeout, step } from '@/lib/net';
+import { bcvRate, toBs, fmtBs } from '@/lib/bcv';
 import { z } from 'zod';
 import { env } from '@/lib/env';
 import { CONSULTS, AREAS, calEventTypeId } from '@/lib/catalog';
@@ -27,12 +29,15 @@ const Body = z.object({
   notes: z.string().max(3000).default(''),
   timing: z.enum(['now', '3m', '6m', 'info', '']).default(''),
   pre: z.enum(['verde', 'ambar', 'no', '']).default(''),
-  pay: z.enum(['card', 'zelle', 'binance']),
+  pay: z.enum(['card', 'zelle', 'binance', 'pagomovil']),
   terms: z.literal(true),
   early: z.literal(true),
   attribution: Attribution,
 });
 
+
+export const maxDuration = 60;
+const PM_LABEL: Record<string, string> = { zelle: 'Zelle', binance: 'Binance Pay', pagomovil: 'Pago Móvil (Bs.)' };
 
 export async function POST(req: Request) {
   if (limited('checkout:' + ipOf(req), 6)) return NextResponse.json({ error: 'Demasiados intentos. Espera un minuto.' }, { status: 429 });
@@ -48,17 +53,26 @@ export async function POST(req: Request) {
 
   const [firstname, ...rest] = d.name.split(' ');
   const s = scoreLead({ source: 'agendar', timing: d.timing, light: d.pre === 'verde' ? 'verde' : d.pre === 'ambar' ? 'ambar' : '' });
-  const contactId = await upsertContact({ email: d.email, firstname, lastname: rest.join(' '), phone: d.phone, props: { tdl_service: area.label, tdl_timing: d.timing, tdl_country: d.country, tdl_lead_score: s.score, tdl_lead_tier: s.tier, tdl_source: 'agendar', ...attrProps(d.attribution) } });
+  const contactId = await withTimeout(upsertContact({ email: d.email, firstname, lastname: rest.join(' '), phone: d.phone, props: { tdl_service: area.label, tdl_timing: d.timing, tdl_country: d.country, tdl_lead_score: s.score, tdl_lead_tier: s.tier, tdl_source: 'agendar', ...attrProps(d.attribution) } }), 8000, 'hubspot.upsertContact');
   const caseId = caseIdFrom(contactId || d.email);
-  if (contactId) await setContactProps(contactId, { tdl_case_id: caseId });
-  const dealId = await createDeal(contactId, `${caseId} · ${c.name} · ${area.label}`, env.hubspotStages.pagoPendiente, c.usd);
+  if (contactId) await withTimeout(setContactProps(contactId, { tdl_case_id: caseId }), 6000, 'hubspot.setContactProps');
+  const dealId = await withTimeout(createDeal(contactId, `${caseId} · ${c.name} · ${area.label}`, env.hubspotStages.pagoPendiente, c.usd), 8000, 'hubspot.createDeal');
+
+  // Pago Móvil: importe en bolívares a la tasa BCV del momento (queda guardado con la tasa usada).
+  let bs: { amount: number; rate: number; date: string } | null = null;
+  if (d.pay === 'pagomovil') {
+    if (!(env.pmBank && env.pmPhone && env.pmId)) return NextResponse.json({ error: 'Pago Móvil aún no está activo. Elige otro medio o escríbenos por WhatsApp.' }, { status: 503 });
+    const r = await bcvRate();
+    if (!r) return NextResponse.json({ error: 'No pudimos obtener la tasa BCV en este momento. Intenta en unos minutos o elige otro medio.' }, { status: 503 });
+    bs = { amount: toBs(c.usd, r.usd), rate: r.usd, date: r.date };
+  }
   const ref = `${caseId.replace(/\W/g, '')}${Date.now().toString(36).toUpperCase()}`;
   const whenText = c.kind === 'call' ? new Date(d.start).toLocaleString('es-VE', { timeZone: d.tz, weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }) : 'Respuesta por escrito en 48 h';
-  const order = { ref, caseId, consult: c.id, area: area.id, start: d.start, tz: d.tz, name: d.name, email: d.email, phone: d.phone, notes: d.notes, dealId: dealId || '', contactId: contactId || '', amountUsd: c.usd, method: d.pay };
+  const order = { ref, caseId, consult: c.id, area: area.id, start: d.start, tz: d.tz, name: d.name, email: d.email, phone: d.phone, notes: d.notes, dealId: dealId || '', contactId: contactId || '', amountUsd: c.usd, method: d.pay, ...(bs ? { amountBs: bs.amount, bcvRate: bs.rate, bcvDate: bs.date } : {}) };
 
-  await saveSubmission({ kind: 'consulta', ref, caseId, email: d.email, name: d.name, phone: d.phone, service: area.label, status: 'pendiente_pago', amountUsd: c.usd, payload: { ...order, country: d.country, timing: d.timing, pre: d.pre, attribution: d.attribution, consents: { terms: true, earlyStart: true, at: new Date().toISOString(), version: 'terminos-2026-11-17' } } });
-  await addNote(contactId, `Solicitud de <b>${c.name}</b> (${area.label}). Pago: ${d.pay}. Ref ${ref}. ${c.kind === 'call' ? 'Hora: ' + whenText : ''}<br>${d.notes}`, dealId);
-  await notifyTeam(`Nueva consulta (${d.pay}) ${caseId} · ${c.name} · USD ${c.usd}`, { Caso: caseId, Referencia: ref, Cliente: d.name, Email: d.email, WhatsApp: d.phone, País: d.country, Consulta: c.name, Servicio: area.label, Cuándo: whenText, 'Medio de pago': d.pay, Estado: 'Pendiente de pago', '¿Cuándo empezar?': d.timing, 'Pre-evaluación': d.pre, Notas: d.notes, Consentimientos: 'Condiciones + inicio anticipado (art. 103.a TRLGDCU) aceptados', Origen: d.attribution }, d.email);
+  await withTimeout(saveSubmission({ kind: 'consulta', ref, caseId, email: d.email, name: d.name, phone: d.phone, service: area.label, status: 'pendiente_pago', amountUsd: c.usd, payload: { ...order, country: d.country, timing: d.timing, pre: d.pre, attribution: d.attribution, consents: { terms: true, earlyStart: true, at: new Date().toISOString(), version: 'terminos-2026-11-17' } } }), 8000, 'db.saveSubmission');
+  after(() => step('hubspot.addNote', () => addNote(contactId, `Solicitud de <b>${c.name}</b> (${area.label}). Pago: ${d.pay}. Ref ${ref}. ${c.kind === 'call' ? 'Hora: ' + whenText : ''}<br>${d.notes}`, dealId)));
+  after(() => step('email.notifyTeam', () => notifyTeam(`Nueva consulta (${d.pay}) ${caseId} · ${c.name} · USD ${c.usd}`, { Caso: caseId, Referencia: ref, Cliente: d.name, Email: d.email, WhatsApp: d.phone, País: d.country, Consulta: c.name, Servicio: area.label, Cuándo: whenText, 'Medio de pago': PM_LABEL[d.pay] || 'Tarjeta', ...(bs ? { 'Importe en Bs.': `${fmtBs(bs.amount)} (tasa BCV ${bs.rate} del ${bs.date})` } : {}), Estado: 'Pendiente de pago', '¿Cuándo empezar?': d.timing, 'Pre-evaluación': d.pre, Notas: d.notes, Consentimientos: 'Condiciones + inicio anticipado (art. 103.a TRLGDCU) aceptados', Origen: d.attribution }, d.email)));
 
   const site = env.siteUrl.replace(/\/$/, '');
   const meta = { ref, dealId: dealId || '', contactId: contactId || '', caseId, consult: c.id, area: area.id, start: d.start, tz: d.tz, name: d.name, phone: d.phone, notes: d.notes.slice(0, 450), gclid: (d.attribution.gclid || '').slice(0, 200) };
@@ -92,22 +106,27 @@ export async function POST(req: Request) {
   if (c.kind === 'call') {
     const evt = calEventTypeId(area.id, c.id);
     if (evt) {
-      const b = await createBooking({ eventTypeId: evt, start: d.start, name: d.name, email: d.email, phone: d.phone, timeZone: d.tz, notes: `PAGO PENDIENTE (${d.pay}) · ${caseId} · ref ${ref}\n${d.notes}`, metadata: { caseId, ref } });
+      const b = await withTimeout(createBooking({ eventTypeId: evt, start: d.start, name: d.name, email: d.email, phone: d.phone, timeZone: d.tz, notes: `PAGO PENDIENTE (${d.pay}) · ${caseId} · ref ${ref}\n${d.notes}`, metadata: { caseId, ref } }), 10000, 'calcom.createBooking');
       bookingNote = b ? `Reserva Cal.com ${b.uid} (pendiente de pago)` : 'No se pudo crear la reserva en Cal.com';
     }
   }
   const instructions = d.pay === 'zelle'
     ? `Envía USD ${c.usd} por Zelle a ${env.zelleEmail} (titular: ${env.zelleName}). En el concepto escribe: ${ref}.`
-    : `Paga ${c.usd} USDT con Binance Pay al ID ${env.binancePayId}. En la nota escribe: ${ref}.`;
-  await addNote(contactId, `Pago manual pendiente vía ${d.pay}. Ref ${ref}. ${bookingNote}`, dealId);
-  if (d.phone) await sendTemplate(d.phone, 'tdl_pago_pendiente', [firstname, caseId, `USD ${c.usd}`, instructions]);
-  await sendEmail(d.email, `Completa tu pago · ${caseId}`, richEmail({
+    : d.pay === 'pagomovil' && bs
+      ? `Haz un Pago Móvil por ${fmtBs(bs.amount)} a: banco ${env.pmBank}, teléfono ${env.pmPhone}, ${env.pmId}${env.pmName ? ` (${env.pmName})` : ''}. En el concepto escribe: ${ref}. Monto calculado a la tasa BCV de ${bs.rate.toLocaleString('es-VE', { maximumFractionDigits: 4 })} Bs./USD (${bs.date}); válido hasta las 23:59 de hoy.`
+      : `Paga ${c.usd} USDT con Binance Pay al ID ${env.binancePayId}. En la nota escribe: ${ref}.`;
+  const amountText = bs ? `${fmtBs(bs.amount)} (USD ${c.usd})` : `USD ${c.usd}`;
+  after(async () => {
+  await step('hubspot.addNote', () => addNote(contactId, `Pago manual pendiente vía ${d.pay}. Ref ${ref}. ${bookingNote}`, dealId));
+  if (d.phone) await step('whatsapp', () => sendTemplate(d.phone, 'tdl_pago_pendiente', [firstname, caseId, amountText, instructions]));
+  await step('email.cliente', () => sendEmail(d.email, `Completa tu pago · ${caseId}`, richEmail({
     title: `Reservamos tu ${c.name.toLowerCase()}, ${firstname}`,
     caseId, service: area.label,
     intro: `<p>Tu reserva está hecha. Para confirmarla, completa el pago:</p><p style="background:#F4EFE6;border-radius:8px;padding:14px 16px;font-size:15px"><strong>${instructions}</strong></p><p>Responde a este correo con el comprobante (captura de pantalla) para agilizar la confirmación. Confirmamos en un máximo de 1 hora hábil. Si no recibimos el pago, la reserva se libera.</p>`,
-    summary: [['Consulta', c.name], ['Servicio', area.label], ['Cuándo', whenText], ['Importe', `USD ${c.usd}`], ['Medio de pago', d.pay === 'zelle' ? 'Zelle' : 'Binance Pay'], ['Referencia', ref]],
+    summary: [['Consulta', c.name], ['Servicio', area.label], ['Cuándo', whenText], ['Importe', amountText], ['Medio de pago', PM_LABEL[d.pay]], ['Referencia', ref]],
     steps: ['Paga con la referencia indicada.', 'Envíanos el comprobante respondiendo a este correo o por WhatsApp.', 'Recibirás la confirmación de la cita y el enlace de la videollamada.', 'Sube tus documentos en Mi caso antes de la cita.'],
     cta: { label: 'Ir a Mi caso', href: `${site}/mi-caso` },
-  }), { replyTo: process.env.TEAM_NOTIFICATION_EMAIL || 'info@tudiligencialegal.com' });
-  return NextResponse.json({ manual: true, caseId, ref, instructions });
+  }), { replyTo: process.env.TEAM_NOTIFICATION_EMAIL || 'info@tudiligencialegal.com' }));
+  });
+  return NextResponse.json({ manual: true, caseId, ref, instructions, method: d.pay, amountBs: bs?.amount, pm: d.pay === 'pagomovil' ? { bank: env.pmBank, phone: env.pmPhone, id: env.pmId, name: env.pmName } : undefined });
 }

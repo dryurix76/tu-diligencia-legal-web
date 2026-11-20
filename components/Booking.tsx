@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
+import PhoneField from './PhoneField';
 import { CONSULTS, AREAS } from '@/lib/catalog';
 import { postJSON, formValues } from '@/lib/client';
 import { track, getAttribution } from '@/lib/track';
@@ -9,7 +10,8 @@ import { track, getAttribution } from '@/lib/track';
 const TIM: [string, string][] = [['now', 'Ahora mismo'], ['3m', 'En 3 meses'], ['6m', 'En 6 meses o más'], ['info', 'Solo me informo']];
 const PRE: [string, string][] = [['verde', 'Sí, salió viable'], ['ambar', 'Sí, con puntos a revisar'], ['no', 'No la hice']];
 const TZS: [string, string][] = [['America/Caracas', 'Caracas (UTC−4)'], ['Europe/Madrid', 'Madrid'], ['America/Bogota', 'Bogotá y Panamá (UTC−5)'], ['America/New_York', 'Miami / Nueva York'], ['America/Santiago', 'Santiago'], ['America/Lima', 'Lima']];
-const PAY: [string, string, string][] = [['card', 'Tarjeta', 'Visa, Mastercard, Amex · confirmación inmediata'], ['zelle', 'Zelle', 'Confirmamos en 1 hora hábil'], ['binance', 'Binance Pay', 'USDT · pago desde tu app de Binance']];
+const PAY: [string, string, string][] = [['card', 'Tarjeta', 'Visa, Mastercard, Amex · confirmación inmediata'], ['pagomovil', 'Pago Móvil', 'En bolívares a tasa BCV · desde cualquier banco'], ['zelle', 'Zelle', 'Confirmamos en 1 hora hábil'], ['binance', 'Binance Pay', 'USDT · pago desde tu app de Binance']];
+const fmtBs = (n: number) => 'Bs. ' + n.toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
 export default function Booking({ initialType = 'inicial', cancelled = false }: { initialType?: string; cancelled?: boolean }) {
   const [step, setStep] = useState(1);
@@ -26,7 +28,23 @@ export default function Booking({ initialType = 'inicial', cancelled = false }: 
   const [pay, setPay] = useState('card');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState(cancelled ? 'El pago se canceló. Puedes intentarlo de nuevo.' : '');
-  const [manual, setManual] = useState<{ caseId: string; instructions: string } | null>(null);
+  const [manual, setManual] = useState<{ caseId: string; ref: string; email: string; method: string; instructions: string; amountBs?: number; pm?: { bank: string; phone: string; id: string; name: string } } | null>(null);
+  const [rate, setRate] = useState<{ usd: number; date: string } | null>(null);
+  const [report, setReport] = useState<'' | 'sending' | 'ok' | string>('');
+
+  useEffect(() => {
+    if (step !== 4 || pay !== 'pagomovil' || rate) return;
+    fetch('/api/rate').then((r) => (r.ok ? r.json() : null)).then((d) => d && setRate(d)).catch(() => {});
+  }, [step, pay, rate]);
+
+  const sendReport = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!manual) return;
+    const v = formValues(e.currentTarget);
+    setReport('sending');
+    const { ok, data } = await postJSON<any>('/api/payment/report', { ref: manual.ref, email: manual.email, reference: v.reference, bank: v.bank, payer: v.payer, date: v.date });
+    setReport(ok ? 'ok' : data.error || 'No pudimos enviar el reporte. Escríbenos por WhatsApp.');
+  };
 
   const c = CONSULTS[type];
   const isCall = c.kind === 'call';
@@ -62,7 +80,7 @@ export default function Booking({ initialType = 'inicial', cancelled = false }: 
     setBusy(false);
     if (!ok) { setError(data.error || 'No pudimos procesar el pago.'); return; }
     if (data.url) { window.location.href = data.url; return; }
-    if (data.manual) { setManual({ caseId: data.caseId, instructions: data.instructions }); setStep(5); }
+    if (data.manual) { setManual({ caseId: data.caseId, ref: data.ref, email: v.email, method: data.method, instructions: data.instructions, amountBs: data.amountBs, pm: data.pm }); setStep(5); }
   };
 
   const card = (on: boolean): React.CSSProperties => ({ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 20, padding: '22px 24px', borderRadius: 12, cursor: 'pointer', font: 'inherit', color: 'var(--ink)', background: 'var(--card)', border: on ? '2px solid var(--green)' : '1.5px solid color-mix(in srgb, var(--ink) 15%, transparent)', textAlign: 'left' });
@@ -144,7 +162,7 @@ export default function Booking({ initialType = 'inicial', cancelled = false }: 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16 }}>
                   <label className="lbl">Nombre y apellido<input className="field" name="name" required minLength={2} autoComplete="name" /></label>
                   <label className="lbl">Correo electrónico<input className="field" name="email" type="email" required autoComplete="email" /></label>
-                  <label className="lbl">WhatsApp<input className="field" name="phone" type="tel" required autoComplete="tel" placeholder="+58 412 000 0000" /></label>
+                  <div style={{ gridColumn: '1 / -1' }}><PhoneField /></div>
                   <label className="lbl">País donde vives<select className="field" name="country">{['Venezuela', 'España', 'Colombia', 'Panamá', 'Estados Unidos', 'Otro'].map((x) => <option key={x}>{x}</option>)}</select></label>
                 </div>
                 <fieldset style={{ border: 0, padding: 0, margin: 0 }}><legend style={{ fontSize: 14, fontWeight: 500, marginBottom: 10 }}>Medio de pago</legend>
@@ -152,25 +170,52 @@ export default function Booking({ initialType = 'inicial', cancelled = false }: 
                     {PAY.map(([k, l, s]) => <button key={k} type="button" aria-pressed={pay === k} onClick={() => setPay(k)} style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 2, padding: 16, borderRadius: 12, cursor: 'pointer', font: 'inherit', color: 'var(--ink)', background: 'var(--card)', border: pay === k ? '2px solid var(--green)' : '1.5px solid color-mix(in srgb, var(--ink) 15%, transparent)', textAlign: 'left' }}><span style={{ fontWeight: 600 }}>{l}</span><span style={{ fontSize: 12.5, color: 'var(--muted)' }}>{s}</span></button>)}
                   </div>
                 </fieldset>
-                <p style={{ margin: 0, fontSize: 14, color: 'var(--muted)' }}>{pay === 'card' ? 'Pagas en la página segura de Stripe. No guardamos los datos de tu tarjeta.' : pay === 'binance' ? 'Te llevamos a Binance Pay para pagar en USDT. Si el pago automático no está disponible, te damos el ID de Binance y tu referencia.' : 'Reservamos tu horario y te enviamos los datos de Zelle con tu referencia. Si no recibimos el pago en 24 horas (o antes de la cita, si es urgente), la reserva puede liberarse.'}</p>
+                <p style={{ margin: 0, fontSize: 14, color: 'var(--muted)' }}>{pay === 'pagomovil' ? (rate ? `Pagas ${fmtBs(Math.round(c.usd * rate.usd * 100) / 100)} (USD ${c.usd} a la tasa BCV de ${rate.usd.toLocaleString('es-VE', { maximumFractionDigits: 4 })} Bs., ${rate.date}). Reservamos tu horario, te damos los datos del Pago Móvil y nos reportas la referencia.` : 'Calculamos el monto en bolívares a la tasa BCV del día.') : pay === 'card' ? 'Pagas en la página segura de Stripe. No guardamos los datos de tu tarjeta.' : pay === 'binance' ? 'Te llevamos a Binance Pay para pagar en USDT. Si el pago automático no está disponible, te damos el ID de Binance y tu referencia.' : 'Reservamos tu horario y te enviamos los datos de Zelle con tu referencia. Si no recibimos el pago en 24 horas (o antes de la cita, si es urgente), la reserva puede liberarse.'}</p>
                 <label className="check"><input type="checkbox" name="terms" required /><span>Acepto las <Link href="/legal/terminos" target="_blank">condiciones de contratación</Link>, la <Link href="/legal/reembolsos" target="_blank">política de reembolsos</Link> (reprogramación gratis hasta 24 h antes) y la <Link href="/legal/privacidad" target="_blank">privacidad</Link>.</span></label>
                 <label className="check"><input type="checkbox" name="early" required /><span>Pido que la consulta se preste antes de que terminen los 14 días de desistimiento y reconozco que, una vez prestada por completo, perderé ese derecho (art. 103.a TRLGDCU). Si cancelo antes, se aplica la política de reembolsos.</span></label>
                 {error && <p className="err" role="alert">{error}</p>}
                 <div style={{ display: 'flex', gap: 10 }}>
                   <button type="button" className="btn btn-ghost" onClick={() => setStep(3)}>Atrás</button>
-                  <button type="submit" className="btn btn-green btn-lg" disabled={busy}>{busy ? 'Procesando…' : pay === 'card' ? `Pagar USD ${c.usd}` : 'Reservar y ver datos de pago'}</button>
+                  <button type="submit" className="btn btn-green btn-lg" disabled={busy}>{busy ? 'Procesando…' : pay === 'card' ? `Pagar USD ${c.usd}` : pay === 'pagomovil' ? 'Reservar y ver datos del Pago Móvil' : 'Reservar y ver datos de pago'}</button>
                 </div>
               </form>
             )}
 
             {step === 5 && manual && (
-              <div className="fade">
-                <h2 className="h2" style={{ marginBottom: 16 }}>Reserva hecha. <em>Falta el pago.</em></h2>
+              <div className="fade" style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+                <h2 className="h2" style={{ marginBottom: 0 }}>Reserva hecha. <em>Falta el pago.</em></h2>
                 <div className="card" style={{ padding: 28, fontSize: 17 }}>
-                  <p className="mono accent" style={{ margin: '0 0 8px', fontSize: 12, letterSpacing: '0.12em' }}>REFERENCIA {manual.caseId}</p>
-                  <p style={{ margin: 0 }}>{manual.instructions}</p>
+                  <p className="mono accent" style={{ margin: '0 0 12px', fontSize: 12, letterSpacing: '0.12em' }}>REFERENCIA {manual.ref} · CASO {manual.caseId}</p>
+                  {manual.method === 'pagomovil' && manual.pm ? (
+                    <dl style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: '10px 20px', margin: 0 }}>
+                      {([['Monto', manual.amountBs ? fmtBs(manual.amountBs) : ''], ['Banco', manual.pm.bank], ['Teléfono', manual.pm.phone], ['RIF / C.I.', manual.pm.id], ...(manual.pm.name ? [['Titular', manual.pm.name]] : []), ['Concepto', manual.ref]] as [string, string][]).map(([k, val]) => (
+                        <div key={k} style={{ display: 'contents' }}>
+                          <dt style={{ color: 'var(--muted)', fontSize: 14, alignSelf: 'center' }}>{k}</dt>
+                          <dd style={{ margin: 0, display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}><strong className={k === 'Monto' ? 'serif' : undefined} style={k === 'Monto' ? { fontSize: 28, fontWeight: 400 } : undefined}>{val}</strong>
+                            <button type="button" className="chip" style={{ minHeight: 30, padding: '0 10px', fontSize: 12.5 }} onClick={() => navigator.clipboard?.writeText(k === 'Monto' ? (manual.amountBs ?? 0).toFixed(2).replace('.', ',') : val)}>Copiar</button></dd>
+                        </div>
+                      ))}
+                    </dl>
+                  ) : <p style={{ margin: 0 }}>{manual.instructions}</p>}
+                  {manual.method === 'pagomovil' && <p style={{ margin: '16px 0 0', fontSize: 14, color: 'var(--muted)' }}>{manual.instructions.slice(Math.max(0, manual.instructions.indexOf('Monto calculado')))}</p>}
                 </div>
-                <p style={{ margin: '20px 0 0', color: 'var(--ink-80)' }}>Te enviamos estas instrucciones por correo y WhatsApp, y nuestro equipo ya tiene tu solicitud. Responde al correo con el comprobante de pago: al confirmarlo recibirás la confirmación de la cita.</p>
+                <form onSubmit={sendReport} className="card" style={{ padding: 28, display: 'flex', flexDirection: 'column', gap: 16 }}>
+                  <p className="serif" style={{ margin: 0, fontSize: 24 }}>¿Ya pagaste? Repórtalo aquí</p>
+                  <p style={{ margin: 0, fontSize: 14.5, color: 'var(--muted)' }}>Con la referencia lo verificamos en el banco y te confirmamos la cita, normalmente en menos de 1 hora hábil.</p>
+                  {report === 'ok' ? <p role="status" style={{ margin: 0, fontWeight: 500, color: 'var(--green)' }}>Recibimos tu reporte. Te avisamos por correo y WhatsApp en cuanto lo verifiquemos.</p> : (
+                    <>
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 14 }}>
+                        <label className="lbl">N.º de referencia o confirmación<input className="field" name="reference" required minLength={4} maxLength={40} inputMode={manual.method === 'pagomovil' ? 'numeric' : 'text'} placeholder={manual.method === 'pagomovil' ? 'Últimos 6 dígitos o completo' : 'ID de la transacción'} /></label>
+                        {manual.method === 'pagomovil' && <label className="lbl">Banco desde el que pagaste<input className="field" name="bank" maxLength={60} placeholder="Ej.: Banesco" /></label>}
+                        <label className="lbl">{manual.method === 'pagomovil' ? 'Teléfono o cédula del pagador' : manual.method === 'zelle' ? 'Correo o nombre en Zelle' : 'Usuario de Binance'}<input className="field" name="payer" maxLength={40} /></label>
+                        <label className="lbl">Fecha del pago<input className="field" name="date" type="date" defaultValue={new Date().toISOString().slice(0, 10)} /></label>
+                      </div>
+                      {report && report !== 'sending' && <p className="err" role="alert">{report}</p>}
+                      <button type="submit" className="btn btn-green" disabled={report === 'sending'} style={{ alignSelf: 'flex-start' }}>{report === 'sending' ? 'Enviando…' : 'Reportar mi pago'} <span className="arr" aria-hidden="true">→</span></button>
+                    </>
+                  )}
+                </form>
+                <p style={{ margin: 0, color: 'var(--ink-80)', fontSize: 15 }}>También te enviamos estos datos por correo y WhatsApp. Tu horario queda reservado mientras verificamos el pago.</p>
               </div>
             )}
 
@@ -192,6 +237,7 @@ export default function Booking({ initialType = 'inicial', cancelled = false }: 
               <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><span style={{ color: 'var(--muted)' }}>Cuándo</span><span style={{ textAlign: 'right' }}>{when}</span></div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: 18, paddingTop: 16, borderTop: '1px solid color-mix(in srgb, var(--ink) 10%, transparent)' }}><span className="serif" style={{ fontSize: 20 }}>Total</span><span className="serif" style={{ fontSize: 38 }}>USD {c.usd}</span></div>
+            {pay === 'pagomovil' && rate && step >= 4 && <p className="mono" style={{ margin: '6px 0 0', fontSize: 12.5, textAlign: 'right', color: 'var(--muted)' }}>≈ {fmtBs(Math.round(c.usd * rate.usd * 100) / 100)} · BCV {rate.date}</p>}
             <p className="accent" style={{ margin: '10px 0 0', fontSize: 13 }}>Se descuenta si contratas el servicio en 30 días.</p>
           </aside>
         </div>

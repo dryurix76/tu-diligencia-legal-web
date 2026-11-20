@@ -46,7 +46,7 @@ export default function Tarifas() {
             </div>
           ))}
           <div className="g-3">
-            {[['Pago antes de la cita', 'Sin pago no hay hueco en el calendario. Reprogramas gratis hasta 24 h antes.'], ['15% desde el segundo familiar', 'Cuando varios miembros de la familia comparten expediente.'], ['Pagas como te sea fácil', 'Tarjeta internacional, Zelle, Binance Pay (USDT) o transferencia en euros.']].map(([t, d]) => (
+            {[['Pago antes de la cita', 'Sin pago no hay hueco en el calendario. Reprogramas gratis hasta 24 h antes.'], ['15% desde el segundo familiar', 'Cuando varios miembros de la familia comparten expediente.'], ['Pagas como te sea fácil', 'Tarjeta internacional, Pago Móvil en bolívares a tasa BCV, Zelle o Binance Pay (USDT).']].map(([t, d]) => (
               <div key={t} className="card" style={{ padding: 28 }}><p className="serif" style={{ margin: '0 0 8px', fontSize: 22 }}>{t}</p><p style={{ margin: 0, color: 'var(--muted)', fontSize: 15 }}>{d}</p></div>
             ))}
           </div>

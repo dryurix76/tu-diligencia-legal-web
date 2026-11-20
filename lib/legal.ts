@@ -64,7 +64,7 @@ export const LEGAL: Record<string, LegalDoc> = {
       { h: '2. Qué datos tratamos', p: [[
         'Identificación y contacto: nombre, correo, teléfono o WhatsApp, país.',
         'Datos de tu caso: respuestas del evaluador, mensajes, documentos que subas (partidas, pasaportes, certificados) y notas del abogado.',
-        'Datos de pago: importe, método y referencia de la transacción. No almacenamos números de tarjeta: los gestiona Stripe. En pagos con Binance Pay o Zelle guardamos la referencia que nos facilitas.',
+        'Datos de pago: importe, método y referencia de la transacción. No almacenamos números de tarjeta: los gestiona Stripe. En pagos con Pago Móvil, Binance Pay o Zelle guardamos la referencia, el banco y el teléfono o cédula del pagador que nos facilitas para verificar el pago.',
         'Datos de navegación: páginas visitadas, origen de la visita (UTM, gclid) y datos técnicos, solo si aceptas cookies de analítica o publicidad.',
         'Conversaciones con el asistente virtual Diana.',
         'Categorías especiales: algunos expedientes pueden revelar origen étnico o datos de salud o antecedentes penales (por ejemplo, certificados exigidos por la ley de nacionalidad). Solo los tratamos cuando son necesarios para tu trámite y con tu consentimiento explícito (art. 9.2.a RGPD) o para la formulación de reclamaciones (art. 9.2.f RGPD), y los antecedentes penales en el marco del art. 10 RGPD y del art. 10 LOPDGDD.',
@@ -149,7 +149,7 @@ export const LEGAL: Record<string, LegalDoc> = {
         'El contrato se perfecciona cuando confirmamos el pago. Guardamos el documento electrónico del contrato y puedes pedir una copia.',
       ]] },
       { h: '4. Precios y medios de pago', p: [
-        'Los precios publicados son por persona y por servicio, salvo que se indique otra cosa. Aceptamos tarjeta (Stripe), Binance Pay (USDT) y Zelle. En pagos con criptomonedas el importe se fija en USDT al crear la orden; no respondemos de las comisiones o variaciones de tu proveedor. En pagos por Zelle o Binance manual, la cita se reserva provisionalmente y se confirma al recibir el pago; si no lo recibimos en 24 horas (o antes de la cita, si es urgente), la reserva puede liberarse.',
+        'Los precios publicados son por persona y por servicio, salvo que se indique otra cosa. Aceptamos tarjeta (Stripe), Pago Móvil en bolívares, Binance Pay (USDT) y Zelle. En Pago Móvil el precio en USD se convierte a bolívares con la tasa oficial del BCV vigente al crear la reserva; el monto indicado vale hasta las 23:59 (hora de Caracas) de ese día. En pagos con criptomonedas el importe se fija en USDT al crear la orden; no respondemos de las comisiones o variaciones de tu proveedor. En pagos por Zelle o Binance manual, la cita se reserva provisionalmente y se confirma al recibir el pago; si no lo recibimos en 24 horas (o antes de la cita, si es urgente), la reserva puede liberarse.',
         'Por normativa de prevención del blanqueo de capitales podemos pedirte que identifiques al pagador cuando no seas tú.',
       ] },
       { h: '5. Consultas: qué incluyen', p: [[
@@ -207,7 +207,7 @@ export const LEGAL: Record<string, LegalDoc> = {
         `Escribe a ${CO.email} con tu número de caso indicando que deseas desistir o cancelar. Puedes usar este modelo: «Por la presente le comunico que desisto de mi contrato de prestación del siguiente servicio: [servicio], contratado el [fecha]. Nombre: [nombre]. Caso: [número]. Fecha: [fecha]». Te confirmaremos la recepción por escrito.`,
       ] },
       { h: '5. Plazo y forma del reembolso', p: [
-        'Devolvemos sin demora y, como máximo, en 14 días naturales desde que recibimos tu solicitud (art. 107 TRLGDCU), por el mismo medio de pago que usaste, salvo que acordemos otro sin coste para ti. En Binance Pay, devolvemos el importe en USDT a la cuenta de origen; en Zelle, a la cuenta emisora. Las comisiones de tu banco o plataforma no dependen de nosotros.',
+        'Devolvemos sin demora y, como máximo, en 14 días naturales desde que recibimos tu solicitud (art. 107 TRLGDCU), por el mismo medio de pago que usaste, salvo que acordemos otro sin coste para ti. En Pago Móvil, devolvemos en bolívares a la cuenta de origen el equivalente del importe en USD a la tasa oficial del BCV del día de la devolución. En Binance Pay, devolvemos el importe en USDT a la cuenta de origen; en Zelle, a la cuenta emisora. Las comisiones de tu banco o plataforma no dependen de nosotros.',
       ] },
       { h: '6. Contracargos', p: [
         'Si tienes un problema con un pago, escríbenos antes de iniciar un contracargo con tu banco: lo resolvemos más rápido. Esto no limita tus derechos frente a tu entidad.',
